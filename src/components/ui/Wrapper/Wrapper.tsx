@@ -6,5 +6,5 @@ type WrapperProps = {
 }
 
 export function Wrapper({ children, className }: WrapperProps) {
-	return <div className={`px-6 md:px-12 lg:px-24 xl:px-44 ${className}`}>{children}</div>
+	return <div className={`px-6 md:px-12 lg:px-24 xl:px-80 ${className}`}>{children}</div>
 }
