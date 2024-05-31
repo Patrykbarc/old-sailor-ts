@@ -8,16 +8,19 @@ type WrapperProps = {
 	className?: string
 }
 
-const wrapperVariants = cva('px-6 md:px-12', {
+const wrapperVariants = cva('px-6 md:px-12 flex justify-center', {
 	variants: {
 		variant: {
 			default: 'max-w-[75rem]',
 			narrow: 'max-w-[56rem]',
 		},
 	},
+	defaultVariants: {
+		variant: 'default',
+	},
 })
 
-export function Wrapper({ variant, children, className }: WrapperProps) {
+export function Wrapper({ variant = 'default', children, className }: WrapperProps) {
 	const classes = cn(wrapperVariants({ variant }), className)
 	return <div className={classes}>{children}</div>
 }

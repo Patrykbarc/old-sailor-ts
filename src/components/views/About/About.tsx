@@ -5,7 +5,7 @@ import Image from 'next/image'
 export function About() {
 	return (
 		<section className='my-24'>
-			<Wrapper variant='narrow'>
+			<Wrapper className='flex-col'>
 				<h1 className='mb-6 text-5xl font-bold uppercase text-primary'>about us</h1>
 				<div className='grid gap-36'>
 					{aboutUsTexts.map(({ id, text, image }, index) => {

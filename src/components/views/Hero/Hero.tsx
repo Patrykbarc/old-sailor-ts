@@ -3,10 +3,10 @@ import { Wrapper } from '@/components/ui/Wrapper/Wrapper'
 
 export function Hero() {
 	return (
-		<section>
+		<header>
 			<div className='bg-hero-pattern w-screen h-screen max-w-full bg-cover bg-no-repeat relative'>
 				<div className='bg-shadow-gradient absolute w-screen h-screen' />
-				<Wrapper className='flex w-full items-center absolute justify-center h-full'>
+				<Wrapper className='min-w-[100vw] items-center absolute h-full'>
 					<div className='grid gap-12 text-center md:text-left'>
 						<h1 className='font-black text-6xl md:text-8xl text-primary'>
 							The Old Sailor Barber
@@ -20,6 +20,6 @@ export function Hero() {
 					</div>
 				</Wrapper>
 			</div>
-		</section>
+		</header>
 	)
 }
