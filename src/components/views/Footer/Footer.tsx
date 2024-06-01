@@ -1,11 +1,12 @@
 'use client'
 
 import { Wrapper } from '@/components/ui/Wrapper/Wrapper'
-import { footerLinks } from '@/lib/constants/footerLinks'
+import { navLinks } from '@/lib/constants/navLinks'
 import { Separator } from '@radix-ui/react-separator'
 import Image from 'next/image'
 import Link from 'next/link'
 import LOGO from '../../../../public/old-sailor-logo-vertical.png'
+import { NavLinks } from '@/components/ui/NavLinks/NavLinks'
 
 export function Footer() {
 	return (
@@ -20,15 +21,12 @@ export function Footer() {
 				/>
 				<div className='flex flex-col gap-2'>
 					<div className='flex flex-col md:flex-row text-center md:gap-3 text-lg'>
-						{footerLinks.map(link => {
-							return (
-								<ul key={link.name}>
-									<li className='hover:text-primary transition-colors capitalize'>
-										<Link href={link.href}>{link.name}</Link>
-									</li>
-								</ul>
-							)
-						})}
+						<NavLinks />
+						<Link
+							className='hover:text-primary transition-colors capitalize'
+							href='/privacy-policy'>
+							privacy policy
+						</Link>
 					</div>
 					<Separator className='my-3 md:my-0.5 bg-neutral-800 w-full h-[1px]' />
 					<div className='flex flex-col text-center md:text-end text-sm'>

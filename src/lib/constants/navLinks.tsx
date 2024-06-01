@@ -1,4 +1,4 @@
-export const footerLinks = [
+export const navLinks = [
 	{
 		name: 'contact',
 		href: '/contact',
@@ -10,9 +10,5 @@ export const footerLinks = [
 	{
 		name: 'work',
 		href: '/work',
-	},
-	{
-		name: 'privacy policy',
-		href: '/privacy-policy',
 	},
 ]
