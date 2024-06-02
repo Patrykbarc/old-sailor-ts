@@ -1,13 +1,14 @@
 'use client'
 
-import { NavLinks } from '../../ui/NavLinks/NavLinks'
+import { NavLinks } from '../NavLinks/NavLinks'
 import LOGO from '../../../../public/old-sailor-logo-horizontal.png'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Wrapper } from '@/components/ui/Wrapper/Wrapper'
 import { useEffect, useState } from 'react'
+import { NavigationProps } from '@/lib/types/types'
 
-export function DesktopNav() {
+export function DesktopNav({ className }: NavigationProps) {
 	const [prevScrollPos, setPrevScrollPos] = useState(window.scrollY)
 	const [visible, setVisible] = useState(true)
 
@@ -26,7 +27,7 @@ export function DesktopNav() {
 
 	return (
 		<nav
-			className={`fixed z-10 w-full py-5 shadow-xl backdrop-blur-md lg:block transition-all duration-500 ${
+			className={`fixed z-10 w-full py-5 shadow-xl backdrop-blur-md lg:block transition-all duration-500 ${className} ${
 				visible ? 'top-0' : '-top-full'
 			}`}>
 			<Wrapper className='justify-between flex-col md:flex-row mx-auto items-center'>

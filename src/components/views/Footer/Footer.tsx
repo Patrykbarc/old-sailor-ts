@@ -21,7 +21,7 @@ export function Footer() {
 				/>
 				<div className='flex flex-col gap-2'>
 					<div className='flex flex-col md:flex-row text-center md:gap-3 text-lg'>
-						<NavLinks />
+						<NavLinks></NavLinks>
 						<Link
 							className='hover:text-primary transition-colors capitalize'
 							href='/privacy-policy'>

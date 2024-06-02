@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { Footer } from '@/components/views/Footer/Footer'
-import { DesktopNav } from '@/components/views/DesktopNav/DesktopNav'
+import { Navigation } from '@/components/views/Navigation/Navigation'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -20,7 +20,7 @@ export default function RootLayout({
 		<html lang='en'>
 			<body
 				className={`${inter.className} text-neutral-300 overflow-x-hidden selection:bg-primary selection:text-neutral-900`}>
-				<DesktopNav />
+				<Navigation />
 				{children}
 				<Footer />
 			</body>
