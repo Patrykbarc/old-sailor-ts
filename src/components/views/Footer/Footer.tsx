@@ -31,8 +31,8 @@ export function Footer() {
 					<Separator className='my-3 md:my-0.5 bg-neutral-800 w-full h-[1px]' />
 					<div className='flex flex-col text-center md:text-end text-sm'>
 						<p>Parkside Street 41</p>
-						<p>+48 100 200 300</p>
-						<p>old.sailor@barber.com</p>
+						<a href='tel:+48100200300'>+48 100 200 300</a>
+						<a href='mailto:old.sailor@barber.com'>old.sailor@barber.com</a>
 					</div>
 				</div>
 			</Wrapper>

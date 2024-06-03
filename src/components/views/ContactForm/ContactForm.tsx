@@ -3,7 +3,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
-
+import { Button } from '@/components/ui/Button/Button'
 import {
 	Form,
 	FormControl,
@@ -13,12 +13,8 @@ import {
 	FormLabel,
 	FormMessage,
 } from '@/components/ui/Form/Form'
-import { Button } from '@/components/ui/Button/Button'
 import { Input } from '@/components/ui/Input/Input'
 import { Textarea } from '@/components/ui/Textarea/Textarea'
-
-import PLACEHOLDER from '../../../../public/placeholder.jpg'
-import Image from 'next/image'
 
 const formSchema = z.object({
 	username: z.string().min(2, {
