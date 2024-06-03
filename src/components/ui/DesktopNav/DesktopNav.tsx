@@ -8,6 +8,11 @@ import { Wrapper } from '@/components/ui/Wrapper/Wrapper'
 import { useEffect, useState } from 'react'
 import { NavigationProps } from '@/lib/types/types'
 
+const navStyles =
+	'fixed z-10 w-full hover:opacity-100 hover:py-5 duration-500 ease-in-out lg:block transition-all backdrop-blur-md'
+const visibleNavStyles = 'opacity-100 py-5 shadow-xl'
+const notVisibleNavStyles = 'opacity-85 py-2'
+
 export function DesktopNav({ className }: NavigationProps) {
 	const [prevScrollPos, setPrevScrollPos] = useState(window.scrollY)
 	const [visible, setVisible] = useState(true)
@@ -27,8 +32,8 @@ export function DesktopNav({ className }: NavigationProps) {
 
 	return (
 		<nav
-			className={`fixed z-10 w-full py-5 shadow-xl backdrop-blur-md lg:block transition-all duration-500 ${className} ${
-				visible ? 'top-0' : '-top-full'
+			className={` ${navStyles} ${className} ${
+				visible ? visibleNavStyles : notVisibleNavStyles
 			}`}>
 			<Wrapper className='justify-between flex-col md:flex-row mx-auto items-center'>
 				<Link href={'/'}>
