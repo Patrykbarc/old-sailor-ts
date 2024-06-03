@@ -35,13 +35,11 @@ export function ContactForm() {
 	})
 
 	function onSubmit(values: z.infer<typeof formSchema>) {
-		// Do something with the form values.
-		// ✅ This will be type-safe and validated.
 		console.log(values)
 	}
 
 	return (
-		<div className='border-2 w-full h-fit p-8 rounded-lg'>
+		<div className='border-2 w-full h-fit p-8 rounded-lg bg-neutral-900 shadow-xl'>
 			<Form {...form}>
 				<form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
 					<FormField
