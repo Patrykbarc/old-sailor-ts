@@ -22,5 +22,5 @@ const wrapperVariants = cva('px-6 md:px-12 flex justify-center', {
 
 export function Wrapper({ variant = 'default', children, className }: WrapperProps) {
 	const classes = cn(wrapperVariants({ variant }), className)
-	return <div className={classes}>{children}</div>
+	return <div className={`${classes} ${className}`}>{children}</div>
 }
