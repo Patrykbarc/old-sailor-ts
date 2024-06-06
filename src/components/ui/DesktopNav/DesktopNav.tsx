@@ -30,6 +30,8 @@ export function DesktopNav({ className }: NavigationProps) {
 		}
 	}, [prevScrollPos])
 
+	// TODO: make navlinks padding more user-friendly
+
 	return (
 		<nav
 			className={` ${navStyles} ${className} ${

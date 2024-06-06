@@ -8,7 +8,7 @@ export const navLinks = [
 		href: '/store',
 	},
 	{
-		name: 'work',
-		href: '/work',
+		name: 'career',
+		href: '/career',
 	},
 ]
