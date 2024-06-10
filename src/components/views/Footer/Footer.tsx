@@ -1,45 +1,46 @@
-'use client'
+"use client"
 
-import { Wrapper } from '@/components/ui/Wrapper/Wrapper'
-import { navLinks } from '@/lib/constants/navLinks'
-import { Separator } from '@radix-ui/react-separator'
-import Image from 'next/image'
-import Link from 'next/link'
-import LOGO from '../../../../public/old-sailor-logo-vertical.png'
-import { NavLinks } from '@/components/ui/NavLinks/NavLinks'
+import { Wrapper } from "@/components/ui/Wrapper/Wrapper"
+import { navLinks } from "@/lib/constants/navLinks"
+import { Separator } from "@radix-ui/react-separator"
+import Image from "next/image"
+import Link from "next/link"
+import LOGO from "../../../../public/old-sailor-logo-vertical.png"
+import { NavLinks } from "@/components/ui/NavLinks/NavLinks"
 
 export function Footer() {
-	return (
-		<footer className='w-full bg-neutral-950 py-8'>
-			<Wrapper className='justify-between flex-col md:flex-row mx-auto items-center'>
-				<Image
-					className='h-fit mb-8 md:mb-0'
-					height={92}
-					width={107}
-					src={LOGO}
-					alt='Old Sailor Barber logo'
-				/>
-				<div className='flex flex-col gap-2'>
-					<div className='flex flex-col md:flex-row text-center md:gap-3 text-lg'>
-						<NavLinks></NavLinks>
-						<Link
-							className='hover:text-primary transition-colors capitalize'
-							href='/privacy-policy'>
-							privacy policy
-						</Link>
-					</div>
-					<Separator className='my-3 md:my-0.5 bg-neutral-800 w-full h-[1px]' />
-					<div className='flex flex-col text-center md:text-end text-sm'>
-						<p>Parkside Street 41</p>
-						<a href='tel:+48100200300'>+48 100 200 300</a>
-						<a href='mailto:old.sailor@barber.com'>old.sailor@barber.com</a>
-					</div>
-				</div>
-			</Wrapper>
-			<div className='flex flex-col text-center w-full mt-5 text-neutral-600'>
-				<small>© 2024 | The Old Sailor Barber</small>
-				<small>Designed & developed by Patryk Barć</small>
-			</div>
-		</footer>
-	)
+  return (
+    <footer className="w-full bg-neutral-950 py-8">
+      <Wrapper className="justify-between flex-col md:flex-row mx-auto items-center">
+        <Image
+          className="h-fit mb-8 md:mb-0"
+          height={92}
+          width={107}
+          src={LOGO}
+          alt="Old Sailor Barber logo"
+        />
+        <div className="flex flex-col gap-2">
+          <div className="flex flex-col md:flex-row text-center md:gap-3 text-lg">
+            <NavLinks></NavLinks>
+            <Link
+              className="hover:text-primary transition-colors capitalize"
+              href="/privacy-policy"
+            >
+              privacy policy
+            </Link>
+          </div>
+          <Separator className="my-3 md:my-0.5 bg-neutral-800 w-full h-[1px]" />
+          <div className="flex flex-col text-center md:text-end text-sm">
+            <p>Parkside Street 41</p>
+            <a href="tel:+48100200300">+48 100 200 300</a>
+            <a href="mailto:old.sailor@barber.com">old.sailor@barber.com</a>
+          </div>
+        </div>
+      </Wrapper>
+      <div className="flex flex-col text-center w-full mt-5 text-neutral-600">
+        <small>© 2024 | The Old Sailor Barber</small>
+        <small>Designed & developed by Patryk Barć</small>
+      </div>
+    </footer>
+  )
 }

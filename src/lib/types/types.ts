@@ -1,3 +1,3 @@
 export type NavigationProps = {
-    className: string
+  className: string
 }
