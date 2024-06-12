@@ -55,12 +55,14 @@ export function MobileNav({ className }: NavigationProps) {
           <div className="text-5xl flex flex-col gap-6">
             <NavLinks />
           </div>
-          <a
-            className="text-primary hover:text-primary-foreground text-2xl"
-            href="tel:+48100200300"
-          >
-            +48 100 200 300
-          </a>
+          <address className="not-italic">
+            <a
+              className="text-primary hover:text-primary-foreground text-2xl"
+              href="tel:+48100200300"
+            >
+              +48 100 200 300
+            </a>
+          </address>
         </Wrapper>
       </div>
     </nav>

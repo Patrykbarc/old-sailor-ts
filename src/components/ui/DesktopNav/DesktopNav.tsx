@@ -53,12 +53,14 @@ export function DesktopNav({ className }: NavigationProps) {
         <div className="flex gap-3">
           <NavLinks className="text-lg" />
         </div>
-        <a
-          className="text-primary hover:text-primary-foreground"
-          href="tel:+48100200300"
-        >
-          +48 100 200 300
-        </a>
+        <address className="not-italic">
+          <a
+            className="text-primary hover:text-primary-foreground"
+            href="tel:+48100200300"
+          >
+            +48 100 200 300
+          </a>
+        </address>
       </Wrapper>
     </nav>
   )

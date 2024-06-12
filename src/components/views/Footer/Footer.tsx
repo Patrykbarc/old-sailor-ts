@@ -29,11 +29,11 @@ export function Footer() {
             </Link>
           </div>
           <Separator className="my-3 md:my-0.5 bg-neutral-800 w-full h-[1px]" />
-          <div className="flex flex-col text-center md:text-end text-sm">
+          <address className="flex flex-col text-center md:text-end text-sm not-italic">
             <p>Parkside Street 41</p>
             <a href="tel:+48100200300">+48 100 200 300</a>
             <a href="mailto:old.sailor@barber.com">old.sailor@barber.com</a>
-          </div>
+          </address>
         </div>
       </Wrapper>
       <div className="flex flex-col text-center w-full mt-5 text-neutral-600">
