@@ -14,10 +14,14 @@ const visibleNavStyles = 'opacity-100 py-5 shadow-xl'
 const notVisibleNavStyles = 'opacity-85 py-2'
 
 export function DesktopNav({ className }: NavigationProps) {
-  const [prevScrollPos, setPrevScrollPos] = useState(window.scrollY)
+  const [prevScrollPos, setPrevScrollPos] = useState(0)
   const [visible, setVisible] = useState(true)
 
   useEffect(() => {
+    if (typeof window !== undefined) {
+      setPrevScrollPos(window.scrollY)
+    }
+
     function handleScroll() {
       const currentScrollPos = window.scrollY
       setVisible(prevScrollPos > currentScrollPos)
