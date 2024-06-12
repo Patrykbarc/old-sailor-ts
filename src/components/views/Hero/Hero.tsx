@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/Button/Button"
-import { Wrapper } from "@/components/ui/Wrapper/Wrapper"
+import { Button } from '@/components/ui/Button/Button'
+import { Wrapper } from '@/components/ui/Wrapper/Wrapper'
 
 export function Hero() {
   return (

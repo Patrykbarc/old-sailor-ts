@@ -1,8 +1,7 @@
-import { Wrapper } from "@/components/ui/Wrapper/Wrapper"
-import { ContactForm } from "@/components/views/ContactForm/ContactForm"
-import Image from "next/image"
-import BACKGROUND_IMAGE from "../../../../public/background-image.png"
-import { ReactNode } from "react"
+import BACKGROUND_IMAGE from '../../../../public/background-image.png'
+import Image from 'next/image'
+import { Wrapper } from '@/components/ui/Wrapper/Wrapper'
+import { ReactNode } from 'react'
 
 type SubpageLayout = {
   children: ReactNode

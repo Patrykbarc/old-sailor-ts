@@ -1,14 +1,14 @@
-"use client"
+'use client'
 
-import Image from "next/image"
-import Link from "next/link"
-import LOGO from "../../../../public/old-sailor-logo-horizontal.png"
-import { NavLinks } from "../NavLinks/NavLinks"
-import { Wrapper } from "../Wrapper/Wrapper"
+import Image from 'next/image'
+import Link from 'next/link'
+import LOGO from '../../../../public/old-sailor-logo-horizontal.png'
+import { NavLinks } from '../NavLinks/NavLinks'
+import { Wrapper } from '../Wrapper/Wrapper'
 
-import { XMarkIcon, Bars3Icon } from "@heroicons/react/24/solid"
-import { useEffect, useState } from "react"
-import { NavigationProps } from "@/lib/types/types"
+import { XMarkIcon, Bars3Icon } from '@heroicons/react/24/solid'
+import { useEffect, useState } from 'react'
+import { NavigationProps } from '@/lib/types/types'
 
 export function MobileNav({ className }: NavigationProps) {
   const [isNavHidden, setIsNavHidden] = useState(false)
@@ -21,8 +21,8 @@ export function MobileNav({ className }: NavigationProps) {
     const body = document.body
 
     isNavHidden
-      ? body.classList.add("overflow-y-hidden")
-      : body.classList.remove("overflow-y-hidden")
+      ? body.classList.add('overflow-y-hidden')
+      : body.classList.remove('overflow-y-hidden')
   }, [isNavHidden])
 
   return (
@@ -44,12 +44,12 @@ export function MobileNav({ className }: NavigationProps) {
       )}
       <div
         className={`overflow-hidden fixed h-dvh w-dvw top-0 z-40 bg-neutral-900 transition-all text-end ${
-          !isNavHidden ? "right-full" : "right-0"
+          !isNavHidden ? 'right-full' : 'right-0'
         }`}
         onClick={handleSetIsNavHidden}
       >
         <Wrapper className="flex-col h-full justify-between py-8">
-          <Link href={"/"}>
+          <Link href={'/'}>
             <Image alt="Old Sailor Barber logo" src={LOGO} />
           </Link>
           <div className="text-5xl flex flex-col gap-6">

@@ -1,7 +1,7 @@
-import { ListSection } from "@/components/ui/ListSection/ListSection"
-import { SubpageTitle } from "@/components/ui/SubpageTitle/SubpageTitle"
-import { SubpageLayout } from "@/components/views/SubpageLayout/SubpageLayout"
-import { jobDetails } from "@/lib/constants/jobDetails"
+import { ListSection } from '@/components/ui/ListSection/ListSection'
+import { SubpageTitle } from '@/components/ui/SubpageTitle/SubpageTitle'
+import { SubpageLayout } from '@/components/views/SubpageLayout/SubpageLayout'
+import { jobDetails } from '@/lib/constants/jobDetails'
 
 export default function Career() {
   return (

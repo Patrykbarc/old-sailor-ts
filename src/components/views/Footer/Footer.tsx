@@ -1,12 +1,11 @@
-"use client"
+'use client'
 
-import { Wrapper } from "@/components/ui/Wrapper/Wrapper"
-import { navLinks } from "@/lib/constants/navLinks"
-import { Separator } from "@radix-ui/react-separator"
-import Image from "next/image"
-import Link from "next/link"
-import LOGO from "../../../../public/old-sailor-logo-vertical.png"
-import { NavLinks } from "@/components/ui/NavLinks/NavLinks"
+import { Wrapper } from '@/components/ui/Wrapper/Wrapper'
+import { Separator } from '@radix-ui/react-separator'
+import Image from 'next/image'
+import Link from 'next/link'
+import LOGO from '../../../../public/old-sailor-logo-vertical.png'
+import { NavLinks } from '@/components/ui/NavLinks/NavLinks'
 
 export function Footer() {
   return (
@@ -21,7 +20,7 @@ export function Footer() {
         />
         <div className="flex flex-col gap-2">
           <div className="flex flex-col md:flex-row text-center md:gap-3 text-lg">
-            <NavLinks></NavLinks>
+            <NavLinks />
             <Link
               className="hover:text-primary transition-colors capitalize"
               href="/privacy-policy"

@@ -1,6 +1,6 @@
-import { SubpageTitle } from "@/components/ui/SubpageTitle/SubpageTitle"
-import { SubpageLayout } from "@/components/views/SubpageLayout/SubpageLayout"
-import { policyPrivacyListItems } from "@/lib/constants/policyPrivacyListItems"
+import { SubpageTitle } from '@/components/ui/SubpageTitle/SubpageTitle'
+import { SubpageLayout } from '@/components/views/SubpageLayout/SubpageLayout'
+import { policyPrivacyListItems } from '@/lib/constants/policyPrivacyListItems'
 
 export default function PrivacyPolicy() {
   return (

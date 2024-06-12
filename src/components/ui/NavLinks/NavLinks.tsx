@@ -1,5 +1,5 @@
-import { navLinks } from "@/lib/constants/navLinks"
-import Link from "next/link"
+import { navLinks } from '@/lib/constants/navLinks'
+import Link from 'next/link'
 
 type NavLinkProps = {
   className?: string

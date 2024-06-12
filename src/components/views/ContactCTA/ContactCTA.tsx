@@ -1,14 +1,13 @@
-import { Button } from "@/components/ui/Button/Button"
+import { Button } from '@/components/ui/Button/Button'
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/Card/Card"
-import { Wrapper } from "@/components/ui/Wrapper/Wrapper"
-import Link from "next/link"
+} from '@/components/ui/Card/Card'
+import { Wrapper } from '@/components/ui/Wrapper/Wrapper'
+import Link from 'next/link'
 
 export function ContactCTA() {
   return (

@@ -1,24 +1,22 @@
-"use client"
+'use client'
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
-import { Button } from "@/components/ui/Button/Button"
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
+import { Button } from '@/components/ui/Button/Button'
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
-} from "@/components/ui/Form/Form"
-import { Input } from "@/components/ui/Input/Input"
-import { Textarea } from "@/components/ui/Textarea/Textarea"
+} from '@/components/ui/Form/Form'
+import { Input } from '@/components/ui/Input/Input'
+import { Textarea } from '@/components/ui/Textarea/Textarea'
 
 const formSchema = z.object({
   username: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
+    message: 'Username must be at least 2 characters.',
   }),
 })
 
@@ -26,7 +24,7 @@ export function ContactForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: "",
+      username: '',
     },
   })
 

@@ -1,5 +1,5 @@
-import { ContactForm } from "@/components/views/ContactForm/ContactForm"
-import { SubpageLayout } from "@/components/views/SubpageLayout/SubpageLayout"
+import { ContactForm } from '@/components/views/ContactForm/ContactForm'
+import { SubpageLayout } from '@/components/views/SubpageLayout/SubpageLayout'
 
 export default function Contact() {
   return (
