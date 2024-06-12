@@ -7,6 +7,7 @@ import Link from 'next/link'
 import { Wrapper } from '@/components/ui/Wrapper/Wrapper'
 import { useEffect, useState } from 'react'
 import { NavigationProps } from '@/lib/types/types'
+import { debounce } from '@/lib/functions/debounce'
 
 const navStyles =
   'fixed z-10 w-full hover:opacity-100 hover:py-5 duration-500 ease-in-out lg:block transition-all backdrop-blur-md'
@@ -27,10 +28,13 @@ export function DesktopNav({ className }: NavigationProps) {
       setVisible(prevScrollPos > currentScrollPos)
       setPrevScrollPos(currentScrollPos)
     }
-    window.addEventListener('scroll', handleScroll)
+
+    const debouncedHandleScroll = debounce(handleScroll, 100)
+
+    window.addEventListener('scroll', debouncedHandleScroll)
 
     return () => {
-      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('scroll', debouncedHandleScroll)
     }
   }, [prevScrollPos])
 
