@@ -1,4 +1,4 @@
-import { navLinks } from '@/lib/constants/navLinks'
+import { navLinks } from '@/lib/constants/MainPage/navLinks'
 import Link from 'next/link'
 
 type NavLinkProps = {

@@ -1,6 +1,6 @@
 'use client'
 
-import { NavLinks } from '../NavLinks/NavLinks'
+import { NavLinks } from '../../NavLinks/NavLinks'
 import LOGO from '/public/old-sailor-logo-horizontal.png'
 import Image from 'next/image'
 import Link from 'next/link'

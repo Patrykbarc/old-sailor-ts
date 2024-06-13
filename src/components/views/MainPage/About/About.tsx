@@ -1,5 +1,5 @@
 import { Wrapper } from '@/components/ui/Wrapper/Wrapper'
-import { aboutUsTexts } from '@/lib/constants/aboutUsTexts'
+import { aboutUsTexts } from '@/lib/constants/MainPage/aboutUsTexts'
 import Image from 'next/image'
 
 export function About() {
