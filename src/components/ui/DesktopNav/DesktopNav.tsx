@@ -1,7 +1,7 @@
 'use client'
 
 import { NavLinks } from '../NavLinks/NavLinks'
-import LOGO from '../../../../public/old-sailor-logo-horizontal.png'
+import LOGO from '/public/old-sailor-logo-horizontal.png'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Wrapper } from '@/components/ui/Wrapper/Wrapper'

@@ -1,5 +1,5 @@
 import { SubpageTitle } from '@/components/ui/SubpageTitle/SubpageTitle'
-import { SubpageLayout } from '@/components/views/SubpageLayout/SubpageLayout'
+import { SubpageLayout } from '@/components/views/MainPage/SubpageLayout/SubpageLayout'
 import { policyPrivacyListItems } from '@/lib/constants/policyPrivacyListItems'
 
 export default function PrivacyPolicy() {
@@ -13,9 +13,9 @@ export default function PrivacyPolicy() {
         />
       </div>
       <ol className="grid gap-3 list-decimal text-lg list-inside marker:text-primary">
-        {policyPrivacyListItems.map((item) => {
-          return <li key={item}>{item}</li>
-        })}
+        {policyPrivacyListItems.map((item) => (
+          <li key={item}>{item}</li>
+        ))}
       </ol>
     </SubpageLayout>
   )

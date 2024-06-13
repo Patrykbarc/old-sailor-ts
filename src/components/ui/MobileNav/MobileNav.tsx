@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import LOGO from '../../../../public/old-sailor-logo-horizontal.png'
+import LOGO from '/public/old-sailor-logo-horizontal.png'
 import { NavLinks } from '../NavLinks/NavLinks'
 import { Wrapper } from '../Wrapper/Wrapper'
 

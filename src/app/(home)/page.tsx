@@ -1,6 +1,6 @@
-import { About } from '@/components/views/About/About'
-import { ContactCTA } from '@/components/views/ContactCTA/ContactCTA'
-import { Hero } from '@/components/views/Hero/Hero'
+import { About } from '@/components/views/MainPage/About/About'
+import { ContactCTA } from '@/components/views/MainPage/ContactCTA/ContactCTA'
+import { Hero } from '@/components/views/MainPage/Hero/Hero'
 
 export default function Home() {
   return (

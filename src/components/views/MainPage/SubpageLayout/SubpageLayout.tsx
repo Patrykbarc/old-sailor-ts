@@ -1,4 +1,4 @@
-import BACKGROUND_IMAGE from '../../../../public/background-image.png'
+import BACKGROUND_IMAGE from '/public/background-image.png'
 import Image from 'next/image'
 import { Wrapper } from '@/components/ui/Wrapper/Wrapper'
 import { ReactNode } from 'react'
