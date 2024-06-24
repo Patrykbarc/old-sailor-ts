@@ -1,4 +1,5 @@
 import { productsPlaceholder } from '@/lib/constants/Store/productsPlaceholder'
+import Image from 'next/image'
 
 export function ProductList() {
   return (
@@ -12,9 +13,9 @@ export function ProductList() {
           {productsPlaceholder.map((product) => (
             <div key={product.id} className="group relative">
               <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-                <img
+                <Image
                   src={product.imageSrc}
-                  alt={product.imageAlt}
+                  alt={product.imageAlt.en}
                   className="h-full w-full object-cover object-center lg:h-full lg:w-full"
                 />
               </div>
@@ -23,10 +24,12 @@ export function ProductList() {
                   <h3 className="text-sm text-gray-700">
                     <a href={product.href}>
                       <span aria-hidden="true" className="absolute inset-0" />
-                      {product.name}
+                      {product.name.en}
                     </a>
                   </h3>
-                  <p className="mt-1 text-sm text-gray-500">{product.color}</p>
+                  <p className="mt-1 text-sm text-gray-500">
+                    {product.color.en}
+                  </p>
                 </div>
                 <p className="text-sm font-medium text-gray-900">
                   {product.price.eur}
