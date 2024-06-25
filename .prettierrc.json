@@ -1,4 +1,4 @@
-{  
+{
   "arrowParens": "always",
   "semi": false,
   "trailingComma": "es5",
@@ -7,5 +7,6 @@
   "useTabs": false,
   "printWidth": 80,
   "bracketSpacing": true,
-  "jsxBracketSameLine": false
+  "jsxBracketSameLine": false,
+  "plugins": ["prettier-plugin-organize-imports"]
 }

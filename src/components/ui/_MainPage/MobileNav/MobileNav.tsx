@@ -2,13 +2,13 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import LOGO from '/public/old-sailor-logo-horizontal.png'
 import { NavLinks } from '../../NavLinks/NavLinks'
 import { Wrapper } from '../../Wrapper/Wrapper'
+import LOGO from '/public/old-sailor-logo-horizontal.png'
 
-import { XMarkIcon, Bars3Icon } from '@heroicons/react/24/solid'
-import { useEffect, useState } from 'react'
 import { NavigationProps } from '@/lib/types/types'
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid'
+import { useEffect, useState } from 'react'
 
 export function MobileNav({ className }: NavigationProps) {
   const [isNavHidden, setIsNavHidden] = useState(false)

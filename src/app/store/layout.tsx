@@ -1,7 +1,7 @@
+import { StoreNav } from '@/components/ui/_Store/StoreNav/StoreNav'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import '../globals.css'
-import { StoreNav } from '@/components/ui/_Store/StoreNav/StoreNav'
 
 const inter = Inter({ subsets: ['latin'] })
 

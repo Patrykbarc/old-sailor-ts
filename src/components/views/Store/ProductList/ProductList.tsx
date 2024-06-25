@@ -1,7 +1,62 @@
 import { productsPlaceholder } from '@/lib/constants/Store/productsPlaceholder'
+import axios from 'axios'
 import Image from 'next/image'
 
-export function ProductList() {
+const query = `
+query Products {
+  products(first: 10) {
+    edges {
+      node {
+        title
+        handle
+        tags
+        priceRangeV2 {
+          minVariantPrice {
+            amount
+          }
+        }
+        images(first: 1) {
+          edges {
+            node {
+              transformedSrc
+              altText
+            }
+          }
+        }
+      }
+    }
+  }
+}
+`
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL!
+const ACCESS_TOKEN = process.env.ACCESS_TOKEN!
+
+export async function ProductList() {
+  await axios
+    .post(
+      API_URL,
+      { query },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Shopify-Access-Token': ACCESS_TOKEN,
+        },
+      }
+    )
+    .then((response) => {
+      const fetchedProducts = response.data.data.products.edges.map(
+        (edge) => edge.node
+      )
+      console.log(fetchedProducts)
+    })
+    .catch((error) => {
+      console.error(
+        'Error fetching data:',
+        error.response ? error.response.data : error.message
+      )
+    })
+
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-2xl py-16 sm:py-24 lg:max-w-7xl">

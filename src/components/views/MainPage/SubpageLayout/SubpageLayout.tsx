@@ -1,7 +1,7 @@
-import BACKGROUND_IMAGE from '/public/background-image.png'
-import Image from 'next/image'
 import { Wrapper } from '@/components/ui/Wrapper/Wrapper'
+import Image from 'next/image'
 import { ReactNode } from 'react'
+import BACKGROUND_IMAGE from '/public/background-image.png'
 
 type SubpageLayout = {
   children: ReactNode

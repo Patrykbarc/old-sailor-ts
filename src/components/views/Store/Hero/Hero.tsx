@@ -1,4 +1,4 @@
-import { SubpageTitle } from "@/components/ui/SubpageTitle/SubpageTitle";
+import { SubpageTitle } from '@/components/ui/SubpageTitle/SubpageTitle'
 
 export function Hero() {
   return (

@@ -1,11 +1,11 @@
 'use client'
 
+import { NavLinks } from '@/components/ui/NavLinks/NavLinks'
 import { Wrapper } from '@/components/ui/Wrapper/Wrapper'
 import { Separator } from '@radix-ui/react-separator'
 import Image from 'next/image'
 import Link from 'next/link'
 import LOGO from '/public/old-sailor-logo-vertical.png'
-import { NavLinks } from '@/components/ui/NavLinks/NavLinks'
 
 export function Footer() {
   return (

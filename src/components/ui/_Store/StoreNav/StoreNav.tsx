@@ -1,8 +1,8 @@
-import Image from 'next/image'
-import LOGO from '/public/old-sailor-logo-horizontal.png'
 import { ShoppingBagIcon } from '@heroicons/react/24/solid'
+import Image from 'next/image'
 import Link from 'next/link'
 import { SelectCurrency } from '../SelectCurrency/SelectCurrency'
+import LOGO from '/public/old-sailor-logo-horizontal.png'
 
 export function StoreNav() {
   return (

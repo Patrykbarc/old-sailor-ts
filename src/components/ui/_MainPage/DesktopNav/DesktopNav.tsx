@@ -1,13 +1,13 @@
 'use client'
 
-import { NavLinks } from '../../NavLinks/NavLinks'
-import LOGO from '/public/old-sailor-logo-horizontal.png'
+import { Wrapper } from '@/components/ui/Wrapper/Wrapper'
+import { debounce } from '@/lib/functions/debounce'
+import { NavigationProps } from '@/lib/types/types'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Wrapper } from '@/components/ui/Wrapper/Wrapper'
 import { useEffect, useState } from 'react'
-import { NavigationProps } from '@/lib/types/types'
-import { debounce } from '@/lib/functions/debounce'
+import { NavLinks } from '../../NavLinks/NavLinks'
+import LOGO from '/public/old-sailor-logo-horizontal.png'
 
 const navStyles =
   'fixed z-10 w-full hover:opacity-100 hover:py-5 duration-500 ease-in-out lg:block transition-all backdrop-blur-md'
