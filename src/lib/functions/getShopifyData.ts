@@ -16,10 +16,7 @@ export async function getShopifyData(query: string) {
       }
     )
 
-    const fetchedProducts = response.data.data.products.edges.map(
-      (edge: { node: unknown }) => edge.node
-    )
-
+    const fetchedProducts = response.data.data
     return fetchedProducts
   } catch (error) {
     console.error(
