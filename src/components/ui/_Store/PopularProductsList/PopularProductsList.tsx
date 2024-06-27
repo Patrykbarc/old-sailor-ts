@@ -1,14 +1,15 @@
 import { BLUR_DATA_URL } from '@/lib/constants/blurDataUrl'
 import { getShopifyData } from '@/lib/functions/getShopifyData'
 import { productsListQuery } from '@/lib/queries/productsListQuery'
-import { Data } from '@/lib/types/ProductListTypes'
+import { ProductsNode } from '@/lib/types/ProductListTypes'
 import Image from 'next/image'
+import PLACEHOLDER from '/public/placeholder.jpg'
 
-export async function ProductList() {
-  const productsList: Data[] = await getShopifyData(productsListQuery)
+export async function PopularProductsList() {
+  const productsList = await getShopifyData(productsListQuery)
   return (
     <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-      {productsList.map((product: Data) => {
+      {productsList.map((product: ProductsNode) => {
         const productHandle = product.handle
         const productTitle = product.title
         const productPrice = product.variants.edges[0].node.price
@@ -20,8 +21,8 @@ export async function ProductList() {
           <div key={productHandle} className="group relative">
             <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
               <Image
-                src={productImgSrc}
-                alt={productImgAlt}
+                src={productImgSrc ?? PLACEHOLDER}
+                alt={productImgAlt ?? 'Product placeholder'}
                 width={400}
                 height={400}
                 className="h-full w-full object-cover object-center lg:h-full lg:w-full"

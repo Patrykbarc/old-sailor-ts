@@ -1,30 +1,21 @@
-interface ImageEdge {
-  node: {
-    transformedSrc: string
-    altText: string
-  }
-}
-
-interface Images {
-  edges: ImageEdge[]
-}
-
-interface VariantEdge {
-  node: {
-    price: string
-  }
-}
-
-interface Variants {
-  edges: VariantEdge[]
-}
-
-export interface Data {
+export type ProductsNode = {
   handle: string
   title: string
   description: string
   productType: string
-  tags: string[]
-  variants: Variants
-  images: Images
+  tags: Array<string>
+  variants: {
+    edges: Array<{
+      node: {
+        title: string
+        price: any
+        selectedOptions: Array<{ name: string; value: string }>
+      }
+    }>
+  }
+  images: {
+    edges: Array<{
+      node: { transformedSrc: any; altText?: string | null }
+    }>
+  }
 }

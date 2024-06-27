@@ -1,4 +1,4 @@
-import { ProductList } from '@/components/ui/_Store/ProductList/ProductList'
+import { PopularProductsList } from '@/components/ui/_Store/PopularProductsList/PopularProductsList'
 
 export async function PopularProducts() {
   return (
@@ -7,8 +7,7 @@ export async function PopularProducts() {
         <h2 className="text-2xl font-bold tracking-tight text-gray-900">
           Customers also purchased
         </h2>
-
-        <ProductList />
+        <PopularProductsList />
       </div>
     </div>
   )
