@@ -37,3 +37,6 @@ next-env.d.ts
 
 # generated types
 /src/lib/types/generated/generatedTypes.ts
+
+# codegen
+codegen.yml
