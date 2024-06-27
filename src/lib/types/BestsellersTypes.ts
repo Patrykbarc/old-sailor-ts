@@ -1,23 +1,38 @@
-export type BestsellersTypes = {
-  node: {
-    handle: string
-    title: string
-    description: string
-    productType: string
-    tags: Array<string>
-    variants: {
-      edges: Array<{
-        node: {
-          title: string
-          price: any
-          selectedOptions: Array<{ name: string; value: string }>
-        }
-      }>
-    }
-    images: {
-      edges: Array<{
-        node: { transformedSrc: any; altText?: string | null }
-      }>
-    }
+export type ProductDetails = {
+  handle: string
+  title: string
+  description: string
+  productType: string
+  tags: string[]
+}
+
+export type VariantNode = {
+  title: string
+  price: any
+  selectedOptions: {
+    name: string
+    value: string
+  }[]
+}
+
+export type ImageNode = {
+  transformedSrc: any
+  altText?: string | null
+}
+
+type Edge<T> = {
+  node: T
+}
+
+type BestsellersNode = ProductDetails & {
+  variants: {
+    edges: Edge<VariantNode>[]
   }
+  images: {
+    edges: Edge<ImageNode>[]
+  }
+}
+
+export type BestsellersTypes = {
+  node: BestsellersNode
 }
