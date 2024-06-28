@@ -5,7 +5,7 @@ schema:
         'X-shopify-Access-Token': '***'
 documents: 'src/lib/types/generated/graphql/*.graphql'
 generates:
-  src/lib/generated/generatedTypes.ts:
+  src/lib/types/generated/generatedTypes.ts:
     plugins:
       - 'typescript'
       - 'typescript-operations'
