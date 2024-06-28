@@ -16,7 +16,7 @@ export type VariantNode = {
 }
 
 export type ImageNode = {
-  transformedSrc: any
+  url: string
   altText?: string | null
 }
 

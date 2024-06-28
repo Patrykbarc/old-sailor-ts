@@ -1,3 +1,4 @@
+import { formatPrice } from '@/lib/functions/formatPrice'
 import Link from 'next/link'
 
 type BestsellersListDescriptionProps = {
@@ -24,7 +25,9 @@ export function BestsellersListDescription({
         </h3>
         <p className="mt-1 text-sm text-gray-500">{productTags}</p>
       </div>
-      <p className="text-sm font-medium text-gray-900">{productPrice} $</p>
+      <p className="text-sm font-medium text-gray-900">
+        {formatPrice(Number(productPrice))}
+      </p>
     </div>
   )
 }

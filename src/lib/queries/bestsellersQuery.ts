@@ -2,7 +2,7 @@ export const bestsellersQuery = `
 query Bestsellers {
   collection(id: "gid://shopify/Collection/271713927239") {
     title
-    products(first: 8) {
+    products(first: 10) {
       edges {
         node {
           handle
@@ -25,7 +25,7 @@ query Bestsellers {
           images(first: 1) {
             edges {
               node {
-                transformedSrc
+                url(transform: {maxWidth: 400, maxHeight: 400})
                 altText
               }
             }

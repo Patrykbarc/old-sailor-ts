@@ -15,7 +15,7 @@ export async function BestsellersList() {
         const productTitle = product.node.title
         const productPrice = product.node.variants.edges[0].node.price
         const productTags = product.node.tags.join(', ')
-        const productImgSrc = product.node.images.edges[0].node.transformedSrc
+        const productImgSrc = product.node.images.edges[0].node.url
         const productImgAlt = product.node.images.edges[0].node.altText
 
         return (
