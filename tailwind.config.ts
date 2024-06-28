@@ -23,6 +23,9 @@ const config = {
         'shadow-gradient':
           'linear-gradient(0deg, rgba(14,14,14,1) 0%, rgba(255,255,255,0) 100%)',
       },
+      gridTemplateRows: {
+        '[auto,auto,1fr]': 'auto auto 1fr',
+      },
       colors: {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
@@ -79,7 +82,7 @@ const config = {
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [require('tailwindcss-animate'), '@tailwindcss/aspect-ratio'],
 } satisfies Config
 
 export default config

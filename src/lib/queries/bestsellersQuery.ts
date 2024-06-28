@@ -2,7 +2,7 @@ export const bestsellersQuery = `
 query Bestsellers {
   collection(id: "gid://shopify/Collection/271713927239") {
     title
-    products(first: 10) {
+    products(first: 8) {
       edges {
         node {
           handle
