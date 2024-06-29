@@ -1,14 +1,13 @@
 'use client'
 
+import { NavigationProps } from '@/lib/types/singleTypes/NavigationPropsType'
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
 import { NavLinks } from '../../NavLinks/NavLinks'
 import { Wrapper } from '../../Wrapper/Wrapper'
 import LOGO from '/public/old-sailor-logo-horizontal.png'
-
-import { NavigationProps } from '@/lib/types/types'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid'
-import { useEffect, useState } from 'react'
 
 export function MobileNav({ className }: NavigationProps) {
   const [isNavHidden, setIsNavHidden] = useState(false)

@@ -1,30 +1,9 @@
-export type ProductDetails = {
-  handle: string
-  title: string
-  description: string
-  productType: string
-  tags: string[]
-}
+import { ProductDetails } from './ProductDetailsTypes'
+import { VariantNode } from './VariantNodeTypes'
+import { Edge } from './singleTypes/EdgeType'
+import { ImageNode } from './singleTypes/ImageNodeType'
 
-export type VariantNode = {
-  title: string
-  price: any
-  selectedOptions: {
-    name: string
-    value: string
-  }[]
-}
-
-export type ImageNode = {
-  url: string
-  altText?: string | null
-}
-
-type Edge<T> = {
-  node: T
-}
-
-type BestsellersNode = ProductDetails & {
+export type BestsellersNode = ProductDetails & {
   variants: {
     edges: Edge<VariantNode>[]
   }

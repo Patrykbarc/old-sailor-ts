@@ -2,12 +2,12 @@
 
 import { Wrapper } from '@/components/ui/Wrapper/Wrapper'
 import { debounce } from '@/lib/functions/debounce'
-import { NavigationProps } from '@/lib/types/types'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { NavLinks } from '../../NavLinks/NavLinks'
 import LOGO from '/public/old-sailor-logo-horizontal.png'
+import { NavigationProps } from '@/lib/types/singleTypes/NavigationPropsType'
 
 const navStyles =
   'fixed z-10 w-full hover:opacity-100 hover:py-5 duration-500 ease-in-out lg:block transition-all backdrop-blur-md'

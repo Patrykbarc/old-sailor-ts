@@ -1,13 +1,13 @@
 import axios from 'axios'
 
-export async function getShopifyData(query: string) {
+export async function getShopifyData(query: string, variables?: object) {
   const API_URL = process.env.NEXT_PUBLIC_API_URL!
   const ACCESS_TOKEN = process.env.ACCESS_TOKEN!
 
   try {
     const response = await axios.post(
       API_URL,
-      { query },
+      { query, variables },
       {
         headers: {
           'Content-type': 'application/json',
