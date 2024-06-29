@@ -18,7 +18,7 @@ export default function StoreLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} text-neutral-300 overflow-x-hidden selection:bg-primary bg-neutral-800 selection:text-neutral-900`}
+        className={`${inter.className} text-neutral-300 overflow-x-hidden selection:bg-primary bg-neutral-800 selection:text-neutral-900 min-h-dvh`}
       >
         <StoreNav />
         {children}

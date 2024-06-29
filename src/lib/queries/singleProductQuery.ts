@@ -13,7 +13,7 @@ export const singleProductQuery = () => {
           images(first: 4) {
             edges {
               node {
-                url(transform: {maxWidth: 400, maxHeight: 400})
+                url(transform: {maxWidth: 800, maxHeight: 800})
                 altText
               }
             }

@@ -3,7 +3,7 @@ import Image from 'next/image'
 import PLACEHOLDER from '/public/placeholder.jpg'
 
 type BestsellersListImageProps = {
-  productImgSrc: any
+  productImgSrc: string | null
   productImgAlt?: string | null
 }
 

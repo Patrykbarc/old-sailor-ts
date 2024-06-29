@@ -2,8 +2,10 @@ import { cn } from '@/lib/utils'
 import { cva } from 'class-variance-authority'
 import { ReactNode } from 'react'
 
+type WrapperVariants = 'default' | 'narrow' | 'wide'
+
 type WrapperProps = {
-  variant?: 'default' | 'narrow'
+  variant?: WrapperVariants
   children: ReactNode
   className?: string
 }
@@ -13,6 +15,7 @@ const wrapperVariants = cva('px-6 md:px-12 flex justify-center', {
     variant: {
       default: 'max-w-[75rem]',
       narrow: 'max-w-[56rem]',
+      wide: 'max-w-[86rem]',
     },
   },
   defaultVariants: {

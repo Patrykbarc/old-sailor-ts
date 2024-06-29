@@ -1,47 +1,42 @@
-import { productPlaceholder as product } from '@/lib/constants/Store/productPlaceholder'
-import Image from 'next/image'
+'use client'
 
-export function ProductImageGallery() {
+import { BLUR_DATA_URL } from '@/lib/constants/blurDataUrl'
+import { Edge } from '@/lib/types/singleTypes/EdgeType'
+import { ImageNode } from '@/lib/types/singleTypes/ImageNodeType'
+import Image from 'next/image'
+import { useState } from 'react'
+import { Carousel } from './Carousel/Carousel'
+
+type ProductImageGalleryProps = {
+  productImages: Array<Edge<ImageNode>>
+}
+
+export function ProductImageGallery({
+  productImages,
+}: ProductImageGalleryProps) {
+  const [activeIndex, setActiveIndex] = useState(0)
+
+  const imageNode = productImages[activeIndex].node
+
   return (
-    <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
+    <div className="mx-auto max-w-2xl sm:px-6 lg:max-w-7xl lg:gap-x-8 lg:px-8">
       <div className="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
         <Image
-          width={400}
-          height={400}
-          src={product.images[0].src}
-          alt={product.images[0].alt}
+          width={600}
+          height={600}
+          src={imageNode.url}
+          alt={imageNode.altText ?? 'Product'}
           className="h-full w-full object-cover object-center"
+          placeholder="blur"
+          blurDataURL={BLUR_DATA_URL}
         />
       </div>
-      <div className="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
-        <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
-          <Image
-            width={400}
-            height={400}
-            src={product.images[1].src}
-            alt={product.images[1].alt}
-            className="h-full w-full object-cover object-center"
-          />
-        </div>
-        <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
-          <Image
-            width={400}
-            height={400}
-            src={product.images[2].src}
-            alt={product.images[2].alt}
-            className="h-full w-full object-cover object-center"
-          />
-        </div>
-      </div>
-      <div className="aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg">
-        <Image
-          width={400}
-          height={400}
-          src={product.images[3].src}
-          alt={product.images[3].alt}
-          className="h-full w-full object-cover object-center"
+      {productImages.length > 1 && (
+        <Carousel
+          productImages={productImages}
+          setActiveIndex={setActiveIndex}
         />
-      </div>
+      )}
     </div>
   )
 }
