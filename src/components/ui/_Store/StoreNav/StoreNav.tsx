@@ -1,3 +1,4 @@
+import { storeNavLinks } from '@/lib/constants/Store/storeNavLinks'
 import { ShoppingBagIcon } from '@heroicons/react/24/solid'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -10,9 +11,11 @@ export function StoreNav() {
       <div className="font-semibold px-8 justify-between pt-8">
         <div className="border-b grid grid-cols-3 pb-6 items-center border-neutral-600">
           <div className="flex gap-8">
-            <Link href={'/'}>Category 1</Link>
-            <Link href={'/'}>Category 2</Link>
-            <Link href={'/'}>Category 3</Link>
+            {storeNavLinks.map(({ name, href }) => (
+              <Link key={href} href={href}>
+                {name}
+              </Link>
+            ))}
           </div>
 
           <div className="mx-auto">

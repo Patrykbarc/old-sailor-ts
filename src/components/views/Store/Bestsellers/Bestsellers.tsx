@@ -1,4 +1,4 @@
-import { BestsellersList } from '@/components/ui/_Store/BestsellersList/BestsellersList'
+import { BestsellersList } from '@/components/ui/_Store/Lists/BestsellersList/BestsellersList'
 
 export async function Bestsellers() {
   return (

@@ -13,30 +13,31 @@ type ProductVariantsProps = {
 }
 
 export function ProductVariants({ variants }: ProductVariantsProps) {
-  // console.log(variants.edges)
-  const [selectedVariant, setVariant] = useState(0)
-
+  const variantSku = variants.edges[0].node.sku
+  const [selectedVariant, setVariant] = useState(variantSku)
+  console.log(variants)
   return (
     <div className="mt-10">
-      <h3 className="text-sm font-medium text-gray-900">Variant</h3>
+      <h3 className="text-sm font-medium text-gray-900">Size</h3>
 
       <fieldset aria-label="Choose a size" className="mt-4">
         <RadioGroup
-          className="grid grid-cols-4 lg:grid-cols-5 justify-center"
+          className="grid grid-cols-4 md:grid-cols-5 lg:grid-cols-6 justify-center"
           defaultValue="comfortable"
         >
-          {variants.edges.map((v, index) => {
+          {variants.edges.map((v) => {
             const variant = v.node
             const availableForSale = variant.availableForSale
+            const optionValue = variant.selectedOptions[0].value
 
             const selectedVariantStyle =
-              selectedVariant === index ? 'ring-4 ring-primary' : ''
-            // console.log(variant)
+              selectedVariant === variant.sku ? 'ring-4 ring-primary' : ''
+
             return (
               availableForSale && (
                 <div
                   key={variant.sku}
-                  onClick={() => setVariant(index)}
+                  onClick={() => setVariant(variant.sku)}
                   className={`hover:cursor-pointer py-4 lg:py-0 lg:aspect-square border flex items-center rounded-lg transition-shadow ${selectedVariantStyle}`}
                 >
                   <RadioGroupItem
@@ -48,7 +49,7 @@ export function ProductVariants({ variants }: ProductVariantsProps) {
                     className="hover:cursor-pointer text-center w-full text-neutral-600"
                     htmlFor={String(variant.sku)}
                   >
-                    {variant.title}
+                    {optionValue}
                   </Label>
                 </div>
               )
@@ -59,3 +60,67 @@ export function ProductVariants({ variants }: ProductVariantsProps) {
     </div>
   )
 }
+
+/*
+{
+  "edges": [
+      {
+          "node": {
+              "availableForSale": true,
+              "selectedOptions": [
+                  {
+                      "name": "Size",
+                      "value": "4"
+                  },
+                  {
+                      "name": "Color",
+                      "value": "black"
+                  }
+              ],
+              "price": "220.00",
+              "sku": "AsTi-01-black-4",
+              "title": "4 / black",
+              "image": null
+          }
+      },
+      {
+          "node": {
+              "availableForSale": true,
+              "selectedOptions": [
+                  {
+                      "name": "Size",
+                      "value": "8"
+                  },
+                  {
+                      "name": "Color",
+                      "value": "black"
+                  }
+              ],
+              "price": "220.00",
+              "sku": "AsTi-01-black-8",
+              "title": "8 / black",
+              "image": null
+          }
+      },
+      {
+          "node": {
+              "availableForSale": true,
+              "selectedOptions": [
+                  {
+                      "name": "Size",
+                      "value": "14"
+                  },
+                  {
+                      "name": "Color",
+                      "value": "black"
+                  }
+              ],
+              "price": "220.00",
+              "sku": "AsTi-01-black-14",
+              "title": "14 / black",
+              "image": null
+          }
+      }
+  ]
+}
+  */

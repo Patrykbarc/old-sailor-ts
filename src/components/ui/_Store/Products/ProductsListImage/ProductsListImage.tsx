@@ -2,15 +2,15 @@ import { BLUR_DATA_URL } from '@/lib/constants/blurDataUrl'
 import Image from 'next/image'
 import PLACEHOLDER from '/public/placeholder.jpg'
 
-type BestsellersListImageProps = {
+type BProductsListImageProps = {
   productImgSrc: string | null
   productImgAlt?: string | null
 }
 
-export function BestsellersListImage({
+export function ProductsListImage({
   productImgSrc,
   productImgAlt,
-}: BestsellersListImageProps) {
+}: BProductsListImageProps) {
   return (
     <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
       <Image

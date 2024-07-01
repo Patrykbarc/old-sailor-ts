@@ -29,7 +29,7 @@ export function ProductInfo({ productInfo }: ProductInfoProps) {
 
       <div className="py-10 lg:col-span-2 lg:col-start-1 lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">
         <ProductDescription description={description} />
-        <ProductVariants variants={variants} />
+        {variants.edges.length > 1 && <ProductVariants variants={variants} />}
       </div>
 
       <AddToCartButton />

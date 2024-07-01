@@ -1,3 +1,10 @@
+import { ProductsList } from '@/components/ui/_Store/Lists/ProductsList/ProductsList'
+import { ProductListLayout } from '@/components/views/Store/ProductListLayout/ProductListLayout'
+
 export default async function Products() {
-  return <p>Products page</p>
+  return (
+    <ProductListLayout>
+      <ProductsList />
+    </ProductListLayout>
+  )
 }

@@ -5,6 +5,7 @@ query Bestsellers {
     products(first: 8) {
       edges {
         node {
+          id
           handle
           title
           description
