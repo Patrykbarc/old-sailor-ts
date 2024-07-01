@@ -12,14 +12,15 @@ export function Product({ productData }: ProductTypes) {
   const { images, ...productInfo } = productData
 
   return (
-    <div className="bg-white">
-      <div className="pt-6">
-        <Breadcrumbs />
-        <Wrapper className="grid mx-auto grid-cols-2 mt-11" variant="wide">
-          {images && <ProductImageGallery productImages={images.edges} />}
-          <ProductInfo productInfo={productInfo} />
-        </Wrapper>
-      </div>
+    <div className="bg-white py-12 min-h-dvh">
+      <Breadcrumbs />
+      <Wrapper
+        className="grid mx-auto lg:grid-cols-2 mt-11 gap-11"
+        variant="wide"
+      >
+        {images && <ProductImageGallery productImages={images.edges} />}
+        <ProductInfo productInfo={productInfo} />
+      </Wrapper>
     </div>
   )
 }

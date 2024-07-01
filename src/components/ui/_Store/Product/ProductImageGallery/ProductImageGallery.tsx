@@ -20,7 +20,7 @@ export function ProductImageGallery({
 
   return (
     <div className="mx-auto max-w-2xl sm:px-6 lg:max-w-7xl lg:gap-x-8 lg:px-8">
-      <div className="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
+      <div className="aspect-h-4 aspect-w-3 overflow-hidden rounded-lg">
         <Image
           width={600}
           height={600}

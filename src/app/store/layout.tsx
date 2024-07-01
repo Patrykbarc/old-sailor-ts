@@ -1,4 +1,5 @@
 import { StoreNav } from '@/components/ui/_Store/StoreNav/StoreNav'
+import { Footer } from '@/components/views/MainPage/Footer/Footer'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import '../globals.css'
@@ -18,10 +19,11 @@ export default function StoreLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} text-neutral-300 overflow-x-hidden selection:bg-primary bg-neutral-800 selection:text-neutral-900 min-h-dvh`}
+        className={`${inter.className} text-neutral-300 selection:bg-primary bg-neutral-800 selection:text-neutral-900`}
       >
         <StoreNav />
-        {children}
+        <main>{children}</main>
+        <Footer />
       </body>
     </html>
   )
