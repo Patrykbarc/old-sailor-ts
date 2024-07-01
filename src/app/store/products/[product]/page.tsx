@@ -8,6 +8,7 @@ type ProductProps = {
 
 export default async function Page({ params }: ProductProps) {
   const query = singleProductQuery
+
   const variables = { handle: params.product }
 
   const productDataResponse = await getShopifyData(query, variables)

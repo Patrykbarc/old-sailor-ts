@@ -3,7 +3,7 @@ import { VariantNode } from './VariantNodeTypes'
 import { Edge } from './singleTypes/EdgeType'
 import { ImageNode } from './singleTypes/ImageNodeType'
 
-export type BestsellersNode = ProductDetails & {
+export type ProductsNode = ProductDetails & {
   variants: {
     edges: Edge<VariantNode>[]
   }
@@ -12,6 +12,6 @@ export type BestsellersNode = ProductDetails & {
   }
 }
 
-export type BestsellersTypes = {
-  node: BestsellersNode
+export type ProductsTypes = {
+  node: ProductsNode
 }
