@@ -1,48 +1,48 @@
 import { Pagination } from '@/components/ui/Pagination/Pagination'
 import { ProductsList } from '@/components/ui/_Store/Lists/ProductsList/ProductsList'
 import { ProductListLayout } from '@/components/views/Store/ProductListLayout/ProductListLayout'
-import { calculateTotalPages } from '@/lib/functions/calculatePages'
-import { getAllProductsLength } from '@/lib/functions/getAllProductsLength'
-import { getShopifyData } from '@/lib/functions/getShopifyData'
-import { allProductsQuery } from '@/lib/queries/allProductsQuery'
+import { getProductsListAndTotalPages } from '@/lib/functions/productsList/getProductsListAndTotalPages'
+import { productsListQuery } from '@/lib/queries/productsListQuery'
 
 type ProductsProps = {
-  searchParams: { page?: string }
+  searchParams: { [key: string]: string }
+}
+
+function getCategory(category: string) {
+  switch (category) {
+    case undefined:
+      return 'gid://shopify/Collection/271803744327'
+    case 'cosmetics':
+      return 'gid://shopify/Collection/271803121735'
+    case 'alcohols':
+      return 'gid://shopify/Collection/271803088967'
+    default:
+      return productsListQuery
+  }
 }
 
 export default async function Products({ searchParams }: ProductsProps) {
-  const page = parseInt(searchParams.page || '1', 10)
-  const cursor = page > 1 ? await getCursorForPage(page) : null
-  const variables = { cursor }
+  const categoryId = getCategory(searchParams.category)
 
-  const productsListResponse = await getShopifyData(allProductsQuery, variables)
-  const hasNextPage = productsListResponse.products.pageInfo.hasNextPage
-  const hasPreviousPage = productsListResponse.products.pageInfo.hasPreviousPage
-
-  const productsCount = await getAllProductsLength(allProductsQuery)
-  const totalPages = calculateTotalPages(productsCount)
+  const { productsList, totalPages, hasNextPage, hasPreviousPage, page } =
+    await getProductsListAndTotalPages(
+      searchParams,
+      productsListQuery,
+      categoryId
+    )
 
   return (
     <ProductListLayout>
-      <ProductsList products={productsListResponse.products.edges} />
-      <Pagination
-        currentPage={page}
-        hasNextPage={hasNextPage}
-        hasPreviousPage={hasPreviousPage}
-        totalPages={totalPages}
-        searchParams={searchParams}
-      />
+      <ProductsList products={productsList.collection.products.edges} />
+      {totalPages > 1 && (
+        <Pagination
+          currentPage={page}
+          hasNextPage={hasNextPage}
+          hasPreviousPage={hasPreviousPage}
+          totalPages={totalPages}
+          searchParams={searchParams}
+        />
+      )}
     </ProductListLayout>
   )
-}
-
-async function getCursorForPage(page: number): Promise<string | null> {
-  let cursor = null
-  for (let i = 1; i < page; i++) {
-    const variables = { cursor }
-    const response = await getShopifyData(allProductsQuery, variables)
-    const products = response.products.edges
-    cursor = products[products.length - 1].cursor
-  }
-  return cursor
 }
