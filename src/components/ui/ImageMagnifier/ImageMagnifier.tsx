@@ -49,8 +49,8 @@ export function ImageMagnifier({
     <div className={`relative ${height} ${width}`}>
       <Image
         src={src}
-        height={height}
         width={width}
+        height={height}
         className={`${height} ${width}`}
         onMouseEnter={(e) => {
           const elem = e.currentTarget

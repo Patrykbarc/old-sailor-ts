@@ -14,38 +14,34 @@ type ArrowsWrapper = {
 const arrowsStyles =
   'aspect-square size-12 absolute top-1/2 -translate-y-1/2 p-2 hover:scale-110 h-1/5 transition opacity-0 group-hover:opacity-100 hover:text-gray-400 z-10'
 
-export function ArrowsWrapper({
-  children,
-  productImages,
-  activeIndex,
-  setActiveIndex,
-}: ArrowsWrapper) {
-  const handleCarouselProps = {
-    productImages: productImages,
-    activeIndex: activeIndex,
-    setActiveIndex: setActiveIndex,
-  }
+export function ArrowsWrapper({ children, ...props }: ArrowsWrapper) {
+  const hasMultipleImages = props.productImages.length > 1
+
   return (
     <div className="size-full cursor-pointer">
-      <ArrowLeftIcon
-        className={`${arrowsStyles} left-3`}
-        onClick={() =>
-          handleCarousel({
-            direction: 'previous',
-            ...handleCarouselProps,
-          })
-        }
-      />
+      {hasMultipleImages && (
+        <ArrowLeftIcon
+          className={`${arrowsStyles} left-3`}
+          onClick={() =>
+            handleCarousel({
+              direction: 'previous',
+              ...props,
+            })
+          }
+        />
+      )}
       {children}
-      <ArrowRightIcon
-        className={`${arrowsStyles} right-3`}
-        onClick={() =>
-          handleCarousel({
-            direction: 'next',
-            ...handleCarouselProps,
-          })
-        }
-      />
+      {hasMultipleImages && (
+        <ArrowRightIcon
+          className={`${arrowsStyles} right-3`}
+          onClick={() =>
+            handleCarousel({
+              direction: 'next',
+              ...props,
+            })
+          }
+        />
+      )}
     </div>
   )
 }

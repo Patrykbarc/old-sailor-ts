@@ -26,8 +26,9 @@ export function ImagesGallery({
               className="border size-32 aspect-square w-full rounded-lg cursor-pointer"
               src={image.node.url}
               alt={image.node.altText ?? 'Image product'}
-              width={400}
-              height={400}
+              width={70}
+              height={70}
+              quality={70}
               placeholder="blur"
               blurDataURL={BLUR_DATA_URL}
             />

@@ -49,7 +49,7 @@ export function Pagination({
               {isActive ? (
                 <PaginationLink
                   href={'#'}
-                  className="text-primary cursor-not-allowed font-bold "
+                  className="text-primary cursor-not-allowed font-bold"
                 >
                   {page}
                 </PaginationLink>
