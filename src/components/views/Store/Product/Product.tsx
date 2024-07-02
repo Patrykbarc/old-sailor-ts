@@ -12,7 +12,7 @@ export function Product({ productData }: ProductTypes) {
   const { images, ...productInfo } = productData
 
   return (
-    <div className="bg-white py-12 min-h-dvh">
+    <div className="bg-white min-h-full w-full py-12">
       <Breadcrumbs />
       <Wrapper
         className="grid mx-auto lg:grid-cols-2 mt-11 gap-11"

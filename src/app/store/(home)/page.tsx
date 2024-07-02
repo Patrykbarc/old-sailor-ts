@@ -4,11 +4,11 @@ import { ProductListLayout } from '@/components/views/Store/ProductListLayout/Pr
 
 export default function Store() {
   return (
-    <main className="pt-14">
+    <div className="flex-col h-fit w-full">
       <Hero />
       <ProductListLayout title="Bestsellers">
         <BestsellersList />
       </ProductListLayout>
-    </main>
+    </div>
   )
 }

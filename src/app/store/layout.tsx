@@ -19,10 +19,10 @@ export default function StoreLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} text-neutral-300 selection:bg-primary bg-neutral-800 selection:text-neutral-900`}
+        className={`${inter.className} min-h-dvh h-full flex flex-col justify-between w-full text-neutral-300 selection:bg-primary bg-neutral-800 selection:text-neutral-900`}
       >
         <StoreNav />
-        <main>{children}</main>
+        <main className="flex flex-1">{children}</main>
         <Footer />
       </body>
     </html>
