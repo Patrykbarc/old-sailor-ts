@@ -2,6 +2,7 @@ import { StoreNav } from '@/components/ui/_Store/StoreNav/StoreNav'
 import { Footer } from '@/components/views/MainPage/Footer/Footer'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import '../customStyles.css'
 import '../globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
