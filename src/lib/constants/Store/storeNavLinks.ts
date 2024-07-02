@@ -1,14 +1,16 @@
+const linkHref = '/store/products'
+
 export const storeNavLinks = [
   {
     name: 'All products',
-    href: '/store/products',
+    href: `${linkHref}?category=all`,
   },
   {
     name: 'Cosmetics',
-    href: '/store/products?category=cosmetics',
+    href: `${linkHref}?category=cosmetics`,
   },
   {
     name: 'Alcohols',
-    href: '/store/products?category=alcohols',
+    href: `${linkHref}?category=alcohols`,
   },
 ]

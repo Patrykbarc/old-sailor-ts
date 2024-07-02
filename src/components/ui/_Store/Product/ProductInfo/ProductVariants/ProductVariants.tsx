@@ -15,7 +15,7 @@ type ProductVariantsProps = {
 export function ProductVariants({ variants }: ProductVariantsProps) {
   const variantSku = variants.edges[0].node.sku
   const [selectedVariant, setVariant] = useState(variantSku)
-  console.log(variants)
+
   return (
     <div className="mt-10">
       <h3 className="text-sm font-medium text-gray-900">Size</h3>

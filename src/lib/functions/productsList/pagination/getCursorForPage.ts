@@ -10,7 +10,7 @@ export async function getCursorForPage(
   for (let i = 1; i < page; i++) {
     const variables = { cursor, id }
     const response = await getShopifyData(productsListQuery, variables)
-    
+
     const products = response.collection.products.edges
     cursor = products[products.length - 1].cursor
   }

@@ -4,6 +4,8 @@ const alcoholsId = 'gid://shopify/Collection/271803088967'
 
 export function getProductsFilterCategory(category?: string) {
   switch (category) {
+    case 'all':
+      return allProductsId
     case 'cosmetics':
       return cosmeticsId
     case 'alcohols':

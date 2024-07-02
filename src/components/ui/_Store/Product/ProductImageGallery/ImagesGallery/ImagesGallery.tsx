@@ -4,14 +4,17 @@ import { ImageNode } from '@/lib/types/singleTypes/ImageNodeType'
 import Image from 'next/image'
 import { Dispatch, SetStateAction } from 'react'
 
-type CarouselProps = {
+type ImagesGalleryProps = {
   productImages: Array<Edge<ImageNode>>
   setActiveIndex: Dispatch<SetStateAction<number>>
 }
 
-export function Carousel({ productImages, setActiveIndex }: CarouselProps) {
+export function ImagesGallery({
+  productImages,
+  setActiveIndex,
+}: ImagesGalleryProps) {
   return (
-    <div className="flex mt-5 gap-3">
+    <div className="sm:flex hidden mt-5 gap-3 justify-center">
       {productImages.map((image, index) => {
         return (
           <div
@@ -20,7 +23,7 @@ export function Carousel({ productImages, setActiveIndex }: CarouselProps) {
             onClick={() => setActiveIndex(index)}
           >
             <Image
-              className="border aspect-square w-full rounded-lg cursor-pointer"
+              className="border size-32 aspect-square w-full rounded-lg cursor-pointer"
               src={image.node.url}
               alt={image.node.altText ?? 'Image product'}
               width={400}

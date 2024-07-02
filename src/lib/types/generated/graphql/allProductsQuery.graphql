@@ -9,7 +9,7 @@ query GetAllProducts($cursor: String) {
         images(first: 1) {
           edges {
             node {
-              url(transform: {maxWidth: 400, maxHeight: 400})
+              url(transform: { maxWidth: 400, maxHeight: 400 })
               altText
             }
           }
