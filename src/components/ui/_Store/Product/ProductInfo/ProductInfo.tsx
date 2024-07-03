@@ -1,3 +1,5 @@
+'use client'
+
 import { PriceRangeV2 } from '@/lib/types/singleTypes/PriceRangeV2type'
 import { Variants } from '@/lib/types/singleTypes/VariantsType'
 import { AddToCartButton } from './AddToCartButton/AddToCartButton'
@@ -6,6 +8,8 @@ import { ProductDescription } from './ProductDescription/ProductDescription'
 import { ProductPrice } from './ProductPrice/ProductPrice'
 import { ProductQuantity } from './ProductQuantity/ProductQuantity'
 import { ProductTitle } from './ProductTitle/ProductTitle'
+
+import { usePathname } from 'next/navigation'
 import { ProductVariants } from './ProductVariants/ProductVariants'
 
 type ProductInfoProps = {
@@ -26,6 +30,11 @@ export function ProductInfo({ productInfo }: ProductInfoProps) {
 
   const hasMulitpleVariants = variants.edges.length > 1
 
+  const href = usePathname()
+
+  const cartProductData = { ...productInfo, href }
+  console.log(cartProductData)
+
   return (
     <div className="flex flex-col">
       <ProductTitle title={title} />
@@ -38,7 +47,7 @@ export function ProductInfo({ productInfo }: ProductInfoProps) {
 
       <div className="flex flex-col gap-3">
         <ProductQuantity title={title} />
-        <AddToCartButton />
+        <AddToCartButton productInfo={cartProductData} />
         <BuyNowButton />
       </div>
     </div>

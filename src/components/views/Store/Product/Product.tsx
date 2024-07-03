@@ -1,3 +1,5 @@
+'use client'
+
 import { Wrapper } from '@/components/ui/Wrapper/Wrapper'
 import { Breadcrumbs } from '@/components/ui/_Store/Breadcrumbs/Breadcrumbs'
 import { ProductImageGallery } from '@/components/ui/_Store/Product/ProductImageGallery/ProductImageGallery'

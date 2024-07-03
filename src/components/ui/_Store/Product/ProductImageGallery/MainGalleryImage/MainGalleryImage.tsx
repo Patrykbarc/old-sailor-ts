@@ -10,9 +10,6 @@ type MainGalleryImageProps = {
   setActiveIndex: Dispatch<SetStateAction<number>>
 }
 
-const arrowsStyles =
-  'aspect-square size-12 absolute top-1/2 -translate-y-1/2 p-2 hover:scale-110 h-1/5 transition opacity-0 group-hover:opacity-100 hover:text-neutral-400 z-10'
-
 export function MainGalleryImage({ ...props }: MainGalleryImageProps) {
   const imageNode = props.productImages[props.activeIndex].node
 

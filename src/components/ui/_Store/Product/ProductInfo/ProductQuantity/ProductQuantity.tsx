@@ -4,8 +4,6 @@ import { Input } from '@/components/ui/Input/Input'
 import { useState } from 'react'
 import { QuantityHandlerButton } from './Buttons/QuantityHandlerButton'
 
-type ActionTypes = 'add' | 'subtract'
-
 type ProductQuantityProps = {
   title: string
 }

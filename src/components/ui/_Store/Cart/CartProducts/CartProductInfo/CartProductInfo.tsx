@@ -1,20 +1,21 @@
+import { formatPrice } from '@/lib/functions/formatPrice'
+import Link from 'next/link'
+
 type CartProductInfo = {
+  title: string
   href: string
-  name: string
-  price: string
-  color: string
+  price: number
 }
 
-export function CartProductInfo({ href, name, price, color }: CartProductInfo) {
+export function CartProductInfo({ href, title, price }: CartProductInfo) {
   return (
     <div>
       <div className="flex justify-between text-base font-medium text-neutral-900">
         <h3>
-          <a href={href}>{name}</a>
+          <Link href={href}>{title}</Link>
         </h3>
-        <p className="ml-4">{price}</p>
+        <p className="ml-4">{formatPrice(price)}</p>
       </div>
-      <p className="mt-1 text-sm text-neutral-500">{color}</p>
     </div>
   )
 }

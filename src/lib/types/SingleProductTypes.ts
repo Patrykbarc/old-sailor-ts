@@ -3,6 +3,7 @@ import { PriceRangeV2 } from './singleTypes/PriceRangeV2type'
 import { Variants } from './singleTypes/VariantsType'
 
 export type SingleProductTypes = {
+  id: string
   handle: string
   title: string
   description: string

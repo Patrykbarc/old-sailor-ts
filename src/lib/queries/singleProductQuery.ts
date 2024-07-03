@@ -1,6 +1,7 @@
 export const singleProductQuery = `
 query SingleProduct($handle: String!) {
   productByHandle(handle: $handle) {
+    id
     title
     description
     tags

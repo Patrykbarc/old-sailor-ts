@@ -1,3 +1,4 @@
+import { CartProvider } from '@/components/ui/_Store/CartProvider/CartProvider'
 import { StoreNav } from '@/components/ui/_Store/StoreNav/StoreNav'
 import { Footer } from '@/components/views/MainPage/Footer/Footer'
 import type { Metadata } from 'next'
@@ -22,9 +23,11 @@ export default function StoreLayout({
       <body
         className={`${inter.className} min-h-dvh h-full flex flex-col justify-between w-full text-neutral-300 selection:bg-primary bg-neutral-800 selection:text-neutral-800`}
       >
-        <StoreNav />
-        <main className="flex flex-1">{children}</main>
-        <Footer />
+        <CartProvider>
+          <StoreNav />
+          <main className="flex flex-1">{children}</main>
+          <Footer />
+        </CartProvider>
       </body>
     </html>
   )

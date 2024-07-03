@@ -1,10 +1,10 @@
-import { ReactNode } from "react"
+import { ReactNode } from 'react'
 
 type NavWraperProps = {
-    children: ReactNode
+  children: ReactNode
 }
 
-export function NavWraper({children}: NavWraperProps) {
+export function NavWraper({ children }: NavWraperProps) {
   return (
     <nav className="bg-neutral-800">
       <div className="font-semibold px-8 justify-between pt-8">
