@@ -5,7 +5,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '../../Select/Select'
+} from '../../../Select/Select'
 
 export function SelectCurrency() {
   return (
