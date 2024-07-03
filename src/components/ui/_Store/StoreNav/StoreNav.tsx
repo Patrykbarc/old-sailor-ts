@@ -13,7 +13,6 @@ export function StoreNav() {
       <NavLogo />
       <div className="flex justify-end gap-8 items-center">
         <SelectCurrency />
-
         <Cart />
       </div>
     </NavWraper>
