@@ -1,3 +1,5 @@
+import { usePathname } from 'next/navigation'
+import { useEffect, useState } from 'react'
 import {
   Sheet as CartContainer,
   SheetContent as CartContent,
@@ -10,8 +12,13 @@ import { CartSummary } from './CartSummary/CartSummary'
 import { CartTrigger } from './CartTrigger/CartTrigger'
 
 export function Cart() {
+  const [isCartOpen, setIsCartOpen] = useState(false)
+  const pathname = usePathname()
+
+  useEffect(() => setIsCartOpen(false), [pathname])
+
   return (
-    <CartContainer>
+    <CartContainer open={isCartOpen} onOpenChange={setIsCartOpen}>
       <CartTrigger />
       <CartContent className="py-8">
         <CartTitle>Shopping cart</CartTitle>

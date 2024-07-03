@@ -1,16 +1,20 @@
 'use client'
 
 import { Input } from '@/components/ui/Input/Input'
-import { useState } from 'react'
+import { Dispatch, SetStateAction } from 'react'
 import { QuantityHandlerButton } from './Buttons/QuantityHandlerButton'
 
 type ProductQuantityProps = {
   title: string
+  quantity: number
+  setQuantity: Dispatch<SetStateAction<number>>
 }
 
-export function ProductQuantity({ title }: ProductQuantityProps) {
-  const [quantity, setQuantity] = useState(1)
-
+export function ProductQuantity({
+  title,
+  quantity,
+  setQuantity,
+}: ProductQuantityProps) {
   return (
     <div className="flex flex-col w-fit text-neutral-900 mb-3">
       <h3 className="text-sm font-medium text-neutral-900 mb-3">Quantity</h3>

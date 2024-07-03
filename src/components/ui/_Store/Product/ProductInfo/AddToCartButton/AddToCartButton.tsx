@@ -1,16 +1,16 @@
 import { Button } from '@/components/ui/Button/Button'
 import { CartContext } from '@/lib/contexts/CartContext'
-import { SingleProductTypes } from '@/lib/types/SingleProductTypes'
+import { CartTypes } from '@/lib/types/CartTypes'
 import { useContext } from 'react'
 
 type AddToCartButtonProps = {
-  productInfo: SingleProductTypes
+  productInfo: CartTypes
 }
 
 export function AddToCartButton({ productInfo }: AddToCartButtonProps) {
   const { setCartContent } = useContext(CartContext)
 
-  function handleAddProductToCart(product: SingleProductTypes) {
+  function handleAddProductToCart(product: CartTypes) {
     setCartContent((prev) => [...prev, product])
   }
 

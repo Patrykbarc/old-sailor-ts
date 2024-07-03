@@ -1,28 +1,23 @@
 'use client'
 
-import { PriceRangeV2 } from '@/lib/types/singleTypes/PriceRangeV2type'
-import { Variants } from '@/lib/types/singleTypes/VariantsType'
+import { CartTypes } from '@/lib/types/CartTypes'
+import { usePathname } from 'next/navigation'
 import { AddToCartButton } from './AddToCartButton/AddToCartButton'
 import { BuyNowButton } from './BuyNowButton/BuyNowButton'
 import { ProductDescription } from './ProductDescription/ProductDescription'
 import { ProductPrice } from './ProductPrice/ProductPrice'
 import { ProductQuantity } from './ProductQuantity/ProductQuantity'
 import { ProductTitle } from './ProductTitle/ProductTitle'
-
-import { usePathname } from 'next/navigation'
 import { ProductVariants } from './ProductVariants/ProductVariants'
+import { useState } from 'react'
 
 type ProductInfoProps = {
-  productInfo: {
-    title: string
-    description: string
-    tags: Array<string>
-    priceRangeV2: PriceRangeV2
-    variants: Variants
-  }
+  productInfo: CartTypes
 }
 
 export function ProductInfo({ productInfo }: ProductInfoProps) {
+  const [quantity, setQuantity] = useState(1)
+
   const { variants } = productInfo
   const title = productInfo.title
   const price = productInfo.priceRangeV2.minVariantPrice.amount
@@ -31,9 +26,7 @@ export function ProductInfo({ productInfo }: ProductInfoProps) {
   const hasMulitpleVariants = variants.edges.length > 1
 
   const href = usePathname()
-
-  const cartProductData = { ...productInfo, href }
-  console.log(cartProductData)
+  const cartProductData = { ...productInfo, href, quantity }
 
   return (
     <div className="flex flex-col">
@@ -46,7 +39,7 @@ export function ProductInfo({ productInfo }: ProductInfoProps) {
       </div>
 
       <div className="flex flex-col gap-3">
-        <ProductQuantity title={title} />
+        <ProductQuantity quantity={quantity} setQuantity={setQuantity} title={title} />
         <AddToCartButton productInfo={cartProductData} />
         <BuyNowButton />
       </div>
