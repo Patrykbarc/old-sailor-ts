@@ -15,14 +15,14 @@ export function ProductsListDescription({
   return (
     <div className="mt-4 flex justify-between">
       <div>
-        <h3 className="text-sm text-gray-700">
+        <h3 className="text-sm text-neutral-700">
           <Link href={`/store/products/${productHandle}`}>
             <span aria-hidden="true" className="absolute inset-0" />
             {productTitle}
           </Link>
         </h3>
       </div>
-      <p className="text-sm font-medium text-gray-900">
+      <p className="text-sm font-medium text-neutral-900">
         {formatPrice(Number(productPrice))}
       </p>
     </div>

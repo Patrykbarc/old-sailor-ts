@@ -14,8 +14,8 @@ export function ProductQuantity({ title }: ProductQuantityProps) {
   const [quantity, setQuantity] = useState(1)
 
   return (
-    <div className="flex flex-col w-fit text-gray-900 mb-3">
-      <h3 className="text-sm font-medium text-gray-900 mb-3">Quantity</h3>
+    <div className="flex flex-col w-fit text-neutral-900 mb-3">
+      <h3 className="text-sm font-medium text-neutral-900 mb-3">Quantity</h3>
       <div className="flex border rounded-md">
         <QuantityHandlerButton
           actionType="subtract"

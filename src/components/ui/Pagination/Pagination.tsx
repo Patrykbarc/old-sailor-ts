@@ -56,7 +56,7 @@ export function Pagination({
               ) : (
                 <PaginationLink
                   href={createPageURL(page)}
-                  className=" hover:bg-gray-100"
+                  className=" hover:bg-neutral-100"
                 >
                   {page}
                 </PaginationLink>
