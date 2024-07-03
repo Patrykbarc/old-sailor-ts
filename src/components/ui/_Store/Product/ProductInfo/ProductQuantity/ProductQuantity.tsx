@@ -1,13 +1,14 @@
 'use client'
 
 import { Input } from '@/components/ui/Input/Input'
-import { Dispatch, SetStateAction } from 'react'
+import { Action } from '@/lib/customHooks/setProductsQuantityReducer/setProductsQuantityReducer'
+import { Dispatch } from 'react'
 import { QuantityHandlerButton } from './Buttons/QuantityHandlerButton'
 
 type ProductQuantityProps = {
   title: string
   quantity: number
-  setQuantity: Dispatch<SetStateAction<number>>
+  setQuantity: Dispatch<Action>
 }
 
 export function ProductQuantity({
@@ -21,13 +22,14 @@ export function ProductQuantity({
       <div className="flex border rounded-md">
         <QuantityHandlerButton
           actionType="subtract"
-          quantity={quantity}
           setQuantity={setQuantity}
           title={title}
         />
         <Input
           className="size-12 aspect-square border-none no-spinner text-center z-10"
-          onChange={(e) => setQuantity(Math.ceil(Number(e.target.value)))}
+          onChange={(e) =>
+            setQuantity({ type: 'input', payload: Number(e.target.value) })
+          }
           value={quantity}
           step={1}
           min={1}
@@ -35,7 +37,6 @@ export function ProductQuantity({
         />
         <QuantityHandlerButton
           actionType="add"
-          quantity={quantity}
           setQuantity={setQuantity}
           title={title}
         />

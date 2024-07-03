@@ -1,41 +1,29 @@
 import { Button } from '@/components/ui/Button/Button'
+import { Action } from '@/lib/customHooks/setProductsQuantityReducer/setProductsQuantityReducer'
 import { MinusIcon, PlusIcon } from '@heroicons/react/24/outline'
-import { Dispatch, SetStateAction } from 'react'
+import { Dispatch } from 'react'
 
 type ActionTypes = 'add' | 'subtract'
 
 type QuantityHandlerButtonProps = {
   actionType: ActionTypes
-  quantity: number
-  setQuantity: Dispatch<SetStateAction<number>>
+  setQuantity: Dispatch<Action>
   title: string
 }
 
 export function QuantityHandlerButton({
   actionType,
-  quantity,
   setQuantity,
   title,
 }: QuantityHandlerButtonProps) {
-  function handleSetQuantity(action: ActionTypes) {
-    switch (action) {
-      case 'add':
-        setQuantity(quantity + 1)
-        break
-      case 'subtract':
-        setQuantity(quantity > 1 ? quantity - 1 : 1)
-        break
-    }
-  }
-
-  const spanType = String(
-    `${actionType === 'add' ? 'Increase' : 'Decrease'} quantity for ${title}`
-  )
+  const spanType = `${
+    actionType === 'add' ? 'Increase' : 'Decrease'
+  } quantity for ${title}`
 
   return (
     <Button
       className="size-12 aspect-square border-none"
-      onClick={() => handleSetQuantity(actionType)}
+      onClick={() => setQuantity({ type: actionType })}
       variant={'outline'}
       size="icon"
     >

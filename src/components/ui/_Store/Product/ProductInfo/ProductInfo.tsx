@@ -1,7 +1,9 @@
 'use client'
 
+import { setProductsQuantityReducer } from '@/lib/customHooks/setProductsQuantityReducer/setProductsQuantityReducer'
 import { CartTypes } from '@/lib/types/CartTypes'
 import { usePathname } from 'next/navigation'
+import { useReducer } from 'react'
 import { AddToCartButton } from './AddToCartButton/AddToCartButton'
 import { BuyNowButton } from './BuyNowButton/BuyNowButton'
 import { ProductDescription } from './ProductDescription/ProductDescription'
@@ -9,24 +11,27 @@ import { ProductPrice } from './ProductPrice/ProductPrice'
 import { ProductQuantity } from './ProductQuantity/ProductQuantity'
 import { ProductTitle } from './ProductTitle/ProductTitle'
 import { ProductVariants } from './ProductVariants/ProductVariants'
-import { useState } from 'react'
 
 type ProductInfoProps = {
   productInfo: CartTypes
 }
 
 export function ProductInfo({ productInfo }: ProductInfoProps) {
-  const [quantity, setQuantity] = useState(1)
+  const [state, dispatch] = useReducer(setProductsQuantityReducer, {
+    quantity: 1,
+  })
 
   const { variants } = productInfo
+  const { quantity } = state
+
   const title = productInfo.title
   const price = productInfo.priceRangeV2.minVariantPrice.amount
   const description = productInfo.description
 
-  const hasMulitpleVariants = variants.edges.length > 1
-
   const href = usePathname()
   const cartProductData = { ...productInfo, href, quantity }
+
+  const hasMulitpleVariants = variants.edges.length > 1
 
   return (
     <div className="flex flex-col">
@@ -39,8 +44,12 @@ export function ProductInfo({ productInfo }: ProductInfoProps) {
       </div>
 
       <div className="flex flex-col gap-3">
-        <ProductQuantity quantity={quantity} setQuantity={setQuantity} title={title} />
-        <AddToCartButton productInfo={cartProductData} />
+        <ProductQuantity
+          quantity={quantity}
+          setQuantity={dispatch}
+          title={title}
+        />
+        <AddToCartButton quantity={quantity} productInfo={cartProductData} />
         <BuyNowButton />
       </div>
     </div>
