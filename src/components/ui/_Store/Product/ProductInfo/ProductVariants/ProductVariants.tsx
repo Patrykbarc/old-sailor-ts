@@ -18,7 +18,7 @@ export function ProductVariants({ variants }: ProductVariantsProps) {
 
   return (
     <div className="mt-10">
-      <h3 className="text-sm font-medium text-neutral-900">Size</h3>
+      <h3 className="text-sm font-medium text-neutral-900">Variant</h3>
 
       <fieldset aria-label="Choose a size" className="mt-4">
         <RadioGroup
