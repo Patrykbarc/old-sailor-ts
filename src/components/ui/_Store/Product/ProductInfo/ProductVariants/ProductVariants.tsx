@@ -6,21 +6,29 @@ import {
   RadioGroupItem,
 } from '@/components/ui/RadioGroup/RadioGroup'
 import { Variants } from '@/lib/types/singleTypes/VariantsType'
-import { useState } from 'react'
+import { Dispatch, SetStateAction } from 'react'
+import { FieldsetWrapper } from '../FieldsetWrapper/FieldsetWrapper'
+
+type SelectedVariant = { id: string; title: string }
 
 type ProductVariantsProps = {
   variants: Variants
+  selectedVariant: SelectedVariant
+  setVariant: Dispatch<SetStateAction<SelectedVariant>>
 }
 
-export function ProductVariants({ variants }: ProductVariantsProps) {
-  const variantSku = variants.edges[0].node.sku
-  const [selectedVariant, setVariant] = useState(variantSku)
+export function ProductVariants({
+  variants,
+  selectedVariant,
+  setVariant,
+}: ProductVariantsProps) {
+  function handleSetVariant(variant: { id: string; title: string }) {
+    setVariant({ id: variant.id, title: variant.title })
+  }
 
   return (
-    <div className="mt-10">
-      <h3 className="text-sm font-medium text-neutral-900">Size</h3>
-
-      <fieldset aria-label="Choose a size" className="mt-4">
+    <div className="lg:col-span-2 lg:col-start-1 lg:border-gray-200 lg:pr-8 lg:pt-6">
+      <FieldsetWrapper title="Variant" ariaLabel="Choose a variant">
         <RadioGroup
           className="grid grid-cols-4 md:grid-cols-5 lg:grid-cols-6 justify-center"
           defaultValue="comfortable"
@@ -31,23 +39,23 @@ export function ProductVariants({ variants }: ProductVariantsProps) {
             const optionValue = variant.selectedOptions[0].value
 
             const selectedVariantStyle =
-              selectedVariant === variant.sku ? 'ring-4 ring-primary' : ''
+              selectedVariant.id === variant.id ? 'ring-4 ring-primary' : ''
 
             return (
               availableForSale && (
                 <div
-                  key={variant.sku}
-                  onClick={() => setVariant(variant.sku)}
+                  key={variant.id}
+                  onClick={() => handleSetVariant(variant)}
                   className={`hover:cursor-pointer py-4 lg:py-0 lg:aspect-square border flex items-center rounded-lg transition-shadow ${selectedVariantStyle}`}
                 >
                   <RadioGroupItem
                     className="hidden"
                     value={variant.title}
-                    id={String(variant.sku)}
+                    id={String(variant.id)}
                   />
                   <Label
                     className="hover:cursor-pointer text-center w-full text-neutral-600"
-                    htmlFor={String(variant.sku)}
+                    htmlFor={String(variant.id)}
                   >
                     {optionValue}
                   </Label>
@@ -56,7 +64,7 @@ export function ProductVariants({ variants }: ProductVariantsProps) {
             )
           })}
         </RadioGroup>
-      </fieldset>
+      </FieldsetWrapper>
     </div>
   )
 }

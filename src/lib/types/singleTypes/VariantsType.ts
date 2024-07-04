@@ -1,6 +1,7 @@
 export type Variants = {
   edges: Array<{
     node: {
+      id: string
       availableForSale: boolean
       price: any
       sku?: string | null

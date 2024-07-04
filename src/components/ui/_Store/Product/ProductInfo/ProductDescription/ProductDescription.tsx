@@ -4,7 +4,7 @@ type ProductDescriptionProps = {
 
 export function ProductDescription({ description }: ProductDescriptionProps) {
   return (
-    <div>
+    <div className="mt-4">
       <h3 className="sr-only">Description</h3>
 
       <div className="space-y-6">

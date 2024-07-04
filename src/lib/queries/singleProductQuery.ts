@@ -18,6 +18,7 @@ query SingleProduct($handle: String!) {
             name
             value
           }
+          id
           price
           sku
           title

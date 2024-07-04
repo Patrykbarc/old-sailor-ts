@@ -3,7 +3,7 @@
 import { setProductsQuantityReducer } from '@/lib/customHooks/setProductsQuantityReducer/setProductsQuantityReducer'
 import { CartTypes } from '@/lib/types/CartTypes'
 import { usePathname } from 'next/navigation'
-import { useReducer } from 'react'
+import { useReducer, useState } from 'react'
 import { AddToCartButton } from './AddToCartButton/AddToCartButton'
 import { BuyNowButton } from './BuyNowButton/BuyNowButton'
 import { ProductDescription } from './ProductDescription/ProductDescription'
@@ -16,17 +16,31 @@ type ProductInfoProps = {
   productInfo: CartTypes
 }
 
-export function ProductInfo({ productInfo }: ProductInfoProps) {
-  const [state, dispatch] = useReducer(setProductsQuantityReducer, {
-    quantity: 1,
-  })
-
-  const { variants } = productInfo
-  const { quantity } = state
-
+function getDestructuredProductInfo(productInfo: CartTypes) {
   const title = productInfo.title
   const price = productInfo.priceRangeV2.minVariantPrice.amount
   const description = productInfo.description
+  const { variants } = productInfo
+
+  return { title, price, description, variants }
+}
+
+export function ProductInfo({ productInfo }: ProductInfoProps) {
+  const { title, price, description, variants } =
+    getDestructuredProductInfo(productInfo)
+
+  const variantId = variants.edges[0].node.id
+  const variantName = variants.edges[0].node.title
+
+  const [state, dispatch] = useReducer(setProductsQuantityReducer, {
+    quantity: 1,
+  })
+  const [selectedVariant, setVariant] = useState({
+    id: variantId,
+    title: variantName,
+  })
+
+  const { quantity } = state
 
   const href = usePathname()
   const cartProductData = { ...productInfo, href, quantity }
@@ -37,20 +51,26 @@ export function ProductInfo({ productInfo }: ProductInfoProps) {
     <div className="flex flex-col">
       <ProductTitle title={title} />
       <ProductPrice price={price} />
+      <ProductDescription description={description} />
 
-      <div className="py-10 lg:col-span-2 lg:col-start-1 lg:border-gray-200 lg:pr-8 lg:pt-6">
-        <ProductDescription description={description} />
-        {hasMulitpleVariants && <ProductVariants variants={variants} />}
-      </div>
-
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-5">
+        {hasMulitpleVariants && (
+          <ProductVariants
+            variants={variants}
+            selectedVariant={selectedVariant}
+            setVariant={setVariant}
+          />
+        )}
         <ProductQuantity
           quantity={quantity}
           setQuantity={dispatch}
           title={title}
         />
-        <AddToCartButton quantity={quantity} productInfo={cartProductData} />
-        <BuyNowButton />
+
+        <div className="flex flex-col gap-3">
+          <AddToCartButton quantity={quantity} productInfo={cartProductData} />
+          <BuyNowButton />
+        </div>
       </div>
     </div>
   )
