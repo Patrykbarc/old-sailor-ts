@@ -14,6 +14,7 @@ export function CartProvider({ children }: CartProviderProps) {
   const value: CartContextType = {
     cartContent,
     setCartContent,
+    isCartEmpty: cartContent.length === 0,
   }
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>

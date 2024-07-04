@@ -1,10 +1,11 @@
+import { Button } from '@/components/ui/Button/Button'
 import { CartContext } from '@/lib/contexts/CartContext'
 import { formatPrice } from '@/lib/functions/formatPrice'
 import Link from 'next/link'
 import { useContext, useEffect, useState } from 'react'
 
 export function CartSummary() {
-  const { cartContent } = useContext(CartContext)
+  const { cartContent, isCartEmpty } = useContext(CartContext)
   const [cartValue, setCartValue] = useState(0)
 
   useEffect(() => {
@@ -28,12 +29,25 @@ export function CartSummary() {
       </p>
 
       <div className="mt-6">
-        <Link
-          href="#"
-          className="flex items-center justify-center rounded-md border border-transparent bg-primary px-6 py-3 text-base font-medium text-neutral-800 shadow-sm hover:bg-primary-foreground"
-        >
-          Checkout
+        <Link href="/store/checkout">
+          <Button className="w-full" size="xl">
+            Checkout
+          </Button>
         </Link>
+      </div>
+
+      <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
+        <p>
+          or{' '}
+          <Link
+            href={'/store/cart'}
+            type="button"
+            className="font-medium text-indigo-600 hover:text-indigo-500"
+          >
+            Show Summary
+            <span aria-hidden="true"> &rarr;</span>
+          </Link>
+        </p>
       </div>
     </div>
   )

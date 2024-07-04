@@ -6,9 +6,7 @@ import { CartProductInfo } from './CartProductInfo/CartProductInfo'
 import { CartProductsWrapper } from './CartProductsWrapper/CartProductsWrapper'
 
 export function CartProducts() {
-  const { cartContent } = useContext(CartContext)
-
-  const isCartEmpty = cartContent.length === 0
+  const { cartContent, isCartEmpty } = useContext(CartContext)
 
   return (
     <CartProductsWrapper>

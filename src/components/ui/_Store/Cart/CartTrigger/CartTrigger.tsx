@@ -5,8 +5,7 @@ import { useContext } from 'react'
 import { CartProductsBadge } from '../CartProductsBadge/CartProductsBadge'
 
 export function CartTrigger() {
-  const { cartContent } = useContext(CartContext)
-  const isCartEmpty = cartContent.length === 0
+  const { cartContent, isCartEmpty } = useContext(CartContext)
 
   return (
     <SheetTrigger>
