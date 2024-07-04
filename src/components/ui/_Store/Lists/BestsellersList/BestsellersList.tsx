@@ -6,6 +6,7 @@ import { ProductsListImage } from '../../Products/ProductsListImage/ProductsList
 
 export async function BestsellersList() {
   const bestsellersResponse = await getShopifyData(bestsellersQuery)
+
   const bestsellersList = bestsellersResponse.collection.products.edges
 
   return (
