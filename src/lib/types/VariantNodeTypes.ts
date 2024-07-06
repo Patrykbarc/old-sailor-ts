@@ -1,6 +1,11 @@
+import { Currency } from '../functions/formatPrice'
+
 export type VariantNode = {
   title: string
-  price: any
+  price: {
+    amount: string
+    currencyCode: string
+  }
   selectedOptions: {
     name: string
     value: string

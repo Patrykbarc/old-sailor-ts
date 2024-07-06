@@ -1,4 +1,4 @@
-type Currency = 'USD' | 'EUR' | 'PLN'
+export type Currency = 'USD' | 'EUR' | 'PLN'
 
 const localeMap: { [key in Currency]: string } = {
   USD: 'en-US',

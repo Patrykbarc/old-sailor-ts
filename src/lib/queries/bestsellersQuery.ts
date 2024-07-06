@@ -15,7 +15,10 @@ query Bestsellers {
             edges {
               node {
                 title
-                price
+                price {
+                  amount
+                  currencyCode
+                }
                 selectedOptions {
                   name
                   value

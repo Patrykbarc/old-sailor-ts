@@ -1,17 +1,18 @@
-import { formatPrice } from '@/lib/functions/formatPrice'
+import { Currency, formatPrice } from '@/lib/functions/formatPrice'
 import Link from 'next/link'
 
 type ProductsListDescriptionProps = {
   productHandle: string
   productTitle: string
-  productPrice: string
+  productPrice: { price: string; currency: string }
 }
-
 export function ProductsListDescription({
   productHandle,
   productTitle,
   productPrice,
 }: ProductsListDescriptionProps) {
+  const currencyCode = productPrice.currency as Currency
+
   return (
     <div className="mt-4 flex justify-between">
       <div>
@@ -23,7 +24,7 @@ export function ProductsListDescription({
         </h3>
       </div>
       <p className="text-sm font-medium text-neutral-900">
-        {formatPrice(Number(productPrice))}
+        {formatPrice(Number(productPrice.price), currencyCode)}
       </p>
     </div>
   )
