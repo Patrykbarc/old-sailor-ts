@@ -15,7 +15,7 @@ export default function Cart() {
     'horizontal' | 'vertical'
   >('vertical')
 
-  const { isCartPage } = useStorePathname()
+  const [isCartPage] = useStorePathname()
   const elementRef = useRef(null)
 
   useEffect(() => {

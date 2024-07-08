@@ -8,7 +8,7 @@ import { NavWraper } from './NavWraper/NavWraper'
 import { SelectCurrency } from './SelectCurrency/SelectCurrency'
 
 export function StoreNav() {
-  const { isCartPage } = useStorePathname()
+  const [isCartPage] = useStorePathname()
 
   return (
     <NavWraper>

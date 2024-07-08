@@ -1,24 +1,20 @@
 'use client'
 
 import { Input } from '@/components/ui/Input/Input'
-import { Action } from '@/lib/customHooks/setProductsQuantityReducer/setProductsQuantityReducer'
-import { Dispatch } from 'react'
+import { CartContext } from '@/lib/contexts/CartContext'
+import { useContext } from 'react'
 import { FieldsetWrapper } from '../FieldsetWrapper/FieldsetWrapper'
 import { QuantityHandlerButton } from './Buttons/QuantityHandlerButton'
 
 type ProductQuantityProps = {
   title: string
-  quantity: number
-  setQuantity: Dispatch<Action>
+  className?: string
 }
 
-export function ProductQuantity({
-  title,
-  quantity,
-  setQuantity,
-}: ProductQuantityProps) {
+export function ProductQuantity({ title, className }: ProductQuantityProps) {
+  const { quantity, setQuantity } = useContext(CartContext)
   return (
-    <div>
+    <div className={className}>
       <FieldsetWrapper
         title="Quantity"
         ariaLabel="Choose a quantity"
