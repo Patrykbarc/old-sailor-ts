@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { useContext, useEffect, useState } from 'react'
 
 export function CartSummary() {
-  const { cartContent, isCartEmpty } = useContext(CartContext)
+  const { cartContent } = useContext(CartContext)
   const [cartValue, setCartValue] = useState(0)
 
   useEffect(() => {
