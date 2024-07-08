@@ -4,14 +4,14 @@ import Link from 'next/link'
 type ProductsListDescriptionProps = {
   productHandle: string
   productTitle: string
-  productPrice: { price: string; currency: string }
+  productPrice: { amount: string; currencyCode: string }
 }
 export function ProductsListDescription({
   productHandle,
   productTitle,
   productPrice,
-}: ProductsListDescriptionProps) {
-  const currencyCode = productPrice.currency as Currency
+}: ProductsListDescriptionProps) {  
+  const currencyCode = productPrice.currencyCode as Currency
 
   return (
     <div className="mt-4 flex justify-between">
@@ -24,7 +24,7 @@ export function ProductsListDescription({
         </h3>
       </div>
       <p className="text-sm font-medium text-neutral-900">
-        {formatPrice(Number(productPrice.price), currencyCode)}
+        {formatPrice(Number(productPrice.amount), currencyCode)}
       </p>
     </div>
   )

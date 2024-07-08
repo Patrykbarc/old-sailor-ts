@@ -22,6 +22,10 @@ query GetAllProducts($id: ID!, $cursor: String) {
             edges {
               node {
                 price
+                {
+                amount
+                currencyCode  
+                }
                 availableForSale
               }
             }

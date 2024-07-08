@@ -1,5 +1,3 @@
-import { Currency } from '../functions/formatPrice'
-
 export type VariantNode = {
   title: string
   price: {

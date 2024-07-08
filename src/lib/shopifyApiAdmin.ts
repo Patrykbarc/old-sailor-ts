@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export async function getShopifyData(query: string, variables?: object) {
+export async function shopifyApiAdmin(query: string, variables?: object) {
   const SHOPIFY_API_ADMIN_URL = process.env.SHOPIFY_API_ADMIN_URL
   const SHOPIFY_ADMIN_ACCESS_TOKEN = process.env.SHOPIFY_ADMIN_ACCESS_TOKEN
 

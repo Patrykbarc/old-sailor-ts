@@ -19,7 +19,8 @@ export function CartProducts() {
                 <CartProductInfo
                   href={product.href}
                   title={product.title}
-                  price={product.priceRangeV2.minVariantPrice.amount}
+                  price={product.variants.edges[0].node.price.amount}
+                  currency={product.variants.edges[0].node.price.currencyCode}
                 />
                 <CartProductActions
                   productId={product.id}

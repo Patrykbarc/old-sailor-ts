@@ -1,5 +1,9 @@
 import { productsListQuery } from '@/lib/queries/productsListQuery'
-import { getShopifyData } from '../../getShopifyData'
+import client from '@/lib/shopifyApi'
+
+type QueryVariables = {
+  variables: { cursor: string | null; id: string }
+}
 
 export async function getCursorForPage(
   page: number,
@@ -8,10 +12,10 @@ export async function getCursorForPage(
   let cursor = null
 
   for (let i = 1; i < page; i++) {
-    const variables = { cursor, id }
-    const response = await getShopifyData(productsListQuery, variables)
+    const variables: QueryVariables = { variables: { cursor, id } }
+    const { data } = await client.request(productsListQuery, variables)
 
-    const products = response.collection.products.edges
+    const products = data.collection.products.edges
     cursor = products[products.length - 1].cursor
   }
 

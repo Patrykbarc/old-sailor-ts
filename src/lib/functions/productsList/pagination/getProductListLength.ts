@@ -1,6 +1,10 @@
+import client from '@/lib/shopifyApi'
 import { AllProducts } from '../../../types/AllProductsTypes'
 import { AllProductEdge } from '../../../types/singleTypes/AllProductsEdgesType'
-import { getShopifyData } from '../../getShopifyData'
+
+type QueryVariables = {
+  variables: { cursor: string | null; id: string }
+}
 
 export const getProductListLength = async (query: string, id: string) => {
   let allProducts: AllProducts[] = []
@@ -8,17 +12,17 @@ export const getProductListLength = async (query: string, id: string) => {
   let cursor = null
 
   while (hasNextPage) {
-    const variables = { cursor, id }
-    const response = await getShopifyData(query, variables)
+    const variables: QueryVariables = { variables: { cursor, id } }
+    const { data } = await client.request(query, variables)
 
-    if (response && response.collection) {
-      const products = response.collection.products.edges
+    if (data && data.collection) {
+      const products = data.collection.products.edges
 
       allProducts = allProducts.concat(
         products.map((edge: AllProductEdge) => edge.node)
       )
 
-      hasNextPage = response.collection.products.pageInfo.hasNextPage
+      hasNextPage = data.collection.products.pageInfo.hasNextPage
 
       if (hasNextPage) {
         cursor = products[products.length - 1].cursor

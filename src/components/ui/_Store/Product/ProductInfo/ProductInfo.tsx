@@ -18,7 +18,7 @@ type ProductInfoProps = {
 
 function getDestructuredProductInfo(productInfo: CartTypes) {
   const title = productInfo.title
-  const price = productInfo.priceRangeV2.minVariantPrice.amount
+  const price = productInfo.variants.edges[0].node.price
   const description = productInfo.description
   const { variants } = productInfo
 
@@ -28,7 +28,7 @@ function getDestructuredProductInfo(productInfo: CartTypes) {
 export function ProductInfo({ productInfo }: ProductInfoProps) {
   const { title, price, description, variants } =
     getDestructuredProductInfo(productInfo)
-
+  
   const variantId = variants.edges[0].node.id
   const variantName = variants.edges[0].node.title
 

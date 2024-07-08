@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/Button/Button'
 import { CartContext } from '@/lib/contexts/CartContext'
+import { calculateTotalOrderValue } from '@/lib/functions/calculateTotalOrderValue'
 import { formatPrice } from '@/lib/functions/formatPrice'
 import Link from 'next/link'
 import { useContext, useEffect, useState } from 'react'
@@ -9,12 +10,7 @@ export function CartSummary() {
   const [cartValue, setCartValue] = useState(0)
 
   useEffect(() => {
-    const totalValue = cartContent.reduce((acc, product) => {
-      return (
-        acc + product.priceRangeV2.minVariantPrice.amount * product.quantity
-      )
-    }, 0)
-
+    const totalValue = calculateTotalOrderValue(cartContent)
     setCartValue(Number(totalValue))
   }, [cartContent])
 

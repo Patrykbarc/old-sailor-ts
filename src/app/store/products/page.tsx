@@ -12,7 +12,7 @@ type ProductsProps = {
 export default async function Products({ searchParams }: ProductsProps) {
   const categoryId = getProductsFilterCategory(searchParams.category)
 
-  const { productsList, totalPages, hasNextPage, hasPreviousPage, page } =
+  const { data, totalPages, hasNextPage, hasPreviousPage, page } =
     await getProductsListAndTotalPages(
       searchParams,
       productsListQuery,
@@ -21,7 +21,7 @@ export default async function Products({ searchParams }: ProductsProps) {
 
   return (
     <ProductListLayout>
-      <ProductsList products={productsList.collection.products.edges} />
+      <ProductsList products={data.collection.products.edges} />
       {totalPages > 1 && (
         <Pagination
           currentPage={page}
