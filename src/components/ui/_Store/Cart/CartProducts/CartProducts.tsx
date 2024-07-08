@@ -1,20 +1,27 @@
 import { CartContext } from '@/lib/contexts/CartContext'
+import Link from 'next/link'
 import { useContext } from 'react'
 import { CartProductActions } from './CartProductActions/CartProductActions'
 import { CartProductImage } from './CartProductImage/CartProductImage'
 import { CartProductInfo } from './CartProductInfo/CartProductInfo'
 import { CartProductsWrapper } from './CartProductsWrapper/CartProductsWrapper'
 
-export function CartProducts() {
+type CartProductsProps = {
+  className?: string
+}
+
+export function CartProducts({ className }: CartProductsProps) {
   const { cartContent, isCartEmpty } = useContext(CartContext)
 
   return (
-    <CartProductsWrapper>
+    <CartProductsWrapper className={className}>
       {!isCartEmpty &&
         cartContent.map((product) => {
           return (
             <li key={product.id} className="flex py-6">
-              {<CartProductImage images={product.images} />}
+              <Link href={product.href}>
+                <CartProductImage images={product.images} />
+              </Link>
               <div className="ml-4 flex flex-1 flex-col">
                 <CartProductInfo
                   href={product.href}

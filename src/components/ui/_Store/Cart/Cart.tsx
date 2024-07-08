@@ -1,5 +1,6 @@
+import { CartContext } from '@/lib/contexts/CartContext'
 import { usePathname } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import {
   Sheet as CartContainer,
   SheetContent as CartContent,
@@ -10,8 +11,10 @@ import {
 import { CartProducts } from './CartProducts/CartProducts'
 import { CartSummary } from './CartSummary/CartSummary'
 import { CartTrigger } from './CartTrigger/CartTrigger'
+import { EmptyCart } from './EmptyCart/EmptyCart'
 
 export function Cart() {
+  const { isCartEmpty } = useContext(CartContext)
   const [isCartOpen, setIsCartOpen] = useState(false)
   const pathname = usePathname()
 
@@ -22,12 +25,18 @@ export function Cart() {
       <CartTrigger />
       <CartContent className="py-8">
         <CartTitle>Shopping cart</CartTitle>
+        <CartDescription />
 
-        <CartHeader className="flex justify-between h-full">
-          <CartProducts />
-          <CartSummary />
-          <CartDescription />
-        </CartHeader>
+        {!isCartEmpty ? (
+          <>
+            <CartHeader className="flex justify-between h-full">
+              <CartProducts />
+              <CartSummary />
+            </CartHeader>
+          </>
+        ) : (
+          <EmptyCart />
+        )}
       </CartContent>
     </CartContainer>
   )

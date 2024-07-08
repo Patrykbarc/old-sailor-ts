@@ -10,7 +10,6 @@ export function CartProductImage({ images }: CartProductImageProps) {
   const url = images?.edges[0].node.url
   const alt = images?.edges[0].node.altText
 
-  console.log()
   return (
     <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
       <Image
