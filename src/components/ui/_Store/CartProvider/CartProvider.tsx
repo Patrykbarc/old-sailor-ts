@@ -1,9 +1,8 @@
 'use client'
 
 import { CartContext, CartContextType } from '@/lib/contexts/CartContext'
-import { setProductsQuantityReducer } from '@/lib/customHooks/setProductsQuantityReducer/setProductsQuantityReducer'
 import { CartTypes } from '@/lib/types/CartTypes'
-import { ReactNode, useReducer, useState } from 'react'
+import { ReactNode, useState } from 'react'
 
 type CartProviderProps = {
   children: ReactNode
@@ -11,15 +10,19 @@ type CartProviderProps = {
 
 export function CartProvider({ children }: CartProviderProps) {
   const [cartContent, setCartContent] = useState<CartTypes[]>([])
-  const [state, dispatch] = useReducer(setProductsQuantityReducer, {
-    quantity: 1,
-  })
+
+  function updateQuantity(productId: string, quantity: number) {
+    setCartContent((prevCartContent) =>
+      prevCartContent.map((product) =>
+        product.id === productId ? { ...product, quantity } : product
+      )
+    )
+  }
 
   const value: CartContextType = {
     cartContent,
     setCartContent,
-    quantity: state.quantity,
-    setQuantity: dispatch,
+    updateQuantity,
     isCartEmpty: cartContent.length === 0,
   }
 

@@ -10,7 +10,7 @@ export function ProductsListDescription({
   productHandle,
   productTitle,
   productPrice,
-}: ProductsListDescriptionProps) {  
+}: ProductsListDescriptionProps) {
   const currencyCode = productPrice.currencyCode as Currency
 
   return (

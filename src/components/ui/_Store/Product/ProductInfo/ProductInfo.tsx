@@ -1,10 +1,7 @@
-'use client'
-
-import { CartContext } from '@/lib/contexts/CartContext'
 import { getDestructuredProductInfo } from '@/lib/functions/helpers/getDestructuredProductInfo'
 import { CartTypes } from '@/lib/types/CartTypes'
 import { usePathname } from 'next/navigation'
-import { useContext, useState } from 'react'
+import { useState } from 'react'
 import { AddToCartButton } from './AddToCartButton/AddToCartButton'
 import { BuyNowButton } from './BuyNowButton/BuyNowButton'
 import { ProductDescription } from './ProductDescription/ProductDescription'
@@ -18,8 +15,6 @@ type ProductInfoProps = {
 }
 
 export function ProductInfo({ productInfo }: ProductInfoProps) {
-  const { quantity } = useContext(CartContext)
-
   const {
     title,
     price,
@@ -34,6 +29,7 @@ export function ProductInfo({ productInfo }: ProductInfoProps) {
     id: variantId,
     title: variantName,
   })
+  const [quantity, setQuantity] = useState(1)
 
   const href = usePathname()
   const cartProductData = { ...productInfo, href, quantity }
@@ -44,7 +40,9 @@ export function ProductInfo({ productInfo }: ProductInfoProps) {
       <ProductPrice price={price} />
       <ProductDescription description={description} />
 
-      <div className="flex flex-col gap-5">
+      <div
+        className={`flex flex-col gap-5 ${!hasMulitpleVariants ? 'mt-5' : ''}`}
+      >
         {hasMulitpleVariants && (
           <ProductVariants
             variants={variants}
@@ -52,7 +50,7 @@ export function ProductInfo({ productInfo }: ProductInfoProps) {
             setVariant={setVariant}
           />
         )}
-        <ProductQuantity title={title} />
+        <ProductQuantity quantity={quantity} setQuantity={setQuantity} />
 
         <div className="flex flex-col gap-3">
           <AddToCartButton quantity={quantity} productInfo={cartProductData} />

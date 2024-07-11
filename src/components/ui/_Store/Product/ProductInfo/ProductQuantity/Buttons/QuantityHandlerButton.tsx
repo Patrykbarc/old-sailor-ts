@@ -1,13 +1,11 @@
 import { Button } from '@/components/ui/Button/Button'
-import { Action } from '@/lib/customHooks/setProductsQuantityReducer/setProductsQuantityReducer'
 import { MinusIcon, PlusIcon } from '@heroicons/react/24/outline'
-import { Dispatch } from 'react'
 
 type ActionTypes = 'add' | 'subtract'
 
 type QuantityHandlerButtonProps = {
   actionType: ActionTypes
-  setQuantity: Dispatch<Action>
+  setQuantity: () => void
   title: string
 }
 
@@ -23,7 +21,7 @@ export function QuantityHandlerButton({
   return (
     <Button
       className="size-12 aspect-square border-none"
-      onClick={() => setQuantity({ type: actionType })}
+      onClick={setQuantity}
       variant={'outline'}
       size="icon"
     >

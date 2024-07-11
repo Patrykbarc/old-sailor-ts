@@ -1,4 +1,4 @@
-import { CartTypes } from "@/lib/types/CartTypes"
+import { CartTypes } from '@/lib/types/CartTypes'
 
 export function getDestructuredProductInfo(productInfo: CartTypes) {
   const title = productInfo.title
@@ -8,7 +8,6 @@ export function getDestructuredProductInfo(productInfo: CartTypes) {
   const variantId = variants.edges[0].node.id
   const variantName = variants.edges[0].node.title
   const hasMulitpleVariants = variants.edges.length > 1
-
   return {
     title,
     price,

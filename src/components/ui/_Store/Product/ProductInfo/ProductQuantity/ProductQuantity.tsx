@@ -7,14 +7,27 @@ import { FieldsetWrapper } from '../FieldsetWrapper/FieldsetWrapper'
 import { QuantityHandlerButton } from './Buttons/QuantityHandlerButton'
 
 type ProductQuantityProps = {
-  title: string
-  className?: string
+  productId?: string
+  quantity: number
+  setQuantity: (quantity: number) => void
 }
 
-export function ProductQuantity({ title, className }: ProductQuantityProps) {
-  const { quantity, setQuantity } = useContext(CartContext)
+export function ProductQuantity({
+  productId,
+  quantity,
+  setQuantity,
+}: ProductQuantityProps) {
+  const { updateQuantity } = useContext(CartContext)
+
+  const handleQuantityChange = (newQuantity: number) => {
+    setQuantity(newQuantity)
+    if (productId) {
+      updateQuantity(productId, newQuantity)
+    }
+  }
+
   return (
-    <div className={className}>
+    <div>
       <FieldsetWrapper
         title="Quantity"
         ariaLabel="Choose a quantity"
@@ -23,13 +36,13 @@ export function ProductQuantity({ title, className }: ProductQuantityProps) {
         <div className="flex border rounded-md">
           <QuantityHandlerButton
             actionType="subtract"
-            setQuantity={setQuantity}
-            title={title}
+            setQuantity={() => handleQuantityChange(Math.max(1, quantity - 1))}
+            title="Product"
           />
           <Input
             className="size-12 aspect-square border-none no-spinner text-center z-10"
             onChange={(e) =>
-              setQuantity({ type: 'input', payload: Number(e.target.value) })
+              handleQuantityChange(Math.max(1, Number(e.target.value)))
             }
             value={quantity}
             step={1}
@@ -38,8 +51,8 @@ export function ProductQuantity({ title, className }: ProductQuantityProps) {
           />
           <QuantityHandlerButton
             actionType="add"
-            setQuantity={setQuantity}
-            title={title}
+            setQuantity={() => handleQuantityChange(quantity + 1)}
+            title="Product"
           />
         </div>
       </FieldsetWrapper>
