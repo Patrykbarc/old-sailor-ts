@@ -1,5 +1,6 @@
 .no-spinner[type='number'] {
   -moz-appearance: textfield;
+  appearance: textfield;
 }
 
 .no-spinner::-webkit-outer-spin-button,

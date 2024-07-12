@@ -2,8 +2,8 @@ import { getDestructuredProductInfo } from '@/lib/functions/helpers/getDestructu
 import { CartTypes } from '@/lib/types/CartTypes'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
+import { StoreLinkButton } from '../../StoreLinkButton/StoreLinkButton'
 import { AddToCartButton } from './AddToCartButton/AddToCartButton'
-import { BuyNowButton } from './BuyNowButton/BuyNowButton'
 import { ProductDescription } from './ProductDescription/ProductDescription'
 import { ProductPrice } from './ProductPrice/ProductPrice'
 import { ProductQuantity } from './ProductQuantity/ProductQuantity'
@@ -54,7 +54,7 @@ export function ProductInfo({ productInfo }: ProductInfoProps) {
 
         <div className="flex flex-col gap-3">
           <AddToCartButton quantity={quantity} productInfo={cartProductData} />
-          <BuyNowButton />
+          <StoreLinkButton href="/checkout" text="Buy now" variant="cta" />
         </div>
       </div>
     </div>

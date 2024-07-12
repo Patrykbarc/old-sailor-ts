@@ -1,12 +1,12 @@
-import { Button } from '@/components/ui/Button/Button'
 import { formatPrice } from '@/lib/functions/formatPrice'
-import Link from 'next/link'
+import { StoreLinkButton } from '../../../StoreLinkButton/StoreLinkButton'
 
 type CartSubtotalProps = {
   cartValue: number
+  isCartPage: boolean
 }
 
-export function CartSubtotal({ cartValue }: CartSubtotalProps) {
+export function CartSubtotal({ cartValue, isCartPage }: CartSubtotalProps) {
   return (
     <>
       <div className="flex justify-between text-base font-medium text-neutral-900">
@@ -17,13 +17,14 @@ export function CartSubtotal({ cartValue }: CartSubtotalProps) {
         Shipping and taxes calculated at checkout.
       </p>
 
-      <div className="mt-6">
-        <Link href="/store/checkout">
-          <Button className="w-full" size="xl">
-            Checkout
-          </Button>
-        </Link>
-      </div>
+      {isCartPage && (
+        <StoreLinkButton
+          href="checkout"
+          text="checkout"
+          className="mt-6"
+          variant="cta"
+        />
+      )}
     </>
   )
 }
