@@ -6,13 +6,13 @@ import { FieldsetWrapper } from '../FieldsetWrapper/FieldsetWrapper'
 import { QuantityHandlerButton } from './Buttons/QuantityHandlerButton'
 
 type ProductQuantityProps = {
-  productId?: string
+  variantId?: string
   quantity: number
   setQuantity: (quantity: number) => void
 }
 
 export function ProductQuantity({
-  productId,
+  variantId,
   quantity,
   setQuantity,
 }: ProductQuantityProps) {
@@ -20,8 +20,8 @@ export function ProductQuantity({
 
   const handleQuantityChange = (newQuantity: number) => {
     setQuantity(newQuantity)
-    if (productId) {
-      updateQuantity(productId, newQuantity)
+    if (variantId) {
+      updateQuantity(variantId, newQuantity)
     }
   }
 

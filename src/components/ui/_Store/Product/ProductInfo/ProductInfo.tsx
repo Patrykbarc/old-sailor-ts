@@ -1,3 +1,4 @@
+import { useCheckout } from '@/lib/customHooks/useCheckout'
 import { getDestructuredProductInfo } from '@/lib/functions/helpers/getDestructuredProductInfo'
 import { CartTypes } from '@/lib/types/CartTypes'
 import { usePathname } from 'next/navigation'
@@ -30,9 +31,18 @@ export function ProductInfo({ productInfo }: ProductInfoProps) {
     title: variantName,
   })
   const [quantity, setQuantity] = useState(1)
+  const checkoutUrl = useCheckout([
+    { variantId: variantId, quantity: quantity },
+  ])
 
   const href = usePathname()
-  const cartProductData = { ...productInfo, href, quantity }
+  const cartProductData = {
+    ...productInfo,
+    href,
+    quantity,
+    variantId: selectedVariant.id,
+    variantName: selectedVariant.title,
+  }
 
   return (
     <div className="flex flex-col">
@@ -53,8 +63,17 @@ export function ProductInfo({ productInfo }: ProductInfoProps) {
         <ProductQuantity quantity={quantity} setQuantity={setQuantity} />
 
         <div className="flex flex-col gap-3">
-          <AddToCartButton quantity={quantity} productInfo={cartProductData} />
-          <StoreLinkButton href="/checkout" text="Buy now" variant="cta" />
+          <AddToCartButton
+            quantity={quantity}
+            variant={selectedVariant.id}
+            productInfo={cartProductData}
+          />
+          <StoreLinkButton
+            href={checkoutUrl}
+            external={true}
+            text="Buy now"
+            variant="cta"
+          />
         </div>
       </div>
     </div>

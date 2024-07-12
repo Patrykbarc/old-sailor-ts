@@ -6,6 +6,7 @@ type StoreLinkButtonProps = VariantProps<typeof buttonVariants> & {
   href: string
   text: string
   className?: string
+  external?: boolean
 }
 
 export function StoreLinkButton({
@@ -13,11 +14,12 @@ export function StoreLinkButton({
   text,
   size = 'xl',
   variant = 'default',
+  external = false,
   className,
 }: StoreLinkButtonProps) {
   return (
     <div className={`${className}`}>
-      <Link href={`/store/${href}`}>
+      <Link href={external ? href : `/store/${href}`}>
         <Button className="w-full capitalize" size={size} variant={variant}>
           {text}
         </Button>

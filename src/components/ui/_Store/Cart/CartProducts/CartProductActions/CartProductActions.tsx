@@ -4,12 +4,12 @@ import { ProductQuantity } from '../../../Product/ProductInfo/ProductQuantity/Pr
 import { RemoveCartItem } from '../../RemoveCartItem/RemoveCartItem'
 
 type CartProductActionsProps = {
-  productId: string
+  variantId: string
   quantity: number
 }
 
 export function CartProductActions({
-  productId,
+  variantId,
   quantity,
 }: CartProductActionsProps) {
   const [isCartPage] = useStorePathname()
@@ -21,14 +21,14 @@ export function CartProductActions({
         <p className="text-neutral-500">Qty {quantity}</p>
       ) : (
         <ProductQuantity
-          productId={productId}
+          variantId={variantId}
           quantity={quantity}
-          setQuantity={(newQuantity) => updateQuantity(productId, newQuantity)}
+          setQuantity={(newQuantity) => updateQuantity(variantId, newQuantity)}
         />
       )}
 
       <div className="flex">
-        <RemoveCartItem productId={productId} />
+        <RemoveCartItem variantId={variantId} />
       </div>
     </div>
   )

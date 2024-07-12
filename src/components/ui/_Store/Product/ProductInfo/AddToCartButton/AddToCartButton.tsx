@@ -4,27 +4,31 @@ import { CartTypes } from '@/lib/types/CartTypes'
 
 type AddToCartButtonProps = {
   quantity: number
+  variant: string
   productInfo: CartTypes
 }
 
 export function AddToCartButton({
   quantity,
+  variant,
   productInfo,
 }: AddToCartButtonProps) {
   const { setCartContent } = useCart()
 
   function handleAddProductToCart(product: CartTypes) {
     setCartContent((items) => {
-      const duplicate = items.find((item) => item.id === product.id)
+      const duplicate = items.find(
+        (item) => item.id === product.id && item.variantId === variant
+      )
 
       if (duplicate) {
         return items.map((item) =>
-          item.id === product.id
+          item.id === product.id && item.variantId === variant
             ? { ...item, quantity: item.quantity + quantity }
             : item
         )
       } else {
-        return [...items, { ...product, quantity }]
+        return [...items, { ...product, quantity, variantId: variant }]
       }
     })
   }

@@ -4,7 +4,7 @@ import { CartTypes } from '../types/CartTypes'
 export type CartContextType = {
   cartContent: CartTypes[]
   setCartContent: Dispatch<SetStateAction<CartTypes[]>>
-  updateQuantity: (productId: string, quantity: number) => void
+  updateQuantity: (variantId: string, quantity: number) => void
   isCartEmpty: boolean
 }
 

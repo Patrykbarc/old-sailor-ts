@@ -17,7 +17,7 @@ export function CartProducts({ className }: CartProductsProps) {
       {!isCartEmpty &&
         cartContent.map((product) => {
           return (
-            <li key={product.id} className="flex py-6">
+            <li key={product.variantId} className="flex py-6">
               <Link href={product.href}>
                 <CartProductImage images={product.images} />
               </Link>
@@ -29,7 +29,7 @@ export function CartProducts({ className }: CartProductsProps) {
                   currency={product.variants.edges[0].node.price.currencyCode}
                 />
                 <CartProductActions
-                  productId={product.id}
+                  variantId={product.variantId}
                   quantity={product.quantity}
                 />
               </div>

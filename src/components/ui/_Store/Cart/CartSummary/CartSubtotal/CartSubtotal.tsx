@@ -1,3 +1,5 @@
+import { useCart } from '@/lib/customHooks/useCart'
+import { useCheckout } from '@/lib/customHooks/useCheckout'
 import { formatPrice } from '@/lib/functions/formatPrice'
 import { StoreLinkButton } from '../../../StoreLinkButton/StoreLinkButton'
 
@@ -7,6 +9,9 @@ type CartSubtotalProps = {
 }
 
 export function CartSubtotal({ cartValue, isCartPage }: CartSubtotalProps) {
+  const { cartContent } = useCart()
+  const checkoutUrl = useCheckout(cartContent)
+
   return (
     <>
       <div className="flex justify-between text-base font-medium text-neutral-900">
@@ -19,7 +24,8 @@ export function CartSubtotal({ cartValue, isCartPage }: CartSubtotalProps) {
 
       {isCartPage && (
         <StoreLinkButton
-          href="checkout"
+          href={checkoutUrl}
+          external={true}
           text="checkout"
           className="mt-6"
           variant="cta"

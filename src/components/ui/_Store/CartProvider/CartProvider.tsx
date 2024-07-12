@@ -10,8 +10,12 @@ type CartProviderProps = {
 
 export function CartProvider({ children }: CartProviderProps) {
   const [cartContent, setCartContent] = useState<CartTypes[]>([])
+  
+  let storedCart: string | null = null
 
-  const storedCart = localStorage.getItem('cart')
+  if (typeof window !== 'undefined') {
+    storedCart = window.localStorage.getItem('cart')
+  }
 
   useEffect(() => {
     if (storedCart) {
@@ -23,10 +27,10 @@ export function CartProvider({ children }: CartProviderProps) {
     localStorage.setItem('cart', JSON.stringify(cartContent))
   }, [cartContent])
 
-  function updateQuantity(productId: string, quantity: number) {
+  function updateQuantity(variantId: string, quantity: number) {
     setCartContent((prevCartContent) =>
       prevCartContent.map((product) =>
-        product.id === productId ? { ...product, quantity } : product
+        product.variantId === variantId ? { ...product, quantity } : product
       )
     )
   }
