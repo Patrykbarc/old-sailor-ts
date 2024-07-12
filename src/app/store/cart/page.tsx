@@ -5,12 +5,12 @@ import { CartSummary } from '@/components/ui/_Store/Cart/CartSummary/CartSummary
 import { EmptyCart } from '@/components/ui/_Store/Cart/EmptyCart/EmptyCart'
 import { Separator } from '@/components/ui/Separator/Separator'
 import { Wrapper } from '@/components/ui/Wrapper/Wrapper'
-import { CartContext } from '@/lib/contexts/CartContext'
+import { useCart } from '@/lib/customHooks/useCart'
 import { useStorePathname } from '@/lib/customHooks/useStorePathname'
-import { useContext, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 export default function Cart() {
-  const { isCartEmpty } = useContext(CartContext)
+  const { isCartEmpty } = useCart()
   const [separatorOrientation, setSeparatorOrientation] = useState<
     'horizontal' | 'vertical'
   >('vertical')
@@ -20,7 +20,7 @@ export default function Cart() {
 
   useEffect(() => {
     const observer = new ResizeObserver((entries) => {
-      for (let entry of entries) {
+      for (const entry of entries) {
         const width = entry.contentRect.width
         if (width <= 1024) {
           setSeparatorOrientation('horizontal')

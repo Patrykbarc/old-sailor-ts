@@ -22,7 +22,7 @@ export async function BestsellersList() {
           product.node.variants.edges[0].node.price.currencyCode
         const productImgSrc = product.node.images.edges[0].node.url
         const productImgAlt = product.node.images.edges[0].node.altText
-        
+
         return (
           <div key={productId} className="group relative">
             <ProductsListImage
@@ -32,7 +32,10 @@ export async function BestsellersList() {
             <ProductsListDescription
               productHandle={productHandle}
               productTitle={productTitle}
-              productPrice={{ amount: productPrice, currencyCode: productCurrency }}
+              productPrice={{
+                amount: productPrice,
+                currencyCode: productCurrency,
+              }}
             />
           </div>
         )

@@ -1,11 +1,10 @@
 import { SheetTrigger } from '@/components/ui/Sheet/Sheet'
-import { CartContext } from '@/lib/contexts/CartContext'
+import { useCart } from '@/lib/customHooks/useCart'
 import { ShoppingBagIcon } from '@heroicons/react/24/solid'
-import { useContext } from 'react'
 import { CartProductsBadge } from '../CartProductsBadge/CartProductsBadge'
 
 export function CartTrigger() {
-  const { cartContent, isCartEmpty } = useContext(CartContext)
+  const { cartContent, isCartEmpty } = useCart()
 
   return (
     <SheetTrigger>

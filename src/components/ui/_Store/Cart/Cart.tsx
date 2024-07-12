@@ -1,6 +1,6 @@
-import { CartContext } from '@/lib/contexts/CartContext'
+import { useCart } from '@/lib/customHooks/useCart'
 import { usePathname } from 'next/navigation'
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   Sheet as CartContainer,
   SheetContent as CartContent,
@@ -14,7 +14,7 @@ import { CartTrigger } from './CartTrigger/CartTrigger'
 import { EmptyCart } from './EmptyCart/EmptyCart'
 
 export function Cart() {
-  const { isCartEmpty } = useContext(CartContext)
+  const { isCartEmpty } = useCart()
   const [isCartOpen, setIsCartOpen] = useState(false)
   const pathname = usePathname()
 

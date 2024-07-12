@@ -1,7 +1,6 @@
 import { Button } from '@/components/ui/Button/Button'
-import { CartContext } from '@/lib/contexts/CartContext'
+import { useCart } from '@/lib/customHooks/useCart'
 import { CartTypes } from '@/lib/types/CartTypes'
-import { useContext } from 'react'
 
 type AddToCartButtonProps = {
   quantity: number
@@ -12,7 +11,7 @@ export function AddToCartButton({
   quantity,
   productInfo,
 }: AddToCartButtonProps) {
-  const { setCartContent } = useContext(CartContext)
+  const { setCartContent } = useCart()
 
   function handleAddProductToCart(product: CartTypes) {
     setCartContent((items) => {

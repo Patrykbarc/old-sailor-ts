@@ -1,8 +1,7 @@
 'use client'
 
 import { Input } from '@/components/ui/Input/Input'
-import { CartContext } from '@/lib/contexts/CartContext'
-import { useContext } from 'react'
+import { useCart } from '@/lib/customHooks/useCart'
 import { FieldsetWrapper } from '../FieldsetWrapper/FieldsetWrapper'
 import { QuantityHandlerButton } from './Buttons/QuantityHandlerButton'
 
@@ -17,7 +16,7 @@ export function ProductQuantity({
   quantity,
   setQuantity,
 }: ProductQuantityProps) {
-  const { updateQuantity } = useContext(CartContext)
+  const { updateQuantity } = useCart()
 
   const handleQuantityChange = (newQuantity: number) => {
     setQuantity(newQuantity)

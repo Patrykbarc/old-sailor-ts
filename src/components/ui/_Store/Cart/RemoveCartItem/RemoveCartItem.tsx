@@ -1,12 +1,11 @@
-import { CartContext } from '@/lib/contexts/CartContext'
-import { useContext } from 'react'
+import { useCart } from '@/lib/customHooks/useCart'
 
 type RemoveCartItemProps = {
   productId: string
 }
 
 export function RemoveCartItem({ productId }: RemoveCartItemProps) {
-  const { setCartContent } = useContext(CartContext)
+  const { setCartContent } = useCart()
 
   function handleRemoveProduct(id: string) {
     setCartContent((items) => items.filter((item) => item.id !== id))

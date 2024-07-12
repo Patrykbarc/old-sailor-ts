@@ -18,7 +18,9 @@ export function FieldsetWrapper({
 
   return (
     <>
-      {!isCartPage && <h3 className="text-sm font-medium text-neutral-900">{title}</h3>}
+      {!isCartPage && (
+        <h3 className="text-sm font-medium text-neutral-900">{title}</h3>
+      )}
       <fieldset
         aria-label={ariaLabel}
         className={`mt-4 mb-3 flex flex-col text-neutral-900 ${className}`}

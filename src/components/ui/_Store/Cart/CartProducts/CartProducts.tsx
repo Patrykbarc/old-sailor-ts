@@ -1,6 +1,5 @@
-import { CartContext } from '@/lib/contexts/CartContext'
+import { useCart } from '@/lib/customHooks/useCart'
 import Link from 'next/link'
-import { useContext } from 'react'
 import { CartProductActions } from './CartProductActions/CartProductActions'
 import { CartProductImage } from './CartProductImage/CartProductImage'
 import { CartProductInfo } from './CartProductInfo/CartProductInfo'
@@ -11,7 +10,7 @@ type CartProductsProps = {
 }
 
 export function CartProducts({ className }: CartProductsProps) {
-  const { cartContent, isCartEmpty } = useContext(CartContext)
+  const { cartContent, isCartEmpty } = useCart()
 
   return (
     <CartProductsWrapper className={className}>

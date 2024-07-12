@@ -1,6 +1,5 @@
-import { CartContext } from '@/lib/contexts/CartContext'
+import { useCart } from '@/lib/customHooks/useCart'
 import { useStorePathname } from '@/lib/customHooks/useStorePathname'
-import { useContext } from 'react'
 import { ProductQuantity } from '../../../Product/ProductInfo/ProductQuantity/ProductQuantity'
 import { RemoveCartItem } from '../../RemoveCartItem/RemoveCartItem'
 
@@ -14,7 +13,7 @@ export function CartProductActions({
   quantity,
 }: CartProductActionsProps) {
   const [isCartPage] = useStorePathname()
-  const { updateQuantity } = useContext(CartContext)
+  const { updateQuantity } = useCart()
 
   return (
     <div className="flex flex-1 items-end justify-between text-sm">

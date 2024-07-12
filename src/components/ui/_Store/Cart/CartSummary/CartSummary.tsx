@@ -1,11 +1,11 @@
-import { CartContext } from '@/lib/contexts/CartContext'
+import { useCart } from '@/lib/customHooks/useCart'
 import { calculateTotalOrderValue } from '@/lib/functions/calculateTotalOrderValue'
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { CartSubtotal } from './CartSubtotal/CartSubtotal'
 import { GoToCartPageLink } from './GoToCartPageLink/GoToCartPageLink'
 
 export function CartSummary({ isCartPage = false }) {
-  const { cartContent } = useContext(CartContext)
+  const { cartContent } = useCart()
   const [cartValue, setCartValue] = useState(0)
 
   useEffect(() => {

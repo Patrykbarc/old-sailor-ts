@@ -11,7 +11,7 @@ export function EmptyCart() {
           Your cart is empty
         </h2>
         <p className="mt-4 text-muted-foreground">
-          Looks like you haven't added any items to your cart yet. Start
+          Looks like you haven&apos;t added any items to your cart yet. Start
           shopping to add items to your cart.
         </p>
         <div className="mt-6">

@@ -2,7 +2,7 @@
 
 import { CartContext, CartContextType } from '@/lib/contexts/CartContext'
 import { CartTypes } from '@/lib/types/CartTypes'
-import { ReactNode, useState } from 'react'
+import { ReactNode, useEffect, useState } from 'react'
 
 type CartProviderProps = {
   children: ReactNode
@@ -10,6 +10,18 @@ type CartProviderProps = {
 
 export function CartProvider({ children }: CartProviderProps) {
   const [cartContent, setCartContent] = useState<CartTypes[]>([])
+
+  const storedCart = localStorage.getItem('cart')
+
+  useEffect(() => {
+    if (storedCart) {
+      setCartContent(JSON.parse(storedCart))
+    }
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cartContent))
+  }, [cartContent])
 
   function updateQuantity(productId: string, quantity: number) {
     setCartContent((prevCartContent) =>

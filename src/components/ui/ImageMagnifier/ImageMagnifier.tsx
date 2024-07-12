@@ -51,7 +51,7 @@ export function ImageMagnifier({
         src={src}
         width={width}
         height={height}
-        className={`${height} ${width}`}
+        className="h-auto w-full"
         onMouseEnter={(e) => {
           const elem = e.currentTarget
           const { width, height } = elem.getBoundingClientRect()

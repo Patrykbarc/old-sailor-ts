@@ -12,7 +12,7 @@ export async function getProductsListAndTotalPages(
   const cursor = page > 1 ? await getCursorForPage(page, id) : null
   const variables = { variables: { cursor, id } }
 
-  const { data, errors } = await client.request(query, variables)
+  const { data } = await client.request(query, variables)
 
   const hasNextPage = data.collection.products.pageInfo.hasNextPage
   const hasPreviousPage = data.collection.products.pageInfo.hasPreviousPage
