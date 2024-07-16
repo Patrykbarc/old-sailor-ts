@@ -1,28 +1,46 @@
 import { useEffect, useState } from 'react'
-import { CartTypes } from '../types/CartTypes'
+import { createCheckoutMutation } from '../queries/createCheckout'
+import client from '../shopifyApi'
 
-type UseCheckoutType = Pick<CartTypes, 'variantId' | 'quantity'>
+function encodeShopifyId(id: string) {
+  return btoa(`gid://shopify/ProductVariant/${id}`)
+}
+
+type UseCheckoutType = { variantId: string; quantity: number }
 
 export function useCheckout(cartContent: UseCheckoutType[]) {
   const [link, setLink] = useState('')
 
   useEffect(() => {
-    const queryParams = cartContent
-      .map((product) => {
-        const trimmedVariantId = product.variantId.replace(
-          'gid://shopify/ProductVariant/',
-          ''
-        )
-        return `${trimmedVariantId}:${product.quantity}`
-      })
-      .join(',')
+    const createCheckout = async () => {
+      const lineItems = cartContent.map((product) => ({
+        variantId: encodeShopifyId(
+          product.variantId.replace('gid://shopify/ProductVariant/', '')
+        ),
+        quantity: product.quantity,
+      }))
 
-    const SHOPIFY_PUBLIC_API_URL =
-      process.env.NEXT_PUBLIC_SHOPIFY_PUBLIC_API_URL
-    const finalUrl = `${SHOPIFY_PUBLIC_API_URL}/cart/${queryParams}?checkout`
+      const variables = { lineItems }
 
-    setLink(finalUrl)
-  }, [cartContent])
+      try {
+        const { data, errors } = await client.request(createCheckoutMutation, {
+          variables,
+        })
+
+        if (errors) {
+          throw new Error(errors.message)
+        }
+
+        if (data.checkoutCreate.checkout) {
+          setLink(data.checkoutCreate.checkout.webUrl)
+        }
+      } catch (error) {
+        console.error('Error creating checkout:', error)
+      }
+    }
+
+    createCheckout()
+  }, [cartContent.length])
 
   return link
 }
