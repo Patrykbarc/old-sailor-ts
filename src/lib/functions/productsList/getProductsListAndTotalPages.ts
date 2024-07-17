@@ -1,4 +1,4 @@
-import client from '@/lib/shopifyApi'
+import client from '@/lib/shopify/shopifyApi'
 import { calculateTotalPages } from '../calculatePages'
 import { getCursorForPage } from './pagination/getCursorForPage'
 import { getProductListLength } from './pagination/getProductListLength'

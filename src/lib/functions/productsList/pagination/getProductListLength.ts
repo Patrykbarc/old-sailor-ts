@@ -1,4 +1,4 @@
-import client from '@/lib/shopifyApi'
+import client from '@/lib/shopify/shopifyApi'
 import { AllProducts } from '../../../types/AllProductsTypes'
 import { AllProductEdge } from '../../../types/singleTypes/AllProductsEdgesType'
 

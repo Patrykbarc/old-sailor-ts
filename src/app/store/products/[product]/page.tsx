@@ -1,6 +1,6 @@
 import { Product } from '@/components/views/Store/Product/Product'
-import { singleProductQuery } from '@/lib/queries/singleProductQuery'
-import client from '@/lib/shopifyApi'
+import { singleProductQuery } from '@/lib/shopify/queries/singleProductQuery'
+import client from '@/lib/shopify/shopifyApi'
 
 type ProductProps = {
   params: { product: string }

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import { createCheckoutMutation } from '../queries/createCheckout'
-import client from '../shopifyApi'
+import { createCheckoutMutation } from '../shopify/mutations/createCheckout'
+import client from '../shopify/shopifyApi'
 
 function encodeShopifyId(id: string) {
   return btoa(`gid://shopify/ProductVariant/${id}`)
@@ -19,7 +19,6 @@ export function useCheckout(cartContent: UseCheckoutType[]) {
         ),
         quantity: product.quantity,
       }))
-
       const variables = { lineItems }
 
       try {
@@ -40,7 +39,7 @@ export function useCheckout(cartContent: UseCheckoutType[]) {
     }
 
     createCheckout()
-  }, [cartContent.length])
+  }, [cartContent])
 
   return link
 }

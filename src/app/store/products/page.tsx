@@ -3,7 +3,7 @@ import { ProductsList } from '@/components/ui/_Store/Lists/ProductsList/Products
 import { ProductListLayout } from '@/components/views/Store/ProductListLayout/ProductListLayout'
 import { getProductsFilterCategory } from '@/lib/functions/productsList/getProductsFilterCategory'
 import { getProductsListAndTotalPages } from '@/lib/functions/productsList/getProductsListAndTotalPages'
-import { productsListQuery } from '@/lib/queries/productsListQuery'
+import { productsListQuery } from '@/lib/shopify/queries/productsListQuery'
 
 type ProductsProps = {
   searchParams: { [key: string]: string }

@@ -1,6 +1,6 @@
 import { logShopifyErrors } from '@/lib/functions/helpers/logShopifyErrors'
-import { bestsellersQuery } from '@/lib/queries/bestsellersQuery'
-import client from '@/lib/shopifyApi'
+import { bestsellersQuery } from '@/lib/shopify/queries/bestsellersQuery'
+import client from '@/lib/shopify/shopifyApi'
 import { ProductsTypes } from '@/lib/types/ProductsTypes'
 import { ProductsListDescription } from '../../Products/ProductsListDescription/ProductsListDescription'
 import { ProductsListImage } from '../../Products/ProductsListImage/ProductsListImage'

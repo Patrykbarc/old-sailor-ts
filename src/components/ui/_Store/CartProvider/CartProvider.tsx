@@ -10,7 +10,7 @@ type CartProviderProps = {
 
 export function CartProvider({ children }: CartProviderProps) {
   const [cartContent, setCartContent] = useState<CartTypes[]>([])
-  
+
   let storedCart: string | null = null
 
   if (typeof window !== 'undefined') {

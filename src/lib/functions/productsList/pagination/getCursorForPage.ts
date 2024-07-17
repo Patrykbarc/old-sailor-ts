@@ -1,5 +1,5 @@
-import { productsListQuery } from '@/lib/queries/productsListQuery'
-import client from '@/lib/shopifyApi'
+import { productsListQuery } from '@/lib/shopify/queries/productsListQuery'
+import client from '@/lib/shopify/shopifyApi'
 
 type QueryVariables = {
   variables: { cursor: string | null; id: string }
