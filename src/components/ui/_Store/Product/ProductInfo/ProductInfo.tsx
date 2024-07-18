@@ -1,19 +1,19 @@
-import { useCheckout } from '@/lib/customHooks/useCheckout';
-import { getDestructuredProductInfo } from '@/lib/functions/helpers/getDestructuredProductInfo';
-import { CartTypes } from '@/lib/types/CartTypes';
-import { usePathname } from 'next/navigation';
-import { useState } from 'react';
-import { StoreLinkButton } from '../../StoreLinkButton/StoreLinkButton';
-import { AddToCartButton } from './AddToCartButton/AddToCartButton';
-import { ProductDescription } from './ProductDescription/ProductDescription';
-import { ProductPrice } from './ProductPrice/ProductPrice';
-import { ProductQuantity } from './ProductQuantity/ProductQuantity';
-import { ProductTitle } from './ProductTitle/ProductTitle';
-import { ProductVariants } from './ProductVariants/ProductVariants';
+import { useCheckout } from '@/lib/customHooks/useCheckout'
+import { getDestructuredProductInfo } from '@/lib/functions/helpers/getDestructuredProductInfo'
+import { CartTypes } from '@/lib/types/CartTypes'
+import { usePathname } from 'next/navigation'
+import { useState } from 'react'
+import { StoreLinkButton } from '../../StoreLinkButton/StoreLinkButton'
+import { AddToCartButton } from './AddToCartButton/AddToCartButton'
+import { ProductDescription } from './ProductDescription/ProductDescription'
+import { ProductPrice } from './ProductPrice/ProductPrice'
+import { ProductQuantity } from './ProductQuantity/ProductQuantity'
+import { ProductTitle } from './ProductTitle/ProductTitle'
+import { ProductVariants } from './ProductVariants/ProductVariants'
 
 type ProductInfoProps = {
-  productInfo: CartTypes;
-};
+  productInfo: CartTypes
+}
 
 export function ProductInfo({ productInfo }: ProductInfoProps) {
   const {
@@ -21,28 +21,28 @@ export function ProductInfo({ productInfo }: ProductInfoProps) {
     price,
     description,
     variants,
-    variantId,
+    merchandiseId,
     variantName,
     hasMulitpleVariants,
-  } = getDestructuredProductInfo(productInfo);
+  } = getDestructuredProductInfo(productInfo)
 
   const [selectedVariant, setVariant] = useState({
-    id: variantId,
+    id: merchandiseId,
     title: variantName,
-  });
-  const [quantity, setQuantity] = useState(1);
+  })
+  const [quantity, setQuantity] = useState(1)
   const checkoutUrl = useCheckout([
-    { variantId: selectedVariant.id, quantity: quantity },
-  ]);
+    { merchandiseId: selectedVariant.id, quantity: quantity },
+  ])
 
-  const href = usePathname();
+  const href = usePathname()
   const cartProductData = {
     ...productInfo,
     href,
     quantity,
-    variantId: selectedVariant.id,
+    merchandiseId: selectedVariant.id,
     variantName: selectedVariant.title,
-  };
+  }
 
   return (
     <div className="flex flex-col">
@@ -77,5 +77,5 @@ export function ProductInfo({ productInfo }: ProductInfoProps) {
         </div>
       </div>
     </div>
-  );
+  )
 }

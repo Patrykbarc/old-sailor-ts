@@ -4,13 +4,15 @@ import { CartTypes } from '../types/CartTypes'
 export type CartContextType = {
   cartContent: CartTypes[]
   setCartContent: Dispatch<SetStateAction<CartTypes[]>>
-  updateQuantity: (variantId: string, quantity: number) => void
+  addToCart: (merchandiseId: string, quantity: number) => void
+  updateQuantity: (merchandiseId: string, quantity: number) => void
   isCartEmpty: boolean
 }
 
 export const CartContext = createContext<CartContextType>({
   cartContent: [],
   setCartContent: () => {},
+  addToCart: () => {},
   updateQuantity: () => {},
   isCartEmpty: false,
 })

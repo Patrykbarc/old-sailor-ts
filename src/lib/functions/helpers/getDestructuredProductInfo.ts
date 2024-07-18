@@ -5,7 +5,7 @@ export function getDestructuredProductInfo(productInfo: CartTypes) {
   const price = productInfo.variants.edges[0].node.price
   const description = productInfo.description
   const { variants } = productInfo
-  const variantId = variants.edges[0].node.id
+  const merchandiseId = variants.edges[0].node.id
   const variantName = variants.edges[0].node.title
   const hasMulitpleVariants = variants.edges.length > 1
   
@@ -14,7 +14,7 @@ export function getDestructuredProductInfo(productInfo: CartTypes) {
     price,
     description,
     variants,
-    variantId,
+    merchandiseId,
     variantName,
     hasMulitpleVariants,
   }
