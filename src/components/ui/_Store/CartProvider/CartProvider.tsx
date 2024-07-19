@@ -37,7 +37,7 @@ export function CartProvider({ children }: CartProviderProps) {
     }
   }, [cartContent, cartId])
 
-  async function addToCart(variantId: string, quantity: number) {
+  async function addToCart(variantId: string, quantity: number, href: string) {
     if (!cartId) return
 
     const variables = {
@@ -46,12 +46,15 @@ export function CartProvider({ children }: CartProviderProps) {
     }
 
     try {
-      const { data } = await client.request(addToCartMutation, {variables})
+      const { data } = await client.request(addToCartMutation, { variables })
 
-      console.log('API response:', data) // Debugowanie odpowiedzi API
       if (data && data.cartLinesAdd && data.cartLinesAdd.cart) {
         setCartContent(
-          data.cartLinesAdd.cart.lines.edges.map((edge: any) => edge.node)
+          data.cartLinesAdd.cart.lines.edges.map((edge: any) => ({
+            ...edge.node,
+            href: href,
+            merchandiseId: edge.node.merchandise.id // Ensure merchandiseId is set correctly
+          }))
         )
       } else {
         console.error('Unexpected API response structure:', data)

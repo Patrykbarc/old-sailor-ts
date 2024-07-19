@@ -12,8 +12,21 @@ mutation addToCart($cartId: ID!, $lines: [CartLineInput!]!) {
               ... on ProductVariant {
                 id
                 title
+                priceV2 {
+                  amount
+                  currencyCode
+                }
                 product {
                   title
+                  images(first: 10) {
+                    edges {
+                      node {
+                        id
+                        src
+                        altText
+                      }
+                    }
+                  }
                 }
               }
             }

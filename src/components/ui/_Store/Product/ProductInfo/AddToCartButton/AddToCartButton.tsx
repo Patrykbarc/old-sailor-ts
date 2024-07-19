@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/Button/Button'
 import { useCart } from '@/lib/customHooks/useCart'
 import { CartTypes } from '@/lib/types/CartTypes'
+import { usePathname } from 'next/navigation'
 
 type AddToCartButtonProps = {
   quantity: number
@@ -14,9 +15,10 @@ export function AddToCartButton({
   productInfo,
 }: AddToCartButtonProps) {
   const { addToCart } = useCart()
+  const pathname = usePathname()
 
   async function handleAddProductToCart(product: CartTypes) {
-    await addToCart(product.merchandiseId, quantity)
+    addToCart(product.merchandiseId, quantity, pathname)
   }
 
   return (

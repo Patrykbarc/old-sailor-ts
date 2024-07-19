@@ -10,6 +10,7 @@ export function CartSummary({ isCartPage = false }) {
 
   useEffect(() => {
     const totalValue = calculateTotalOrderValue(cartContent)
+
     setCartValue(Number(totalValue))
   }, [cartContent])
 

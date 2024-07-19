@@ -7,8 +7,8 @@ type CartProductImageProps = {
 }
 
 export function CartProductImage({ images }: CartProductImageProps) {
-  const url = images?.edges[0].node.url
-  const alt = images?.edges[0].node.altText
+  const url = images?.src
+  const alt = images?.altText
 
   return (
     <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">

@@ -12,6 +12,6 @@ export default async function Page({ params }: ProductProps) {
   const { data } = await client.request(singleProductQuery, variables)
 
   const singleProductData = data.productByHandle
-
+  
   return <Product productData={singleProductData} />
 }

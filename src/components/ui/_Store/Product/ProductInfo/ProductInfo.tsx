@@ -31,10 +31,11 @@ export function ProductInfo({ productInfo }: ProductInfoProps) {
     title: variantName,
   })
   const [quantity, setQuantity] = useState(1)
-  const checkoutUrl = useCheckout([
-    { merchandiseId: selectedVariant.id, quantity: quantity },
-  ])
-
+  const checkoutUrl = useCheckout(
+    [{ merchandiseId: selectedVariant.id, quantity: quantity }],
+    [selectedVariant]
+  )
+  console.log(merchandiseId)
   const href = usePathname()
   const cartProductData = {
     ...productInfo,

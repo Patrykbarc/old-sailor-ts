@@ -16,21 +16,30 @@ export function CartProducts({ className }: CartProductsProps) {
     <CartProductsWrapper className={className}>
       {!isCartEmpty &&
         cartContent.map((product) => {
+          const productNode = product.merchandise
+          const href = product.href
+          const images = productNode.product.images.edges[0].node
+          const title = productNode.product.title
+          const price = productNode.priceV2.amount
+          const currencyCode = productNode.priceV2.currencyCode
+          const variantId = productNode.id
+          const quantity = product.quantity
+
           return (
-            <li key={product.merchandiseId} className="flex py-6">
-              <Link href={product.href}>
-                <CartProductImage images={product.images} />
+            <li key={variantId} className="flex py-6">
+              <Link href={href}>
+                <CartProductImage images={images} />
               </Link>
               <div className="ml-4 flex flex-1 flex-col">
                 <CartProductInfo
-                  href={product.href}
-                  title={product.title}
-                  price={product.variants.edges[0].node.price.amount}
-                  currency={product.variants.edges[0].node.price.currencyCode}
+                  href={href}
+                  title={title}
+                  price={price}
+                  currency={currencyCode}
                 />
                 <CartProductActions
-                  merchandiseId={product.merchandiseId}
-                  quantity={product.quantity}
+                  merchandiseId={variantId}
+                  quantity={quantity}
                 />
               </div>
             </li>
