@@ -35,7 +35,7 @@ export function ProductInfo({ productInfo }: ProductInfoProps) {
     [{ merchandiseId: selectedVariant.id, quantity: quantity }],
     [selectedVariant]
   )
-  // console.log(merchandiseId)
+
   const href = usePathname()
   const cartProductData = {
     ...productInfo,
