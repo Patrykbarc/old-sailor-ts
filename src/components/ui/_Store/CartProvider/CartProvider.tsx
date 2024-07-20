@@ -1,6 +1,10 @@
 'use client'
 
-import { CartContext, CartContextType } from '@/lib/contexts/CartContext'
+import {
+  CartContext,
+  CartContextType,
+  CartId,
+} from '@/lib/contexts/CartContext'
 import { addToCartMutation } from '@/lib/shopify/mutations/addToCartMutation'
 import { createCartMutation } from '@/lib/shopify/mutations/createCartMutation'
 import client from '@/lib/shopify/shopifyApi'
@@ -13,16 +17,15 @@ type CartProviderProps = {
 
 export function CartProvider({ children }: CartProviderProps) {
   const [cartContent, setCartContent] = useState<CartTypes[]>([])
-  const [cartId, setCartId] = useState<string | null>(null)
+  const [cartId, setCartId] = useState<CartId>(null)
 
   useEffect(() => {
     async function createCart() {
       try {
         const { data } = await client.request(createCartMutation)
+
         setCartId(data.cartCreate.cart.id)
-        setCartContent(
-          data.cartCreate.cart.lines.edges.map((edge: any) => edge.node)
-        )
+        setCartContent(data.cartCreate)
       } catch (error) {
         console.error('Error creating cart:', error)
       }
@@ -49,13 +52,22 @@ export function CartProvider({ children }: CartProviderProps) {
       const { data } = await client.request(addToCartMutation, { variables })
 
       if (data && data.cartLinesAdd && data.cartLinesAdd.cart) {
-        setCartContent(
-          data.cartLinesAdd.cart.lines.edges.map((edge: any) => ({
-            ...edge.node,
-            href: href,
-            merchandiseId: edge.node.merchandise.id // Ensure merchandiseId is set correctly
-          }))
-        )
+        setCartContent((prevState) => ({
+          ...prevState,
+          cart: {
+            ...prevState.cart,
+            lines: {
+              ...prevState.cart.lines,
+              edges: [
+                ...data.cartLinesAdd.cart.lines.edges.map((edge: any) => ({
+                  ...edge.node,
+                  href: href,
+                  merchandiseId: edge.node.merchandise.id,
+                })),
+              ],
+            },
+          },
+        }))
       } else {
         console.error('Unexpected API response structure:', data)
       }
@@ -74,13 +86,26 @@ export function CartProvider({ children }: CartProviderProps) {
     )
   }
 
+  const isCartEmpty = cartContent.cart?.lines?.edges.length === 0
+
   const value: CartContextType = {
-    cartContent,
+    cartContent: cartContent.cart,
     setCartContent,
+    cartId,
     addToCart,
     updateQuantity,
-    isCartEmpty: cartContent.length === 0,
+    isCartEmpty: isCartEmpty,
   }
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>
 }
+
+// {
+//   "cart": {
+//       "id": "gid://shopify/Cart/Z2NwLWV1cm9wZS13ZXN0MTowMUozODJLM1lKMkMxWFhSU04wTk0zRjRKOA?key=1c3d4e62f853df35593ba6cd25dffeb0",
+//       "checkoutUrl": "https://old-sailor-barber-store.myshopify.com/cart/c/Z2NwLWV1cm9wZS13ZXN0MTowMUozODJLM1lKMkMxWFhSU04wTk0zRjRKOA?key=1c3d4e62f853df35593ba6cd25dffeb0",
+//       "lines": {
+//           "edges": []
+//       }
+//   }
+// }

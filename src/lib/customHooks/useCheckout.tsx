@@ -18,29 +18,31 @@ export function useCheckout(
   dependencies?: UseCheckoutDependencies
 ) {
   const [link, setLink] = useState('')
-  console.log('useCheckout - cartContent:', cartContent)
+  // console.log('useCheckout - cartContent:', cartContent)
 
   useEffect(() => {
     const createCheckout = async () => {
-      const lineItems = cartContent.map((product) => {
-        const id = product.merchandiseId || product.merchandise?.id;
-        if (!id) {
-          console.error('Invalid product data:', product)
-          return null
-        }
-        return {
-          variantId: encodeShopifyId(
-            id.replace('gid://shopify/ProductVariant/', '')
-          ),
-          quantity: product.quantity,
-        }
-      }).filter(item => item !== null)
-      
-      console.log('useCheckout - lineItems:', lineItems)
+      const lineItems = cartContent
+
+      const id = cartContent.merchandiseId
+      if (!id) {
+        console.error('Invalid product data:', cartContent)
+        return null
+      }
+      return {
+        variantId: encodeShopifyId(
+          id.replace('gid://shopify/ProductVariant/', '')
+        ),
+        quantity: cartContent.quantity,
+      }
+
+      // console.log('useCheckout - lineItems:', lineItems)
       const variables = { lineItems }
 
       try {
-        const { data, errors } = await client.request(createCheckoutMutation, { variables })
+        const { data, errors } = await client.request(createCheckoutMutation, {
+          variables,
+        })
 
         if (errors) {
           console.error('Checkout errors:', errors)

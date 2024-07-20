@@ -11,11 +11,11 @@ type CartProductsProps = {
 
 export function CartProducts({ className }: CartProductsProps) {
   const { cartContent, isCartEmpty } = useCart()
-
+  
   return (
     <CartProductsWrapper className={className}>
       {!isCartEmpty &&
-        cartContent.map((product) => {
+        cartContent.lines.edges.map((product) => {
           const productNode = product.merchandise
           const href = product.href
           const images = productNode.product.images.edges[0].node

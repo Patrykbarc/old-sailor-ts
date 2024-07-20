@@ -1,5 +1,4 @@
 import { useCart } from '@/lib/customHooks/useCart'
-import { useCheckout } from '@/lib/customHooks/useCheckout'
 import { formatPrice } from '@/lib/functions/formatPrice'
 import { StoreLinkButton } from '../../../StoreLinkButton/StoreLinkButton'
 
@@ -10,8 +9,8 @@ type CartSubtotalProps = {
 
 export function CartSubtotal({ cartValue, isCartPage }: CartSubtotalProps) {
   const { cartContent } = useCart()
-  const checkoutUrl = useCheckout(cartContent)
-
+  const checkoutUrl = cartContent.checkoutUrl
+  
   return (
     <>
       <div className="flex justify-between text-base font-medium text-neutral-900">

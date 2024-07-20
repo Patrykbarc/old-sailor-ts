@@ -12,7 +12,7 @@ type ProductTypes = {
 
 export function Product({ productData }: ProductTypes) {
   const { images } = productData
-  console.log(productData)
+  
   return (
     <div className="bg-white min-h-full w-full py-12">
       <Breadcrumbs />

@@ -5,13 +5,14 @@ import { CartProductsBadge } from '../CartProductsBadge/CartProductsBadge'
 
 export function CartTrigger() {
   const { cartContent, isCartEmpty } = useCart()
+  const productsAmount = cartContent?.lines?.edges.length
 
   return (
     <SheetTrigger>
       <div className="relative">
         <ShoppingBagIcon className="size-8 cursor-pointer" />
-        {!isCartEmpty && (
-          <CartProductsBadge productsAmount={cartContent.length} />
+        {!isCartEmpty && productsAmount > 0 && (
+          <CartProductsBadge productsAmount={productsAmount} />
         )}
       </div>
     </SheetTrigger>
