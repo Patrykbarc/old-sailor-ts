@@ -4,7 +4,7 @@ import { CartTypes } from '../types/CartTypes'
 export type CartId = string | null
 
 export type CartContextType = {
-  cartContent: CartTypes[]
+  cartContent: { cart: CartTypes[] }
   setCartContent: Dispatch<SetStateAction<CartTypes[]>>
   cartId: CartId
   addToCart: (merchandiseId: string, quantity: number, href: string) => void
@@ -15,7 +15,7 @@ export type CartContextType = {
 const initFuncitonState = () => {}
 
 export const CartContext = createContext<CartContextType>({
-  cartContent: [],
+  cartContent: { cart: [] },
   setCartContent: initFuncitonState,
   cartId: null,
   addToCart: initFuncitonState,

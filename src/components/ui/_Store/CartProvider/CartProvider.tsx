@@ -7,6 +7,7 @@ import {
 } from '@/lib/contexts/CartContext'
 import { addToCartMutation } from '@/lib/shopify/mutations/addToCartMutation'
 import { createCartMutation } from '@/lib/shopify/mutations/createCartMutation'
+import { updateQuantityMutation } from '@/lib/shopify/mutations/updateQuantityMutation'
 import client from '@/lib/shopify/shopifyApi'
 import { CartTypes } from '@/lib/types/CartTypes'
 import { ReactNode, useEffect, useState } from 'react'
@@ -76,17 +77,59 @@ export function CartProvider({ children }: CartProviderProps) {
     }
   }
 
-  function updateQuantity(merchandiseId: string, quantity: number) {
-    setCartContent((prevCartContent) =>
-      prevCartContent.map((product) =>
-        product.merchandiseId === merchandiseId
-          ? { ...product, quantity }
-          : product
-      )
-    )
+  async function updateQuantity(lineId: string, quantity: number) {
+    if (!cartId) return
+
+    const variables = {
+      cartId: cartId,
+      lineId: lineId,
+      quantity: quantity,
+    }
+
+    try {
+      const { data } = await client.request(updateQuantityMutation, {
+        variables,
+      })
+
+      if (data && data.cartLinesUpdate && data.cartLinesUpdate.cart) {
+        setCartContent((prevState) => {
+          const updatedEdges = prevState.cart.lines.edges.map((edge) => {
+            if (edge.id === lineId) {
+              const updatedEdge = {
+                ...edge,
+                quantity: quantity,
+                node: {
+                  ...edge.node,
+                  quantity: quantity,
+                },
+              }
+
+              return updatedEdge
+            }
+            return edge
+          })
+
+          const updatedCart = {
+            ...prevState,
+            cart: {
+              ...prevState.cart,
+              lines: {
+                ...prevState.cart.lines,
+                edges: updatedEdges,
+              },
+            },
+          }
+          return updatedCart
+        })
+      } else {
+        console.error('Unexpected API response structure:', data)
+      }
+    } catch (error) {
+      console.error('Error updating cart quantity:', error)
+    }
   }
 
-  const isCartEmpty = cartContent.cart?.lines?.edges.length === 0
+  const isCartEmpty = !cartContent.cart?.lines?.edges?.length
 
   const value: CartContextType = {
     cartContent: cartContent.cart,
@@ -99,13 +142,3 @@ export function CartProvider({ children }: CartProviderProps) {
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>
 }
-
-// {
-//   "cart": {
-//       "id": "gid://shopify/Cart/Z2NwLWV1cm9wZS13ZXN0MTowMUozODJLM1lKMkMxWFhSU04wTk0zRjRKOA?key=1c3d4e62f853df35593ba6cd25dffeb0",
-//       "checkoutUrl": "https://old-sailor-barber-store.myshopify.com/cart/c/Z2NwLWV1cm9wZS13ZXN0MTowMUozODJLM1lKMkMxWFhSU04wTk0zRjRKOA?key=1c3d4e62f853df35593ba6cd25dffeb0",
-//       "lines": {
-//           "edges": []
-//       }
-//   }
-// }
