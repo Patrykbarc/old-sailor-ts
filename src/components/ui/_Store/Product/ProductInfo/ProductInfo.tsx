@@ -2,7 +2,7 @@ import { useCheckout } from '@/lib/customHooks/useCheckout'
 import { getDestructuredProductInfo } from '@/lib/functions/helpers/getDestructuredProductInfo'
 import { CartTypes } from '@/lib/types/CartTypes'
 import { usePathname } from 'next/navigation'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { StoreLinkButton } from '../../StoreLinkButton/StoreLinkButton'
 import { AddToCartButton } from './AddToCartButton/AddToCartButton'
 import { ProductDescription } from './ProductDescription/ProductDescription'
@@ -31,10 +31,13 @@ export function ProductInfo({ productInfo }: ProductInfoProps) {
     title: variantName,
   })
   const [quantity, setQuantity] = useState(1)
-  const checkoutUrl = useCheckout(
-    [{ merchandiseId: selectedVariant.id, quantity: quantity }],
-    [selectedVariant]
+
+  const memoizedCartContent = useMemo(
+    () => [{ merchandiseId: selectedVariant.id, quantity: quantity }],
+    [selectedVariant, quantity]
   )
+
+  const checkoutUrl = useCheckout(memoizedCartContent, [selectedVariant])
 
   const href = usePathname()
   const cartProductData = {
@@ -64,11 +67,7 @@ export function ProductInfo({ productInfo }: ProductInfoProps) {
         <ProductQuantity quantity={quantity} setQuantity={setQuantity} />
 
         <div className="flex flex-col gap-3">
-          <AddToCartButton
-            quantity={quantity}
-            variant={selectedVariant.id}
-            productInfo={cartProductData}
-          />
+          <AddToCartButton quantity={quantity} productInfo={cartProductData} />
           <StoreLinkButton
             href={checkoutUrl}
             external={true}

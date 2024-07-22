@@ -2,7 +2,7 @@
 
 import { Wrapper } from '@/components/ui/Wrapper/Wrapper'
 import { debounce } from '@/lib/functions/debounce'
-import { NavigationProps } from '@/lib/types/singleTypes/NavigationPropsType'
+import { NavigationProps } from '@/lib/types/common/NavigationProps'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'

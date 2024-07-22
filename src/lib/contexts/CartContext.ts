@@ -9,6 +9,7 @@ export type CartContextType = {
   cartId: CartId
   addToCart: (merchandiseId: string, quantity: number, href: string) => void
   updateQuantity: (lineId: string, quantity: number) => void
+  removeFromCart: (lineId: string) => void
   isCartEmpty: boolean
 }
 
@@ -24,5 +25,6 @@ export const CartContext = createContext<CartContextType>({
   cartId: null,
   addToCart: initFuncitonState,
   updateQuantity: initFuncitonState,
+  removeFromCart: () => {},
   isCartEmpty: true,
 })

@@ -28,7 +28,7 @@ export function CartProductActions({
       )}
 
       <div className="flex">
-        <RemoveCartItem merchandiseId={lineId} />
+        <RemoveCartItem lineId={lineId} />
       </div>
     </div>
   )

@@ -1,6 +1,6 @@
 'use client'
 
-import { NavigationProps } from '@/lib/types/singleTypes/NavigationPropsType'
+import { NavigationProps } from '@/lib/types/common/NavigationProps'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid'
 import Image from 'next/image'
 import Link from 'next/link'

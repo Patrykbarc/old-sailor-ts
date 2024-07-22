@@ -5,13 +5,11 @@ import { usePathname } from 'next/navigation'
 
 type AddToCartButtonProps = {
   quantity: number
-  variant: string
   productInfo: CartTypes
 }
 
 export function AddToCartButton({
   quantity,
-  variant,
   productInfo,
 }: AddToCartButtonProps) {
   const { addToCart } = useCart()

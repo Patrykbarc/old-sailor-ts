@@ -58,9 +58,8 @@ export function useCheckout(
         console.error('Error creating checkout:', error)
       }
     }
-
     createCheckout()
-  }, [JSON.stringify(cartContent), ...(dependencies || [])])
+  }, [cartContent, ...(dependencies || [])])
 
   return link
 }

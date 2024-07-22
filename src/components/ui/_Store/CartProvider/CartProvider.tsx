@@ -7,6 +7,7 @@ import {
 } from '@/lib/contexts/CartContext'
 import { addToCartMutation } from '@/lib/shopify/mutations/addToCartMutation'
 import { createCartMutation } from '@/lib/shopify/mutations/createCartMutation'
+import { removeFromCartMutation } from '@/lib/shopify/mutations/removeFromCartMutation'
 import { updateQuantityMutation } from '@/lib/shopify/mutations/updateQuantityMutation'
 import client from '@/lib/shopify/shopifyApi'
 import { Cart } from '@/lib/types/cart/Cart'
@@ -70,7 +71,7 @@ export function CartProvider({ children }: CartProviderProps) {
         }
 
         setCartContent((prevState) => {
-          const updatedEdges = edges.map((edge: any) => {
+          const updatedEdges = edges.map((edge) => {
             if (
               !edge.node ||
               !edge.node.merchandise ||
@@ -145,6 +146,40 @@ export function CartProvider({ children }: CartProviderProps) {
     }
   }
 
+  async function removeFromCart(lineId: string) {
+    if (!cartId) return
+
+    const variables = {
+      cartId,
+      lineId,
+    }
+
+    try {
+      const { data } = await client.request(removeFromCartMutation, {
+        variables,
+      })
+
+      if (data && data.cartLinesRemove && data.cartLinesRemove.cart) {
+        setCartContent((prevState) => {
+          const updatedEdges = prevState.lines.edges.filter(
+            (edge) => edge.id !== lineId
+          )
+
+          return {
+            ...prevState,
+            lines: {
+              edges: updatedEdges,
+            },
+          }
+        })
+      } else {
+        console.error('Unexpected API response structure:', data)
+      }
+    } catch (error) {
+      console.error('Error removing from cart:', error)
+    }
+  }
+
   const isCartEmpty = cartContent.lines.edges.length === 0
 
   const value: CartContextType = {
@@ -153,6 +188,7 @@ export function CartProvider({ children }: CartProviderProps) {
     cartId,
     addToCart,
     updateQuantity,
+    removeFromCart,
     isCartEmpty,
   }
 
