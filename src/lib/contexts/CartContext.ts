@@ -2,10 +2,11 @@ import { Dispatch, SetStateAction, createContext } from 'react'
 import { Cart } from '../types/cart/Cart'
 
 export type CartId = string | null
+export type SetCartContent = Dispatch<SetStateAction<Cart>>
 
 export type CartContextType = {
   cartContent: Cart
-  setCartContent: Dispatch<SetStateAction<Cart>>
+  setCartContent: SetCartContent
   cartId: CartId
   addToCart: (merchandiseId: string, quantity: number, href: string) => void
   updateQuantity: (lineId: string, quantity: number) => void

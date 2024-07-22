@@ -1,18 +1,13 @@
-import { CartContextType, CartId } from '@/lib/contexts/CartContext'
+import { CartId, SetCartContent } from '@/lib/contexts/CartContext'
 import { addToCartMutation } from '@/lib/shopify/mutations/addToCartMutation'
 import client from '@/lib/shopify/shopifyApi'
-
-type SetCartContentType = Pick<
-  CartContextType,
-  'setCartContent'
->['setCartContent']
 
 export async function addToCart(
   cartId: CartId,
   variantId: string,
   quantity: number,
   href: string,
-  setCartContent: SetCartContentType
+  setCartContent: SetCartContent
 ) {
   if (!cartId) return
 
