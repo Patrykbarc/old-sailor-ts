@@ -1,9 +1,10 @@
 query Bestsellers {
   collection(id: "gid://shopify/Collection/271713927239") {
     title
-    products(first: 10) {
+    products(first: 8) {
       edges {
         node {
+          id
           handle
           title
           description
@@ -13,7 +14,10 @@ query Bestsellers {
             edges {
               node {
                 title
-                price
+                price {
+                  amount
+                  currencyCode
+                }
                 selectedOptions {
                   name
                   value
@@ -24,7 +28,7 @@ query Bestsellers {
           images(first: 1) {
             edges {
               node {
-                transformedSrc
+                url(transform: { maxWidth: 400, maxHeight: 400 })
                 altText
               }
             }

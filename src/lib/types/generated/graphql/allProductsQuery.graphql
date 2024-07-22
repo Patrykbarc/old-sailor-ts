@@ -1,32 +1,39 @@
-query GetAllProducts($cursor: String) {
-  products(first: 16, after: $cursor) {
-    edges {
-      node {
-        id
-        title
-        handle
-        description
-        images(first: 1) {
-          edges {
-            node {
-              url(transform: { maxWidth: 400, maxHeight: 400 })
-              altText
+query AllProducts($id: ID!, $cursor: String) {
+  collection(id: $id) {
+    title
+    products(first: 16, after: $cursor) {
+      edges {
+        cursor
+        node {
+          id
+          handle
+          title
+          description
+          images(first: 1) {
+            edges {
+              node {
+                url(transform: { maxWidth: 400, maxHeight: 400 })
+                altText
+              }
             }
           }
-        }
-        variants(first: 1) {
-          edges {
-            node {
-              price
-              availableForSale
+          variants(first: 1) {
+            edges {
+              node {
+                price {
+                  amount
+                  currencyCode
+                }
+                availableForSale
+              }
             }
           }
         }
       }
-      cursor
-    }
-    pageInfo {
-      hasNextPage
+      pageInfo {
+        hasNextPage
+        hasPreviousPage
+      }
     }
   }
 }

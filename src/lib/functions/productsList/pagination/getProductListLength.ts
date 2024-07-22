@@ -1,6 +1,6 @@
 import client from '@/lib/shopify/shopifyApi'
 import { AllProducts } from '../../../types/AllProductsTypes'
-import { AllProductEdge } from '../../../types/singleTypes/AllProductsEdgesType'
+import { AllProductEdge } from '../../../types/AllProductsEdges'
 
 type QueryVariables = {
   variables: { cursor: string | null; id: string }

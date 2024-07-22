@@ -1,24 +1,28 @@
 import { Dispatch, SetStateAction, createContext } from 'react'
-import { CartTypes } from '../types/CartTypes'
+import { Cart } from '../types/cart/Cart'
 
 export type CartId = string | null
 
 export type CartContextType = {
-  cartContent: { cart: CartTypes[] }
-  setCartContent: Dispatch<SetStateAction<CartTypes[]>>
+  cartContent: Cart
+  setCartContent: Dispatch<SetStateAction<Cart>>
   cartId: CartId
   addToCart: (merchandiseId: string, quantity: number, href: string) => void
-  updateQuantity: (merchandiseId: string, quantity: number) => void
+  updateQuantity: (lineId: string, quantity: number) => void
   isCartEmpty: boolean
 }
 
 const initFuncitonState = () => {}
 
 export const CartContext = createContext<CartContextType>({
-  cartContent: { cart: [] },
+  cartContent: {
+    id: '',
+    checkoutUrl: '',
+    lines: { edges: [] },
+  },
   setCartContent: initFuncitonState,
   cartId: null,
   addToCart: initFuncitonState,
   updateQuantity: initFuncitonState,
-  isCartEmpty: false,
+  isCartEmpty: true,
 })

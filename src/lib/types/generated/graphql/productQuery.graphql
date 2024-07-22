@@ -1,13 +1,9 @@
-query SingleProduct($handle: String!) {
+query Product($handle: String!) {
   productByHandle(handle: $handle) {
+    id
     title
     description
     tags
-    priceRangeV2 {
-      minVariantPrice {
-        amount
-      }
-    }
     variants(first: 100) {
       edges {
         node {
@@ -16,7 +12,11 @@ query SingleProduct($handle: String!) {
             name
             value
           }
-          price
+          id
+          price {
+            amount
+            currencyCode
+          }
           sku
           title
           image {

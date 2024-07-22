@@ -5,7 +5,7 @@ import {
   RadioGroup,
   RadioGroupItem,
 } from '@/components/ui/RadioGroup/RadioGroup'
-import { Variants } from '@/lib/types/singleTypes/VariantsType'
+import { Variants } from '@/lib/types/common/Variants'
 import { Dispatch, SetStateAction } from 'react'
 import { FieldsetWrapper } from '../FieldsetWrapper/FieldsetWrapper'
 

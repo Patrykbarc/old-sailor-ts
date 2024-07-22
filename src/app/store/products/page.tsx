@@ -3,7 +3,7 @@ import { ProductsList } from '@/components/ui/_Store/Lists/ProductsList/Products
 import { ProductListLayout } from '@/components/views/Store/ProductListLayout/ProductListLayout'
 import { getProductsFilterCategory } from '@/lib/functions/productsList/getProductsFilterCategory'
 import { getProductsListAndTotalPages } from '@/lib/functions/productsList/getProductsListAndTotalPages'
-import { productsListQuery } from '@/lib/shopify/queries/productsListQuery'
+import { allProductsQuery } from '@/lib/shopify/queries/allProductsQuery'
 
 type ProductsProps = {
   searchParams: { [key: string]: string }
@@ -15,7 +15,7 @@ export default async function Products({ searchParams }: ProductsProps) {
   const { data, totalPages, hasNextPage, hasPreviousPage, page } =
     await getProductsListAndTotalPages(
       searchParams,
-      productsListQuery,
+      allProductsQuery,
       categoryId
     )
 

@@ -1,4 +1,4 @@
-import { AllProductEdge } from './singleTypes/AllProductsEdgesType'
+import { AllProductEdge } from './AllProductsEdges'
 
 export type AllProducts = {
   products: {

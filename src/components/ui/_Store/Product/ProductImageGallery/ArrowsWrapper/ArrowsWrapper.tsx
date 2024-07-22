@@ -1,6 +1,6 @@
 import { handleCarousel } from '@/lib/functions/product/handleCarousel'
-import { Edge } from '@/lib/types/singleTypes/EdgeType'
-import { ImageNode } from '@/lib/types/singleTypes/ImageNodeType'
+import { ImageNode } from '@/lib/types/cart/Cart'
+import { Edge } from '@/lib/types/common/Edge'
 import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/outline'
 import { Dispatch, ReactNode, SetStateAction } from 'react'
 

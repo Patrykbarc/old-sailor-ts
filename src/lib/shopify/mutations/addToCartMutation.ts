@@ -1,5 +1,5 @@
 export const addToCartMutation = `
-mutation addToCart($cartId: ID!, $lines: [CartLineInput!]!) {
+mutation AddToCart($cartId: ID!, $lines: [CartLineInput!]!) {
   cartLinesAdd(cartId: $cartId, lines: $lines) {
     cart {
       id

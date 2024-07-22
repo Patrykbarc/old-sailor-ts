@@ -1,5 +1,5 @@
-export const productsListQuery = `
-query ProductsList($id: ID!, $cursor: String) {
+export const allProductsQuery = `
+query AllProducts($id: ID!, $cursor: String) {
   collection(id: $id) {
     title
     products(first: 16, after: $cursor) {

@@ -18,12 +18,12 @@ export function useCheckout(
   dependencies?: UseCheckoutDependencies
 ) {
   const [link, setLink] = useState('')
-  
+
   useEffect(() => {
     const createCheckout = async () => {
       const lineItems = cartContent
         .map((product) => {
-          const id = product.merchandiseId || product.merchandise?.id
+          const id = product.merchandiseId
           if (!id) {
             console.error('Invalid product data:', product)
             return null

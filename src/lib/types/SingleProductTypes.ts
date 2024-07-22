@@ -1,6 +1,5 @@
-import { Images } from './singleTypes/ImagesType'
-import { PriceRangeV2 } from './singleTypes/PriceRangeV2type'
-import { Variants } from './singleTypes/VariantsType'
+import { Images } from './cart/Cart'
+import { Variants } from './common/Variants'
 
 export type SingleProductTypes = {
   id: string
@@ -8,7 +7,6 @@ export type SingleProductTypes = {
   title: string
   description: string
   tags: Array<string>
-  priceRangeV2: PriceRangeV2
   variants: Variants
   images: Images
 }

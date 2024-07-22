@@ -1,6 +1,6 @@
-import { CartTypes } from '../types/CartTypes'
+import { Cart } from '../types/cart/Cart'
 
-export function calculateTotalOrderValue(cartContent: CartTypes[]) {
+export function calculateTotalOrderValue(cartContent: Cart) {
   const total = cartContent.lines.edges.reduce((acc, product) => {
     const amount = Number(product.merchandise.priceV2.amount)
     const quantity = product.quantity

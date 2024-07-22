@@ -1,5 +1,5 @@
-import { Edge } from '@/lib/types/singleTypes/EdgeType'
-import { ImageNode } from '@/lib/types/singleTypes/ImageNodeType'
+import { ImageNode } from '@/lib/types/cart/Cart'
+import { Edge } from '@/lib/types/common/Edge'
 import { Dispatch, SetStateAction } from 'react'
 
 type handleCarouselProps = {

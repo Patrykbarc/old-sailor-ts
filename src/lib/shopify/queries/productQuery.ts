@@ -1,5 +1,5 @@
-export const singleProductQuery = `
-query SingleProduct($handle: String!) {
+export const productQuery = `
+query Product($handle: String!) {
   productByHandle(handle: $handle) {
     id
     title

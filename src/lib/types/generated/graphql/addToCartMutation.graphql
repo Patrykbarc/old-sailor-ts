@@ -1,6 +1,5 @@
-export const updateQuantityMutation = `
-mutation UpdateQuantity($cartId: ID!, $lineId: ID!, $quantity: Int!) {
-  cartLinesUpdate(cartId: $cartId, lines: [{id: $lineId, quantity: $quantity}]) {
+mutation addToCart($cartId: ID!, $lines: [CartLineInput!]!) {
+  cartLinesAdd(cartId: $cartId, lines: $lines) {
     cart {
       id
       lines(first: 10) {
@@ -36,4 +35,3 @@ mutation UpdateQuantity($cartId: ID!, $lineId: ID!, $quantity: Int!) {
     }
   }
 }
-`

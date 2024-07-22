@@ -9,7 +9,7 @@ import { addToCartMutation } from '@/lib/shopify/mutations/addToCartMutation'
 import { createCartMutation } from '@/lib/shopify/mutations/createCartMutation'
 import { updateQuantityMutation } from '@/lib/shopify/mutations/updateQuantityMutation'
 import client from '@/lib/shopify/shopifyApi'
-import { CartTypes } from '@/lib/types/CartTypes'
+import { Cart } from '@/lib/types/cart/Cart'
 import { ReactNode, useEffect, useState } from 'react'
 
 type CartProviderProps = {
@@ -17,7 +17,11 @@ type CartProviderProps = {
 }
 
 export function CartProvider({ children }: CartProviderProps) {
-  const [cartContent, setCartContent] = useState<CartTypes[]>([])
+  const [cartContent, setCartContent] = useState<Cart>({
+    id: '',
+    checkoutUrl: '',
+    lines: { edges: [] },
+  })
   const [cartId, setCartId] = useState<CartId>(null)
 
   useEffect(() => {
@@ -26,7 +30,7 @@ export function CartProvider({ children }: CartProviderProps) {
         const { data } = await client.request(createCartMutation)
 
         setCartId(data.cartCreate.cart.id)
-        setCartContent(data.cartCreate)
+        setCartContent(data.cartCreate.cart)
       } catch (error) {
         console.error('Error creating cart:', error)
       }
@@ -52,23 +56,46 @@ export function CartProvider({ children }: CartProviderProps) {
     try {
       const { data } = await client.request(addToCartMutation, { variables })
 
+      console.log('Response from addToCartMutation:', data)
+
       if (data && data.cartLinesAdd && data.cartLinesAdd.cart) {
-        setCartContent((prevState) => ({
-          ...prevState,
-          cart: {
-            ...prevState.cart,
+        const edges = data.cartLinesAdd.cart.lines.edges
+
+        if (!Array.isArray(edges)) {
+          console.error(
+            'Unexpected API response structure: edges is not an array',
+            edges
+          )
+          return
+        }
+
+        setCartContent((prevState) => {
+          const updatedEdges = edges.map((edge: any) => {
+            if (
+              !edge.node ||
+              !edge.node.merchandise ||
+              !edge.node.merchandise.id
+            ) {
+              console.error('Invalid edge structure', edge)
+              return edge
+            }
+
+            return {
+              ...edge.node,
+              href,
+              merchandiseId: edge.node.merchandise.id,
+            }
+          })
+
+          console.log('Updated edges:', updatedEdges)
+
+          return {
+            ...prevState,
             lines: {
-              ...prevState.cart.lines,
-              edges: [
-                ...data.cartLinesAdd.cart.lines.edges.map((edge: any) => ({
-                  ...edge.node,
-                  href: href,
-                  merchandiseId: edge.node.merchandise.id,
-                })),
-              ],
+              edges: updatedEdges,
             },
-          },
-        }))
+          }
+        })
       } else {
         console.error('Unexpected API response structure:', data)
       }
@@ -81,9 +108,9 @@ export function CartProvider({ children }: CartProviderProps) {
     if (!cartId) return
 
     const variables = {
-      cartId: cartId,
-      lineId: lineId,
-      quantity: quantity,
+      cartId,
+      lineId,
+      quantity,
     }
 
     try {
@@ -93,33 +120,22 @@ export function CartProvider({ children }: CartProviderProps) {
 
       if (data && data.cartLinesUpdate && data.cartLinesUpdate.cart) {
         setCartContent((prevState) => {
-          const updatedEdges = prevState.cart.lines.edges.map((edge) => {
+          const updatedEdges = prevState.lines.edges.map((edge) => {
             if (edge.id === lineId) {
-              const updatedEdge = {
+              return {
                 ...edge,
-                quantity: quantity,
-                node: {
-                  ...edge.node,
-                  quantity: quantity,
-                },
+                quantity,
               }
-
-              return updatedEdge
             }
             return edge
           })
 
-          const updatedCart = {
+          return {
             ...prevState,
-            cart: {
-              ...prevState.cart,
-              lines: {
-                ...prevState.cart.lines,
-                edges: updatedEdges,
-              },
+            lines: {
+              edges: updatedEdges,
             },
           }
-          return updatedCart
         })
       } else {
         console.error('Unexpected API response structure:', data)
@@ -129,15 +145,15 @@ export function CartProvider({ children }: CartProviderProps) {
     }
   }
 
-  const isCartEmpty = !cartContent.cart?.lines?.edges?.length
+  const isCartEmpty = cartContent.lines.edges.length === 0
 
   const value: CartContextType = {
-    cartContent: cartContent.cart,
+    cartContent,
     setCartContent,
     cartId,
     addToCart,
     updateQuantity,
-    isCartEmpty: isCartEmpty,
+    isCartEmpty,
   }
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>
