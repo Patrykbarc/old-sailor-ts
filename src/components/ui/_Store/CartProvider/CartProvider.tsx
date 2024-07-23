@@ -47,7 +47,6 @@ export function CartProvider({ children }: CartProviderProps) {
   useEffect(() => {
     if (cartId && cartContent.id) {
       localStorage.setItem('cart', JSON.stringify(cartContent))
-      console.log('Cart saved to localStorage:', cartContent)
     }
   }, [cartContent, cartId])
 

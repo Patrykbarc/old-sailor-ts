@@ -19,8 +19,6 @@ export async function addToCart(
   try {
     const { data } = await client.request(addToCartMutation, { variables })
 
-    console.log('Response from addToCartMutation:', data)
-
     if (data && data.cartLinesAdd && data.cartLinesAdd.cart) {
       const edges = data.cartLinesAdd.cart.lines.edges
 
@@ -49,8 +47,6 @@ export async function addToCart(
             merchandiseId: edge.node.merchandise.id,
           }
         })
-
-        console.log('Updated edges:', updatedEdges)
 
         return {
           ...prevState,
