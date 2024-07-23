@@ -3,7 +3,7 @@ export const removeFromCartMutation = `
     cartLinesRemove(cartId: $cartId, lineIds: [$lineId]) {
       cart {
         id
-        lines {
+        lines(first: 100) {
           edges {
             node {
               id

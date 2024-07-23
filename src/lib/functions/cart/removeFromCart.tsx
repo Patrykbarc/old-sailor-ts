@@ -15,8 +15,10 @@ export async function removeFromCart(
   }
 
   try {
-    const { data } = await client.request(removeFromCartMutation, { variables })
-
+    const { data, errors } = await client.request(removeFromCartMutation, {
+      variables,
+    })
+    console.log(errors)
     if (data && data.cartLinesRemove && data.cartLinesRemove.cart) {
       setCartContent((prevState) => {
         const updatedEdges = prevState.lines.edges.filter(

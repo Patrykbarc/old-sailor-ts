@@ -5,32 +5,16 @@ type RemoveCartItemProps = {
 }
 
 export function RemoveCartItem({ lineId }: RemoveCartItemProps) {
-  const { setCartContent } = useCart()
+  const { removeFromCart } = useCart()
 
-  function handleRemoveProduct(lineId: string) {
-    setCartContent((prevCart) => {
-      const updatedEdges = prevCart.lines.edges.filter(
-        (edge) => edge.id !== lineId
-      )
-      return {
-        ...prevCart,
-        lines: {
-          ...prevCart.lines,
-          edges: updatedEdges,
-        },
-      }
-    })
-  }
   return (
     <button
       type="button"
       className="font-medium text-indigo-600 hover:text-indigo-500"
       value={lineId}
-      onClick={(e) => handleRemoveProduct(e.currentTarget.value)}
+      onClick={(e) => removeFromCart(e.currentTarget.value)}
     >
       Remove
     </button>
   )
 }
-
-// setCartContent((items) => items.filter((item) => item.merchandiseId !== id))
