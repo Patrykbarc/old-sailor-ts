@@ -1,9 +1,9 @@
-import { ProductsTypes } from '@/lib/types/ProductsTypes'
+import { AllProductEdge } from '@/lib/types/AllProductsEdges'
 import { ProductsListDescription } from '../../Products/ProductsListDescription/ProductsListDescription'
 import { ProductsListImage } from '../../Products/ProductsListImage/ProductsListImage'
 
 type ProductsListTypes = {
-  products: ProductsTypes[]
+  products: AllProductEdge[]
 }
 
 export async function ProductsList({ products }: ProductsListTypes) {
@@ -12,7 +12,7 @@ export async function ProductsList({ products }: ProductsListTypes) {
       <div
         className={`mt-6 grid grid-cols-1 h-full gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8`}
       >
-        {products.map((product: ProductsTypes) => {
+        {products.map((product: AllProductEdge) => {
           const productId = product.node.id
           const productHandle = product.node.handle
           const productTitle = product.node.title
