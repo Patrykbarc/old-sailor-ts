@@ -1,9 +1,9 @@
-import { Images } from '@/lib/types/singleTypes/ImagesType'
+import { ImageNode } from '@/lib/types/cart/Cart'
 import Image from 'next/image'
 import PLACEHOLDER from '/public/placeholder.jpg'
 
 type CartProductImageProps = {
-  images: Images
+  images?: ImageNode
 }
 
 export function CartProductImage({ images }: CartProductImageProps) {

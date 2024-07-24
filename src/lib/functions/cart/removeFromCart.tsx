@@ -15,7 +15,7 @@ export async function removeFromCart(
   }
 
   try {
-    const { data, errors } = await client.request(removeFromCartMutation, {
+    const { data } = await client.request(removeFromCartMutation, {
       variables,
     })
 

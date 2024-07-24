@@ -1,4 +1,5 @@
 import { useCart } from '@/lib/customHooks/useCart'
+import { Currency } from '@/lib/functions/formatPrice'
 import Link from 'next/link'
 import { CartProductActions } from './CartProductActions/CartProductActions'
 import { CartProductImage } from './CartProductImage/CartProductImage'
@@ -11,17 +12,17 @@ type CartProductsProps = {
 
 export function CartProducts({ className }: CartProductsProps) {
   const { cartContent, isCartEmpty } = useCart()
-  
+
   return (
     <CartProductsWrapper className={className}>
       {!isCartEmpty &&
         cartContent.lines.edges.map((product) => {
           const productNode = product.merchandise
           const href = product.href
-          const images = productNode.product.images.edges[0].node
+          const images = productNode.product?.images?.edges[0].node
           const title = productNode.product.title
           const price = productNode.priceV2.amount
-          const currencyCode = productNode.priceV2.currencyCode
+          const currencyCode = productNode.priceV2.currencyCode as Currency
           const variantId = productNode.id
           const quantity = product.quantity
           const lineId = product.id
@@ -35,7 +36,7 @@ export function CartProducts({ className }: CartProductsProps) {
                 <CartProductInfo
                   href={href}
                   title={title}
-                  price={price}
+                  price={Number(price)}
                   currency={currencyCode}
                 />
                 <CartProductActions lineId={lineId} quantity={quantity} />
