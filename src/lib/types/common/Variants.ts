@@ -6,6 +6,7 @@ export type Variants = {
       title: string
       selectedOptions: Array<{ name: string; value: string }>
       image?: { url: any; altText?: string | null } | null
+      price: any
     }
   }>
 }
