@@ -5,7 +5,7 @@ import {
   CartContextType,
   CartId,
 } from '@/lib/contexts/CartContext'
-import { addToCart } from '@/lib/functions/cart/addToCart'
+import { addToCart } from '@/lib/functions/cart/addToCart/addToCart'
 import { createCart } from '@/lib/functions/cart/createCart'
 import { removeFromCart } from '@/lib/functions/cart/removeFromCart'
 import { updateQuantity } from '@/lib/functions/cart/updateQuantity'

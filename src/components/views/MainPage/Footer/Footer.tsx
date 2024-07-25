@@ -20,13 +20,13 @@ export function Footer() {
         />
         <div className="flex flex-col gap-2">
           <div className="flex flex-col md:flex-row text-center md:gap-3 text-lg">
-            <NavLinks />
             <Link
               className="hover:text-primary transition-colors capitalize"
               href="/privacy-policy"
             >
               privacy policy
             </Link>
+            <NavLinks />
           </div>
           <Separator className="my-3 md:my-0.5 bg-neutral-800 w-full h-[1px]" />
           <address className="flex flex-col text-center md:text-end text-sm not-italic">
