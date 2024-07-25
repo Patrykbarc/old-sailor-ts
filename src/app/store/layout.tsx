@@ -1,6 +1,6 @@
 import { CartProvider } from '@/components/ui/_Store/CartProvider/CartProvider'
-import { StoreNav } from '@/components/ui/_Store/StoreNav/StoreNav'
 import { Footer } from '@/components/views/MainPage/Footer/Footer'
+import { Navigation } from '@/components/views/Store/Navigation/Navigation'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import '../customStyles.css'
@@ -24,7 +24,7 @@ export default function StoreLayout({
         className={`${inter.className} min-h-dvh h-full flex flex-col justify-between w-full text-neutral-300 selection:bg-primary bg-neutral-800 selection:text-neutral-800`}
       >
         <CartProvider>
-          <StoreNav />
+          <Navigation />
           <main className="flex flex-1">{children}</main>
           <Footer />
         </CartProvider>

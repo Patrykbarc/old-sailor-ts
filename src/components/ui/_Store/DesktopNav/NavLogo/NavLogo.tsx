@@ -4,7 +4,7 @@ import LOGO from '/public/old-sailor-logo-horizontal.png'
 
 export function NavLogo() {
   return (
-    <div className="mx-auto">
+    <div className="mx-auto mix-blend-difference">
       <Link href={'/store'}>
         <Image alt="Old Sailor Barber logo" src={LOGO} />
       </Link>

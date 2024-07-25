@@ -2,6 +2,10 @@ const linkHref = '/store/products'
 
 export const storeNavLinks = [
   {
+    name: 'Home',
+    href: `/`,
+  },
+  {
     name: 'All products',
     href: `${linkHref}?category=all`,
   },
