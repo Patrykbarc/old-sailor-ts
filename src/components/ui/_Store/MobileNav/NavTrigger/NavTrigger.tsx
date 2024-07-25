@@ -3,8 +3,6 @@ import { useCart } from '@/lib/customHooks/useCart'
 import { Bars3Icon } from '@heroicons/react/24/solid'
 
 export function NavTrigger() {
-  const { cartContent, isCartEmpty } = useCart()
-  const productsAmount = cartContent?.lines?.edges.length
 
   return (
     <SheetTrigger>

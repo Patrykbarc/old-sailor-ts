@@ -6,15 +6,15 @@ import { FieldsetWrapper } from '../FieldsetWrapper/FieldsetWrapper'
 import { QuantityHandlerButton } from './Buttons/QuantityHandlerButton'
 
 type ProductQuantityProps = {
-  lineId?: string
   quantity: number
   setQuantity: (quantity: number) => void
+  lineId?: string
 }
 
 export function ProductQuantity({
-  lineId,
   quantity,
   setQuantity,
+  lineId,
 }: ProductQuantityProps) {
   const { updateQuantity } = useCart()
 

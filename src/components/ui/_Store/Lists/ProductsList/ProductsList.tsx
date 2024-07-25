@@ -19,19 +19,23 @@ export async function ProductsList({ products }: ProductsListTypes) {
           const productPrice = product.node.variants.edges[0].node.price
           const productImgSrc = product.node.images.edges[0].node.url
           const productImgAlt = product.node.images.edges[0].node.altText
+          const productAvailableForSale =
+            product.node.variants.edges[0].node.availableForSale
 
           return (
-            <div key={productId} className="group relative">
-              <ProductsListImage
-                productImgSrc={productImgSrc}
-                productImgAlt={productImgAlt}
-              />
-              <ProductsListDescription
-                productHandle={productHandle}
-                productTitle={productTitle}
-                productPrice={productPrice}
-              />
-            </div>
+            productAvailableForSale && (
+              <div key={productId} className="group relative">
+                <ProductsListImage
+                  productImgSrc={productImgSrc}
+                  productImgAlt={productImgAlt}
+                />
+                <ProductsListDescription
+                  productHandle={productHandle}
+                  productTitle={productTitle}
+                  productPrice={productPrice}
+                />
+              </div>
+            )
           )
         })}
       </div>

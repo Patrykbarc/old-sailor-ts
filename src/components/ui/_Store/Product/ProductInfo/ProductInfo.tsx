@@ -1,8 +1,5 @@
-import { useCheckout } from '@/lib/customHooks/useCheckout'
-import { getDestructuredProductInfo } from '@/lib/functions/helpers/getDestructuredProductInfo'
+import { useProductLogic } from '@/lib/customHooks/useProductLogic'
 import { CartTypes } from '@/lib/types/CartTypes'
-import { usePathname } from 'next/navigation'
-import { useMemo, useState } from 'react'
 import { StoreLinkButton } from '../../StoreLinkButton/StoreLinkButton'
 import { AddToCartButton } from './AddToCartButton/AddToCartButton'
 import { ProductDescription } from './ProductDescription/ProductDescription'
@@ -11,7 +8,7 @@ import { ProductQuantity } from './ProductQuantity/ProductQuantity'
 import { ProductTitle } from './ProductTitle/ProductTitle'
 import { ProductVariants } from './ProductVariants/ProductVariants'
 
-type ProductInfoProps = {
+export type ProductInfoProps = {
   productInfo: CartTypes
 }
 
@@ -20,33 +17,16 @@ export function ProductInfo({ productInfo }: ProductInfoProps) {
     title,
     price,
     description,
-    variants,
-    merchandiseId,
-    variantName,
     hasMulitpleVariants,
-  } = getDestructuredProductInfo(productInfo)
-
-  const [selectedVariant, setVariant] = useState({
-    id: merchandiseId,
-    title: variantName,
-  })
-  const [quantity, setQuantity] = useState(1)
-
-  const memoizedCartContent = useMemo(
-    () => [{ merchandiseId: selectedVariant.id, quantity: quantity }],
-    [selectedVariant, quantity]
-  )
-
-  const checkoutUrl = useCheckout(memoizedCartContent, [selectedVariant])
-
-  const href = usePathname()
-  const cartProductData = {
-    ...productInfo,
-    href,
+    availableForSale,
+    variants,
+    selectedVariant,
+    setVariant,
     quantity,
-    merchandiseId: selectedVariant.id,
-    variantName: selectedVariant.title,
-  }
+    setQuantity,
+    checkoutUrl,
+    cartProductData,
+  } = useProductLogic(productInfo)
 
   return (
     <div className="flex flex-col">
@@ -64,17 +44,25 @@ export function ProductInfo({ productInfo }: ProductInfoProps) {
             setVariant={setVariant}
           />
         )}
-        <ProductQuantity quantity={quantity} setQuantity={setQuantity} />
-
-        <div className="flex flex-col gap-3">
-          <AddToCartButton quantity={quantity} productInfo={cartProductData} />
-          <StoreLinkButton
-            href={checkoutUrl}
-            external={true}
-            text="Buy now"
-            variant="cta"
-          />
-        </div>
+        {availableForSale ? (
+          <>
+            <ProductQuantity quantity={quantity} setQuantity={setQuantity} />
+            <div className="flex flex-col gap-3">
+              <AddToCartButton
+                quantity={quantity}
+                productInfo={cartProductData}
+              />
+              <StoreLinkButton
+                href={checkoutUrl}
+                external={true}
+                text="Buy now"
+                variant="cta"
+              />
+            </div>
+          </>
+        ) : (
+          <p>Out of stock</p>
+        )}
       </div>
     </div>
   )

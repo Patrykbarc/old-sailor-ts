@@ -2,14 +2,15 @@ export const allProductsQuery = `
 query AllProducts($id: ID!, $cursor: String) {
   collection(id: $id) {
     title
-    products(first: 16, after: $cursor) {
+    products(first: 17, after: $cursor) {
       edges {
         cursor
         node {
           id
           handle
           title
-          description
+          availableForSale
+          description          
           images(first: 1) {
             edges {
               node {
@@ -21,10 +22,11 @@ query AllProducts($id: ID!, $cursor: String) {
           variants(first: 1) {
             edges {
               node {
+                quantityAvailable
                 price
                 {
-                 amount
-                 currencyCode  
+                amount
+                currencyCode  
                 }
                 availableForSale
               }

@@ -9,6 +9,7 @@ query Product($handle: String!) {
       edges {
         node {
           availableForSale
+          quantityAvailable
           selectedOptions {
             name
             value

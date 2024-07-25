@@ -9,7 +9,11 @@ import { Variants } from '@/lib/types/common/Variants'
 import { Dispatch, SetStateAction } from 'react'
 import { FieldsetWrapper } from '../FieldsetWrapper/FieldsetWrapper'
 
-type SelectedVariant = { id: string; title: string }
+type SelectedVariant = {
+  id: string
+  title: string
+  quantityAvailable: number
+}
 
 type ProductVariantsProps = {
   variants: Variants
@@ -22,8 +26,16 @@ export function ProductVariants({
   selectedVariant,
   setVariant,
 }: ProductVariantsProps) {
-  function handleSetVariant(variant: { id: string; title: string }) {
-    setVariant({ id: variant.id, title: variant.title })
+  function handleSetVariant(variant: {
+    id: string
+    title: string
+    quantityAvailable: number
+  }) {
+    setVariant({
+      id: variant.id,
+      title: variant.title,
+      quantityAvailable: variant.quantityAvailable,
+    })
   }
 
   return (
@@ -41,12 +53,19 @@ export function ProductVariants({
             const selectedVariantStyle =
               selectedVariant.id === variant.id ? 'ring-4 ring-primary' : ''
 
+            const isProductAvaliable = variant.quantityAvailable > 10
+            const isProductAvaliableStyle = !isProductAvaliable
+              ? 'opacity-50 hover:cursor-not-allowed'
+              : 'hover:cursor-pointer'
+
             return (
               availableForSale && (
                 <div
                   key={variant.id}
-                  onClick={() => handleSetVariant(variant)}
-                  className={`hover:cursor-pointer py-4 lg:py-0 lg:aspect-square border flex items-center rounded-lg transition-shadow ${selectedVariantStyle}`}
+                  onClick={() =>
+                    isProductAvaliable && handleSetVariant(variant)
+                  }
+                  className={`py-4 lg:py-0 lg:aspect-square border flex items-center rounded-lg transition-shadow ${selectedVariantStyle} ${isProductAvaliableStyle}`}
                 >
                   <RadioGroupItem
                     className="hidden"
@@ -54,7 +73,7 @@ export function ProductVariants({
                     id={String(variant.id)}
                   />
                   <Label
-                    className="hover:cursor-pointer text-center w-full text-neutral-600"
+                    className={`text-center w-full text-neutral-600 ${isProductAvaliableStyle}`}
                     htmlFor={String(variant.id)}
                   >
                     {optionValue}
