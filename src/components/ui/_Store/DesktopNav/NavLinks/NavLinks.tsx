@@ -9,7 +9,7 @@ export function NavLinks({ className }: NavLinksProps) {
   return (
     <div className={`flex gap-8 ${className}`}>
       {storeNavLinks.map(({ name, href }) => (
-        <Link key={href} href={href}>
+        <Link className="text-nowrap" key={href} href={href}>
           {name}
         </Link>
       ))}
