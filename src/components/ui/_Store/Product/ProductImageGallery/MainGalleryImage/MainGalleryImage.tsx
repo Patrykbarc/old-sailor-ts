@@ -1,4 +1,4 @@
-import { ImageMagnifier } from '@/components/ui/ImageMagnifier/ImageMagnifier'
+import { ImageMagnifier } from '@/components/ui/_Store/ImageMagnifier/ImageMagnifier'
 import { ImageNode } from '@/lib/types/cart/Cart'
 import { Edge } from '@/lib/types/common/Edge'
 import { Dispatch, SetStateAction } from 'react'

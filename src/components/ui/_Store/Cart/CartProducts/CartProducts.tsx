@@ -1,6 +1,5 @@
 import { useCart } from '@/lib/customHooks/useCart'
 import Link from 'next/link'
-import { EmptyCart } from '../EmptyCart/EmptyCart'
 import { CartProductActions } from './CartProductActions/CartProductActions'
 import { CartProductImage } from './CartProductImage/CartProductImage'
 import { CartProductInfo } from './CartProductInfo/CartProductInfo'
@@ -13,10 +12,15 @@ type CartProductsProps = {
 export function CartProducts({ className }: CartProductsProps) {
   const { cartContent, isCartEmpty } = useCart()
 
-  const lines = cartContent?.lines?.edges || []
+  const lines = cartContent?.lines || []
 
-  if (!isCartEmpty && lines.length > 0) {
-    return <EmptyCart />
+  if (!isCartEmpty && !lines) {
+    return (
+      <div className="text-neutral-500 mt-5">
+        <h2>Oops... something went wrong.</h2>
+        <h3 className="mt-1.5">Try refresh your browser.</h3>
+      </div>
+    )
   }
 
   return (

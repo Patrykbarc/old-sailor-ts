@@ -6,7 +6,7 @@ import {
   RadioGroupItem,
 } from '@/components/ui/RadioGroup/RadioGroup'
 import { Variants } from '@/lib/types/common/Variants'
-import { Dispatch, SetStateAction } from 'react'
+import { Dispatch, SetStateAction, useEffect } from 'react'
 import { FieldsetWrapper } from '../FieldsetWrapper/FieldsetWrapper'
 
 type SelectedVariant = {
@@ -26,11 +26,25 @@ export function ProductVariants({
   selectedVariant,
   setVariant,
 }: ProductVariantsProps) {
-  function handleSetVariant(variant: {
+  useEffect(() => {
+    const firstAvailableVariant = variants.edges.find(
+      (v) => v.node.quantityAvailable > 0
+    )?.node
+
+    if (firstAvailableVariant) {
+      setVariant({
+        id: firstAvailableVariant.id,
+        title: firstAvailableVariant.title,
+        quantityAvailable: firstAvailableVariant.quantityAvailable,
+      })
+    }
+  }, [variants, setVariant])
+
+  const handleSetVariant = (variant: {
     id: string
     title: string
     quantityAvailable: number
-  }) {
+  }) => {
     setVariant(variant)
   }
 
@@ -49,7 +63,7 @@ export function ProductVariants({
             const selectedVariantStyle =
               selectedVariant.id === variant.id ? 'ring-4 ring-primary' : ''
 
-            const isProductAvaliable = variant.quantityAvailable > 10
+            const isProductAvaliable = variant.quantityAvailable > 0
             const isProductAvaliableStyle = !isProductAvaliable
               ? 'opacity-50 hover:cursor-not-allowed'
               : 'hover:cursor-pointer'

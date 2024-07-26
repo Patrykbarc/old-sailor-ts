@@ -7,12 +7,14 @@ type QuantityHandlerButtonProps = {
   actionType: ActionTypes
   setQuantity: () => void
   title: string
+  disabled: boolean
 }
 
 export function QuantityHandlerButton({
   actionType,
   setQuantity,
   title,
+  disabled,
 }: QuantityHandlerButtonProps) {
   const spanType = `${
     actionType === 'add' ? 'Increase' : 'Decrease'
@@ -24,6 +26,7 @@ export function QuantityHandlerButton({
       onClick={setQuantity}
       variant={'outline'}
       size="icon"
+      disabled={disabled}
     >
       <span className="hidden">{spanType}</span>
       {actionType === 'add' ? (

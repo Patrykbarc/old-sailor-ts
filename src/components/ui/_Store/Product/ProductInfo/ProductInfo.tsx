@@ -1,5 +1,6 @@
 import { useProductLogic } from '@/lib/customHooks/useProductLogic'
 import { CartTypes } from '@/lib/types/CartTypes'
+import { OutOfStock } from '../../OutOfStock/OutOfStock'
 import { StoreLinkButton } from '../../StoreLinkButton/StoreLinkButton'
 import { AddToCartButton } from './AddToCartButton/AddToCartButton'
 import { ProductDescription } from './ProductDescription/ProductDescription'
@@ -28,12 +29,15 @@ export function ProductInfo({ productInfo }: ProductInfoProps) {
     cartProductData,
   } = useProductLogic(productInfo)
 
+  const isProductAvailable = availableForSale && variants.edges.length > 1
+  const isSingleVariantAvailable = variants.edges[0].node.quantityAvailable > 1
+  const showProductOptions = isProductAvailable || isSingleVariantAvailable
+
   return (
     <div className="flex flex-col">
       <ProductTitle title={title} />
       <ProductPrice price={price} />
       <ProductDescription description={description} />
-
       <div
         className={`flex flex-col gap-5 ${!hasMulitpleVariants ? 'mt-5' : ''}`}
       >
@@ -44,9 +48,13 @@ export function ProductInfo({ productInfo }: ProductInfoProps) {
             setVariant={setVariant}
           />
         )}
-        {availableForSale ? (
+        {showProductOptions ? (
           <>
-            <ProductQuantity quantity={quantity} setQuantity={setQuantity} />
+            <ProductQuantity
+              quantity={quantity}
+              setQuantity={setQuantity}
+              maxVariantQuantity={selectedVariant.quantityAvailable}
+            />
             <div className="flex flex-col gap-3">
               <AddToCartButton
                 quantity={quantity}
@@ -61,7 +69,7 @@ export function ProductInfo({ productInfo }: ProductInfoProps) {
             </div>
           </>
         ) : (
-          <p>Out of stock</p>
+          <OutOfStock />
         )}
       </div>
     </div>
