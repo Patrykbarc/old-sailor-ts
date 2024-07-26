@@ -1,3 +1,4 @@
+import { Currency } from '@/lib/functions/formatPrice'
 import { Edge } from '../common/Edge'
 
 export type Cart = {
@@ -27,7 +28,7 @@ export type Merchandise = {
 
 export type PriceV2 = {
   amount: string
-  currencyCode: string
+  currencyCode: Currency
 }
 
 export type Product = {

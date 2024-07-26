@@ -3,12 +3,16 @@ import { ErrorContinueShopping } from './ErrorContinueShopping/ErrorContinueShop
 import { ErrorWrapper } from './ErrorWrapper/ErrorWrapper'
 
 type ErrorProps = {
-  title: string
-  description: string
+  title?: string
+  description?: string
   icon?: string | ReactNode
 }
 
-export function ErrorDisplay({ icon, title, description }: ErrorProps) {
+export function ErrorDisplay({
+  icon = '4☠0',
+  title = 'Arrr... Looks like we are lost at the sea!',
+  description = "But don't worry, we'll find our way back.",
+}: ErrorProps) {
   return (
     <ErrorWrapper>
       {icon && <span className="text-9xl select-none">{icon}</span>}

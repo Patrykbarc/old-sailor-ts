@@ -7,10 +7,12 @@ export async function createCart(
   setCartContent: SetCartContent
 ) {
   try {
-    const { data } = await client.request(createCartMutation)
+    const {
+      data: { cartCreate },
+    } = await client.request(createCartMutation)
 
-    setCartId(data.cartCreate.cart.id)
-    setCartContent(data.cartCreate.cart)
+    setCartId(cartCreate.cart.id)
+    setCartContent(cartCreate.cart)
   } catch (error) {
     console.error('Error creating cart:', error)
   }
