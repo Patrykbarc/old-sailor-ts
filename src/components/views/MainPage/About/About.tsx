@@ -23,13 +23,19 @@ export function About() {
                   className={`flex flex-col gap-4 ${
                     isOdd ? isOddStyle : isEvenStyle
                   }`}
+                  data-aos="zoom-in-down"
                 >
                   {text}
                 </div>
                 <div
                   className={`rounded-lg overflow-hidden max-h-[550px] h-fit shadow-xl lg:h-fit ${isOddStyle}`}
                 >
-                  <Image alt="placeholder" className={`w-full`} src={image} />
+                  <Image
+                    alt="placeholder"
+                    className={`w-full`}
+                    src={image}
+                    data-aos="zoom-in-up"
+                  />
                 </div>
               </div>
             )

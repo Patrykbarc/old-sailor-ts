@@ -1,3 +1,4 @@
+import { AOSWrapper } from '@/components/ui/AOS/AOSWrapper/AOSWrapper'
 import { logShopifyErrors } from '@/lib/functions/helpers/logShopifyErrors'
 import { bestsellersQuery } from '@/lib/shopify/queries/bestsellersQuery'
 import client from '@/lib/shopify/shopifyApi'
@@ -24,20 +25,22 @@ export async function BestsellersList() {
         const productImgAlt = product.node.images.edges[0].node.altText
 
         return (
-          <div key={productId} className="group relative">
-            <ProductsListImage
-              productImgSrc={productImgSrc}
-              productImgAlt={productImgAlt}
-            />
-            <ProductsListDescription
-              productHandle={productHandle}
-              productTitle={productTitle}
-              productPrice={{
-                amount: productPrice,
-                currencyCode: productCurrency,
-              }}
-            />
-          </div>
+          <AOSWrapper animation="fade-up">
+            <div key={productId} className="group relative">
+              <ProductsListImage
+                productImgSrc={productImgSrc}
+                productImgAlt={productImgAlt}
+              />
+              <ProductsListDescription
+                productHandle={productHandle}
+                productTitle={productTitle}
+                productPrice={{
+                  amount: productPrice,
+                  currencyCode: productCurrency,
+                }}
+              />
+            </div>
+          </AOSWrapper>
         )
       })}
     </div>

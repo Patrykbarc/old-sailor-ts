@@ -1,3 +1,5 @@
+import { AOSProvider } from '@/components/ui/AOS/AOSProvider/AOSProvider'
+import { AOSWrapper } from '@/components/ui/AOS/AOSWrapper/AOSWrapper'
 import { Footer } from '@/components/views/MainPage/Footer/Footer'
 import { Navigation } from '@/components/views/MainPage/Navigation/Navigation'
 import type { Metadata } from 'next'
@@ -20,10 +22,14 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${inter.className} text-neutral-300 overflow-x-hidden selection:bg-primary bg-neutral-900 selection:text-neutral-800`}
+        data-aos="fade-in"
+        data-aos-duration="1000"
       >
-        <Navigation />
-        {children}
-        <Footer />
+        <AOSProvider>
+          <Navigation />
+          <AOSWrapper>{children}</AOSWrapper>
+          <Footer />
+        </AOSProvider>
       </body>
     </html>
   )
