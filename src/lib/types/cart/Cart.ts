@@ -46,6 +46,6 @@ export type ImageEdge = {
 export type ImageNode = {
   id: string
   src: string
-  altText: string | null
+  altText: string | undefined
   url: string
 }

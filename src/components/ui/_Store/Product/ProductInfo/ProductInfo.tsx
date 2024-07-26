@@ -54,7 +54,7 @@ export function ProductInfo({ productInfo }: ProductInfoProps) {
               />
               <StoreLinkButton
                 href={checkoutUrl}
-                external={true}
+                external
                 text="Buy now"
                 variant="cta"
               />

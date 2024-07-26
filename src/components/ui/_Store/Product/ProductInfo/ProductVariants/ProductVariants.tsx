@@ -31,11 +31,7 @@ export function ProductVariants({
     title: string
     quantityAvailable: number
   }) {
-    setVariant({
-      id: variant.id,
-      title: variant.title,
-      quantityAvailable: variant.quantityAvailable,
-    })
+    setVariant(variant)
   }
 
   return (

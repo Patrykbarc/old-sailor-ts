@@ -9,22 +9,22 @@ type CartSubtotalProps = {
 
 export function CartSubtotal({ cartValue, isCartPage }: CartSubtotalProps) {
   const { cartContent } = useCart()
-  const checkoutUrl = cartContent.checkoutUrl
-  
+  const { checkoutUrl } = cartContent
+
   return (
     <>
       <div className="flex justify-between text-base font-medium text-neutral-900">
-        <p>Subtotal</p>
+        <h3>Subtotal</h3>
         <p>{formatPrice(cartValue)}</p>
       </div>
-      <p className="mt-0.5 text-sm text-neutral-500">
+      <p className="mt-0.5 text-sm text-neutral-500 text-left">
         Shipping and taxes calculated at checkout.
       </p>
 
       {isCartPage && (
         <StoreLinkButton
           href={checkoutUrl}
-          external={true}
+          external
           text="checkout"
           className="mt-6"
           variant="cta"
