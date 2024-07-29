@@ -1,3 +1,4 @@
+import { AOSWrapper } from '@/components/ui/AOS/AOSWrapper/AOSWrapper'
 import { AllProductEdge } from '@/lib/types/AllProductsEdges'
 import { ProductsListDescription } from '../../Products/ProductsListDescription/ProductsListDescription'
 import { ProductsListImage } from '../../Products/ProductsListImage/ProductsListImage'
@@ -10,7 +11,7 @@ export async function ProductsList({ products }: ProductsListTypes) {
   return (
     <>
       <div
-        className={`mt-6 grid grid-cols-1 h-full gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8`}
+        className={`mt-6 grid grid-cols-1 h-full gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8 overflow-hidden`}
       >
         {products.map((product: AllProductEdge) => {
           const productId = product.node.id
@@ -25,15 +26,17 @@ export async function ProductsList({ products }: ProductsListTypes) {
           return (
             productAvailableForSale && (
               <div key={productId} className="group relative">
-                <ProductsListImage
-                  productImgSrc={productImgSrc}
-                  productImgAlt={productImgAlt}
-                />
-                <ProductsListDescription
-                  productHandle={productHandle}
-                  productTitle={productTitle}
-                  productPrice={productPrice}
-                />
+                <AOSWrapper animation="fade-up">
+                  <ProductsListImage
+                    productImgSrc={productImgSrc}
+                    productImgAlt={productImgAlt}
+                  />
+                  <ProductsListDescription
+                    productHandle={productHandle}
+                    productTitle={productTitle}
+                    productPrice={productPrice}
+                  />
+                </AOSWrapper>
               </div>
             )
           )

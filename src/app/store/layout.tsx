@@ -1,5 +1,6 @@
 import { CartProvider } from '@/components/ui/_Store/CartProvider/CartProvider'
 import { AOSProvider } from '@/components/ui/AOS/AOSProvider/AOSProvider'
+import { AOSWrapper } from '@/components/ui/AOS/AOSWrapper/AOSWrapper'
 import { Footer } from '@/components/views/MainPage/Footer/Footer'
 import { Navigation } from '@/components/views/Store/Navigation/Navigation'
 import type { Metadata } from 'next'
@@ -26,9 +27,11 @@ export default function StoreLayout({
       >
         <CartProvider>
           <AOSProvider>
-            <Navigation />
-            <main className="flex flex-1">{children}</main>
-            <Footer />
+            <AOSWrapper>
+              <Navigation />
+              <main className="flex flex-1">{children}</main>
+              <Footer />
+            </AOSWrapper>
           </AOSProvider>
         </CartProvider>
       </body>

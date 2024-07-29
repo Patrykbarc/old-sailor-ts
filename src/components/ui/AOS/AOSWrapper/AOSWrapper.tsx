@@ -1,7 +1,7 @@
 import { Animations } from '@/lib/types/Animations'
 import { ReactNode } from 'react'
 
-type AnimationTimes = 1000 | 1250 | 1500 | 2000
+type AnimationTimes = 750 | 1000 | 1250 | 1500 | 2000
 
 type AOSWrapper = {
   children: ReactNode
@@ -14,7 +14,7 @@ type AOSWrapper = {
 export function AOSWrapper({
   children,
   animation = 'fade-in',
-  duration = 1000,
+  duration = 750,
   delay,
   className,
 }: AOSWrapper) {

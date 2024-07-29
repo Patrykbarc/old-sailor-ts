@@ -14,6 +14,7 @@ query Bestsellers {
           variants(first: 1) {
             edges {
               node {
+                availableForSale
                 title
                 price {
                   amount
