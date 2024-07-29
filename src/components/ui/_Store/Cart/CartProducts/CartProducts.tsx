@@ -35,6 +35,7 @@ export function CartProducts({ className }: CartProductsProps) {
         const variantId = productNode.id
         const quantity = product.quantity
         const lineId = product.id
+        const merchandiseId = productNode.id
 
         return (
           <li key={variantId} className="flex py-6">
@@ -48,7 +49,11 @@ export function CartProducts({ className }: CartProductsProps) {
                 price={+price}
                 currency={currencyCode}
               />
-              <CartProductActions lineId={lineId} quantity={quantity} />
+              <CartProductActions
+                lineId={lineId}
+                quantity={quantity}
+                merchandiseId={merchandiseId}
+              />
             </div>
           </li>
         )

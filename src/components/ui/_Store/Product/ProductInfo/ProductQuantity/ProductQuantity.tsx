@@ -22,7 +22,7 @@ export function ProductQuantity({
   const { updateQuantity } = useCart()
 
   useEffect(() => {
-    setQuantity(1)
+    setQuantity(quantity)
   }, [maxVariantQuantity])
 
   const handleQuantityChange = (newQuantity: number) => {

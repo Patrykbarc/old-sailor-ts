@@ -27,7 +27,7 @@ export default function StoreLayout({
       >
         <CartProvider>
           <AOSProvider>
-            <AOSWrapper>
+            <AOSWrapper className="flex flex-col flex-1">
               <Navigation />
               <main className="flex flex-1">{children}</main>
               <Footer />
