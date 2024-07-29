@@ -7,7 +7,7 @@ import {
 } from '@/lib/contexts/CartContext'
 import { addToCart } from '@/lib/functions/cart/addToCart/addToCart'
 import { createCart } from '@/lib/functions/cart/createCart'
-import { removeFromCart } from '@/lib/functions/cart/removeFromCart'
+import { removeFromCart } from '@/lib/functions/cart/removeFromCart/removeFromCart'
 import { updateQuantity } from '@/lib/functions/cart/updateQuantity/updateQuantity'
 import { Cart } from '@/lib/types/cart/Cart'
 import { ReactNode, useEffect, useState } from 'react'
