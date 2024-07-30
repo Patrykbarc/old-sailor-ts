@@ -1,10 +1,9 @@
 import { useCart } from '@/lib/customHooks/useCart'
-import { useStorePathname } from '@/lib/customHooks/useStorePathname'
+import { useCartPathname } from '@/lib/customHooks/useCartPathname'
 import { productInStockQuery } from '@/lib/shopify/queries/productsInStock'
 import client from '@/lib/shopify/shopifyApi'
 import { useEffect, useState } from 'react'
 import { ProductQuantity } from '../../../Product/ProductInfo/ProductQuantity/ProductQuantity'
-import { RemoveCartItem } from '../../RemoveCartItem/RemoveCartItem'
 
 type CartProductActionsProps = {
   lineId: string
@@ -12,12 +11,12 @@ type CartProductActionsProps = {
   merchandiseId: string
 }
 
-export function CartProductActions({
+export function CartProductQuantity({
   lineId,
   quantity,
   merchandiseId,
 }: CartProductActionsProps) {
-  const [isCartPage] = useStorePathname()
+  const [isCartPage] = useCartPathname()
   const { updateQuantity } = useCart()
   const [maxQuantity, setMaxQuantity] = useState<number | null>(null)
 
@@ -30,25 +29,18 @@ export function CartProductActions({
     }
     maxVariantQuantity()
   }, [])
-  
-  return (
-    <div className="flex flex-1 items-end justify-between text-sm">
-      {!isCartPage ? (
-        <p className="text-neutral-500">Qty {quantity}</p>
-      ) : (
-        maxQuantity !== null && (
-          <ProductQuantity
-            lineId={lineId}
-            quantity={quantity}
-            setQuantity={(newQuantity) => updateQuantity(lineId, newQuantity)}
-            maxVariantQuantity={maxQuantity}
-          />
-        )
-      )}
 
-      <div className="flex">
-        <RemoveCartItem lineId={lineId} />
+  return (
+    isCartPage &&
+    maxQuantity !== null && (
+      <div className="flex flex-1 items-start justify-between text-sm">
+        <ProductQuantity
+          lineId={lineId}
+          quantity={quantity}
+          setQuantity={(newQuantity) => updateQuantity(lineId, newQuantity)}
+          maxVariantQuantity={maxQuantity}
+        />
       </div>
-    </div>
+    )
   )
 }

@@ -1,6 +1,6 @@
 import { usePathname } from 'next/navigation'
 
-export function useStorePathname(): boolean[] {
+export function useCartPathname(): boolean[] {
   const pathname = usePathname()
   const isCartPage = pathname.includes('/store/cart')
 

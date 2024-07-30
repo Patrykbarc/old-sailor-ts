@@ -6,7 +6,7 @@ import { EmptyCart } from '@/components/ui/_Store/Cart/EmptyCart/EmptyCart'
 import { Separator } from '@/components/ui/Separator/Separator'
 import { Wrapper } from '@/components/ui/Wrapper/Wrapper'
 import { useCart } from '@/lib/customHooks/useCart'
-import { useStorePathname } from '@/lib/customHooks/useStorePathname'
+import { useCartPathname } from '@/lib/customHooks/useCartPathname'
 import { useEffect, useRef, useState } from 'react'
 
 export default function Cart() {
@@ -15,7 +15,7 @@ export default function Cart() {
     'horizontal' | 'vertical'
   >('vertical')
 
-  const [isCartPage] = useStorePathname()
+  const [isCartPage] = useCartPathname()
   const elementRef = useRef(null)
 
   useEffect(() => {

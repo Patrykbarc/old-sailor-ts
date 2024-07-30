@@ -10,7 +10,7 @@ export function RemoveCartItem({ lineId }: RemoveCartItemProps) {
   return (
     <button
       type="button"
-      className="font-medium text-indigo-600 hover:text-indigo-500"
+      className="font-medium text-sm text-indigo-600 hover:text-indigo-500 h-fit"
       value={lineId}
       onClick={(e) => removeFromCart(e.currentTarget.value)}
     >

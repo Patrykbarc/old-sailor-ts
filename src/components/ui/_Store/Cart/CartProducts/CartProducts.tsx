@@ -1,9 +1,10 @@
 import { useCart } from '@/lib/customHooks/useCart'
-import Link from 'next/link'
-import { CartProductActions } from './CartProductActions/CartProductActions'
+import { RemoveCartItem } from '../RemoveCartItem/RemoveCartItem'
 import { CartProductImage } from './CartProductImage/CartProductImage'
-import { CartProductInfo } from './CartProductInfo/CartProductInfo'
+import { CartProductPrice } from './CartProductPrice/CartProductPrice'
+import { CartProductQuantity } from './CartProductQuantity/CartProductQuantity'
 import { CartProductsWrapper } from './CartProductsWrapper/CartProductsWrapper'
+import { CartProductTitle } from './CartProductTitle/CartProductTitle'
 
 type CartProductsProps = {
   className?: string
@@ -38,23 +39,26 @@ export function CartProducts({ className }: CartProductsProps) {
         const merchandiseId = productNode.id
 
         return (
-          <li key={variantId} className="flex py-6">
-            <Link href={href}>
-              <CartProductImage images={images} />
-            </Link>
-            <div className="ml-4 flex flex-1 flex-col">
-              <CartProductInfo
+          <li key={variantId} className="flex flex-col gap-2 py-6">
+            <article className="flex flex-1 align-top gap-5">
+              <CartProductImage
+                images={images}
                 href={href}
-                title={title}
-                price={+price}
-                currency={currencyCode}
+                quantity={quantity}
               />
-              <CartProductActions
+              <CartProductTitle href={href} title={title} />
+              <CartProductQuantity
                 lineId={lineId}
                 quantity={quantity}
                 merchandiseId={merchandiseId}
               />
-            </div>
+            </article>
+            <section className="flex justify-between">
+              <div className="flex justify-between w-full mt-1">
+                <CartProductPrice price={+price} currencyCode={currencyCode} />
+                <RemoveCartItem lineId={lineId} />
+              </div>
+            </section>
           </li>
         )
       })}

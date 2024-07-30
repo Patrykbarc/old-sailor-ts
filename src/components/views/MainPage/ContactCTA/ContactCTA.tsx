@@ -19,7 +19,7 @@ export function ContactCTA() {
               do you have questions?
             </CardTitle>
             <CardDescription className="text:lg md:text-2xl text-neutral-200 font-semibold">
-              we&apos;ll be happt to answer them!
+              we&apos;ll be happy to answer them!
             </CardDescription>
           </CardHeader>
           <CardContent>

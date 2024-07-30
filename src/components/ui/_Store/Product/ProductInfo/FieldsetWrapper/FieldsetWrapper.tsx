@@ -1,4 +1,4 @@
-import { useStorePathname } from '@/lib/customHooks/useStorePathname'
+import { useCartPathname } from '@/lib/customHooks/useCartPathname'
 import { ReactNode } from 'react'
 
 type FieldsetWrapperProps = {
@@ -14,19 +14,19 @@ export function FieldsetWrapper({
   ariaLabel,
   className,
 }: FieldsetWrapperProps) {
-  const [isCartPage] = useStorePathname()
+  const [isCartPage] = useCartPathname()
 
   return (
-    <>
+    <div>
       {!isCartPage && (
-        <h3 className="text-sm font-medium text-neutral-900">{title}</h3>
+        <h3 className="mb-3 text-sm font-medium text-neutral-900">{title}</h3>
       )}
       <fieldset
         aria-label={ariaLabel}
-        className={`mt-4 mb-3 flex flex-col text-neutral-900 ${className}`}
+        className={`flex flex-col text-neutral-900 ${className}`}
       >
         {children}
       </fieldset>
-    </>
+    </div>
   )
 }

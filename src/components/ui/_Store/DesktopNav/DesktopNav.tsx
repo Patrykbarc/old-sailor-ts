@@ -1,12 +1,12 @@
 'use client'
 
-import { useStorePathname } from '@/lib/customHooks/useStorePathname'
+import { useCartPathname } from '@/lib/customHooks/useCartPathname'
 import { Cart } from '../Cart/Cart'
 import { NavLinks } from './NavLinks/NavLinks'
 import { NavLogo } from './NavLogo/NavLogo'
 
 export function DesktopNav() {
-  const [isCartPage] = useStorePathname()
+  const [isCartPage] = useCartPathname()
 
   return (
     <>

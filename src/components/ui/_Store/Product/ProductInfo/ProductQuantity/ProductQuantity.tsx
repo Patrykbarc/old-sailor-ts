@@ -36,38 +36,36 @@ export function ProductQuantity({
   }
 
   return (
-    <div>
-      <FieldsetWrapper
-        title="Quantity"
-        ariaLabel="Choose a quantity"
-        className="w-fit"
-      >
-        <div className="flex border rounded-md">
-          <QuantityHandlerButton
-            actionType="subtract"
-            setQuantity={() => handleQuantityChange(Math.max(1, quantity - 1))}
-            title="Product"
-            disabled={quantity <= 1}
-          />
-          <Input
-            className="size-12 aspect-square border-none no-spinner text-center z-10"
-            onChange={(e) =>
-              handleQuantityChange(Math.max(1, Number(e.target.value)))
-            }
-            value={quantity}
-            step={1}
-            min={1}
-            max={maxVariantQuantity}
-            type="number"
-          />
-          <QuantityHandlerButton
-            actionType="add"
-            setQuantity={() => handleQuantityChange(quantity + 1)}
-            title="Product"
-            disabled={quantity >= maxVariantQuantity}
-          />
-        </div>
-      </FieldsetWrapper>
-    </div>
+    <FieldsetWrapper
+      title="Quantity"
+      ariaLabel="Choose a quantity"
+      className="w-fit"
+    >
+      <div className="flex border rounded-md">
+        <QuantityHandlerButton
+          actionType="subtract"
+          setQuantity={() => handleQuantityChange(Math.max(1, quantity - 1))}
+          title="Product"
+          disabled={quantity <= 1}
+        />
+        <Input
+          className="size-12 aspect-square border-none no-spinner text-center z-10"
+          onChange={(e) =>
+            handleQuantityChange(Math.max(1, Number(e.target.value)))
+          }
+          value={quantity}
+          step={1}
+          min={1}
+          max={maxVariantQuantity}
+          type="number"
+        />
+        <QuantityHandlerButton
+          actionType="add"
+          setQuantity={() => handleQuantityChange(quantity + 1)}
+          title="Product"
+          disabled={quantity >= maxVariantQuantity}
+        />
+      </div>
+    </FieldsetWrapper>
   )
 }
