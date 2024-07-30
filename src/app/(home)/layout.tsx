@@ -1,5 +1,4 @@
 import { AOSProvider } from '@/components/ui/AOS/AOSProvider/AOSProvider'
-import { AOSWrapper } from '@/components/ui/AOS/AOSWrapper/AOSWrapper'
 import { Footer } from '@/components/views/MainPage/Footer/Footer'
 import { Navigation } from '@/components/views/MainPage/Navigation/Navigation'
 import type { Metadata } from 'next'
@@ -27,7 +26,7 @@ export default function RootLayout({
       >
         <AOSProvider>
           <Navigation />
-          <AOSWrapper>{children}</AOSWrapper>
+          {children}
           <Footer />
         </AOSProvider>
       </body>

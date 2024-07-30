@@ -1,52 +1,19 @@
 'use client'
 
 import { Wrapper } from '@/components/ui/Wrapper/Wrapper'
-import { debounce } from '@/lib/functions/debounce'
+import { MAIN_NAV_LINKS } from '@/lib/constants/links/main-nav-links'
 import { NavigationProps } from '@/lib/types/common/NavigationProps'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
 import { NavLinks } from '../../NavLinks/NavLinks'
 import LOGO from '/public/old-sailor-logo-horizontal.png'
-import { MAIN_NAV_LINKS } from '@/lib/constants/links/main-nav-links'
 
 const navStyles =
-  'fixed z-10 w-full hover:opacity-100 hover:py-5 duration-500 ease-in-out lg:block transition-all backdrop-blur-md'
-const visibleNavStyles = 'opacity-100 py-5 shadow-xl'
-const notVisibleNavStyles = 'opacity-85 py-2'
+  'fixed z-10 w-full duration-500 ease-in-out lg:block transition-all opacity-100 py-5 shadow-xl backdrop-blur-md'
 
 export function DesktopNav({ className }: NavigationProps) {
-  const [prevScrollPos, setPrevScrollPos] = useState(0)
-  const [visible, setVisible] = useState(true)
-
-  useEffect(() => {
-    if (typeof window !== undefined) {
-      setPrevScrollPos(window.scrollY)
-    }
-
-    function handleScroll() {
-      const currentScrollPos = window.scrollY
-      setVisible(prevScrollPos > currentScrollPos)
-      setPrevScrollPos(currentScrollPos)
-    }
-
-    const debouncedHandleScroll = debounce(handleScroll, 100)
-
-    window.addEventListener('scroll', debouncedHandleScroll)
-
-    return () => {
-      window.removeEventListener('scroll', debouncedHandleScroll)
-    }
-  }, [prevScrollPos])
-
-  // TODO: make navlinks padding more user-friendly
-
   return (
-    <nav
-      className={` ${navStyles} ${className} ${
-        visible ? visibleNavStyles : notVisibleNavStyles
-      }`}
-    >
+    <nav className={` ${navStyles} ${className}`}>
       <Wrapper className="justify-between flex-col md:flex-row mx-auto items-center">
         <Link href={'/'}>
           <Image alt="Old Sailor Barber logo" src={LOGO} />
