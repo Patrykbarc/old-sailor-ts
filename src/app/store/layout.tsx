@@ -5,6 +5,7 @@ import { Footer } from '@/components/views/MainPage/Footer/Footer'
 import { Navigation } from '@/components/views/Store/Navigation/Navigation'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import { Toaster } from 'react-hot-toast'
 import '../customStyles.css'
 import '../globals.css'
 
@@ -25,6 +26,7 @@ export default function StoreLayout({
       <body
         className={`${inter.className} min-h-dvh h-full flex flex-col justify-between w-full text-neutral-300 selection:bg-primary bg-neutral-800 selection:text-neutral-800`}
       >
+        <Toaster position="bottom-center" reverseOrder={false} />
         <CartProvider>
           <AOSProvider>
             <AOSWrapper className="flex flex-col flex-1">

@@ -1,4 +1,5 @@
 import { CartId, SetCartContent } from '@/lib/contexts/CartContext'
+import toast from 'react-hot-toast'
 import { fetchUpdatedCart } from './fetchUpdatedCart'
 import { updateCartContent } from './updateCartContent'
 
@@ -48,10 +49,13 @@ export async function addToCart(
       setCartContent((prevState) =>
         updateCartContent(prevState, newEdges, variantId, href)
       )
+
+      toast.success('Product Added to Your Cart')
     } else {
       console.error('Unexpected API response structure:', data)
     }
   } catch (error) {
     console.error('Error adding to cart:', error)
+    toast.error('Something went wrong.\nPlease try again.')
   }
 }

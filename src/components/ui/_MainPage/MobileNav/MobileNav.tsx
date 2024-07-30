@@ -1,5 +1,6 @@
 'use client'
 
+import { MAIN_NAV_LINKS } from '@/lib/constants/links/main-nav-links'
 import { NavigationProps } from '@/lib/types/common/NavigationProps'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid'
 import Image from 'next/image'
@@ -8,7 +9,6 @@ import { useEffect, useState } from 'react'
 import { NavLinks } from '../../NavLinks/NavLinks'
 import { Wrapper } from '../../Wrapper/Wrapper'
 import LOGO from '/public/old-sailor-logo-horizontal.png'
-import { MAIN_NAV_LINKS } from '@/lib/constants/links/main-nav-links'
 
 export function MobileNav({ className }: NavigationProps) {
   const [isNavHidden, setIsNavHidden] = useState(false)
@@ -52,7 +52,7 @@ export function MobileNav({ className }: NavigationProps) {
           <Link href={'/'}>
             <Image alt="Old Sailor Barber logo" src={LOGO} />
           </Link>
-          <div className="text-5xl flex flex-col gap-6">
+          <div className="text-3xl flex flex-col gap-6">
             <NavLinks links={MAIN_NAV_LINKS} />
           </div>
           <address className="not-italic">
