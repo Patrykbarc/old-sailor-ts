@@ -1,4 +1,4 @@
-import { BLUR_DATA_URL } from '@/lib/constants/blurDataUrl'
+import { BLUR_DATA_URL } from '@/lib/constants/blur-data-url'
 import Image from 'next/image'
 import PLACEHOLDER from '/public/placeholder.jpg'
 

@@ -1,18 +1,27 @@
 'use client'
 
-import { navLinks } from '@/lib/constants/MainPage/navLinks'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
+type Links = {
+  name: string
+  href: string
+}
+
 type NavLinkProps = {
+  links: Links[]
   className?: string
   linkHighlight?: boolean
 }
 
-export function NavLinks({ className, linkHighlight = true }: NavLinkProps) {
+export function NavLinks({
+  links,
+  className,
+  linkHighlight = true,
+}: NavLinkProps) {
   const pathname = usePathname()
 
-  return navLinks.map((link) => {
+  return links.map((link) => {
     const linkStyle =
       linkHighlight && pathname === link.href ? 'text-primary' : ''
     return (

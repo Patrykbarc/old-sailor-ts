@@ -1,6 +1,7 @@
 import { Wrapper } from '@/components/ui/Wrapper/Wrapper'
-import { aboutUsTexts } from '@/lib/constants/MainPage/aboutUsTexts'
+
 import Image from 'next/image'
+import { ABOUT_US_TEXTS } from './about-us-texts'
 
 export function About() {
   return (
@@ -10,7 +11,7 @@ export function About() {
           about us
         </h1>
         <div className="grid gap-36">
-          {aboutUsTexts.map(({ id, text, image }, index) => {
+          {ABOUT_US_TEXTS.map(({ id, text, image }, index) => {
             const isOdd = index % 2 === 0
             const isOddStyle = 'md:order-1'
             const isEvenStyle = 'md:order-2'

@@ -1,20 +1,22 @@
+import { ROUTES } from './_routes'
+
 const linkHref = '/store/products'
 
-export const storeNavLinks = [
+export const STORE_NAV_LINKS = [
   {
-    name: 'Home',
+    name: ROUTES.home,
     href: `/`,
   },
   {
-    name: 'All products',
+    name: ROUTES.allProducts,
     href: `${linkHref}?category=all`,
   },
   {
-    name: 'Cosmetics',
+    name: ROUTES.cosmetics,
     href: `${linkHref}?category=cosmetics`,
   },
   {
-    name: 'Alcohols',
+    name: ROUTES.alcohols,
     href: `${linkHref}?category=alcohols`,
   },
 ]

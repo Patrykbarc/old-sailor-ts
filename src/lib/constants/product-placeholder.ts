@@ -1,4 +1,4 @@
-export const productPlaceholder = {
+export const PRODUCT_PLACEHOLDER = {
   name: 'Basic Tee 6-Pack',
   price: '$192',
   href: '#',

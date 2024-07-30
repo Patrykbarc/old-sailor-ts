@@ -2,7 +2,7 @@ import OSB_PIC_1 from '/public/osb-1.jpg'
 import OSB_PIC_2 from '/public/osb-2.jpg'
 import OSB_PIC_3 from '/public/osb-3.jpg'
 
-export const aboutUsTexts = [
+export const ABOUT_US_TEXTS = [
   {
     id: 1,
     text: (

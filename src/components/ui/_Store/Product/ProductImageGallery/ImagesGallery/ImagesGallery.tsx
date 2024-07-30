@@ -1,4 +1,4 @@
-import { BLUR_DATA_URL } from '@/lib/constants/blurDataUrl'
+import { BLUR_DATA_URL } from '@/lib/constants/blur-data-url'
 import { ImageNode } from '@/lib/types/cart/Cart'
 import { Edge } from '@/lib/types/common/Edge'
 import Image from 'next/image'

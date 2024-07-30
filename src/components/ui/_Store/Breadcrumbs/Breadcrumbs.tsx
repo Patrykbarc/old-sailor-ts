@@ -1,4 +1,4 @@
-import { productPlaceholder as product } from '@/lib/constants/Store/productPlaceholder'
+import { PRODUCT_PLACEHOLDER } from '@/lib/constants/product-placeholder'
 
 export function Breadcrumbs() {
   return (
@@ -7,7 +7,7 @@ export function Breadcrumbs() {
         role="list"
         className="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8"
       >
-        {product.breadcrumbs.map((breadcrumb) => (
+        {PRODUCT_PLACEHOLDER.breadcrumbs.map((breadcrumb) => (
           <li key={breadcrumb.id}>
             <div className="flex items-center">
               <a
@@ -31,11 +31,11 @@ export function Breadcrumbs() {
         ))}
         <li className="text-sm">
           <a
-            href={product.href}
+            href={PRODUCT_PLACEHOLDER.href}
             aria-current="page"
             className="font-medium text-neutral-500 hover:text-neutral-600"
           >
-            {product.name}
+            {PRODUCT_PLACEHOLDER.name}
           </a>
         </li>
       </ol>

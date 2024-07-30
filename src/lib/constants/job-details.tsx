@@ -1,4 +1,4 @@
-export const jobDetails = {
+export const JOB_DETAILS = {
   responsibilities: [
     "Cutting and styling men's hair",
     'Coloring and grooming beards',

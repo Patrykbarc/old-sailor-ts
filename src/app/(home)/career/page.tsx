@@ -1,7 +1,7 @@
 import { ListSection } from '@/components/ui/ListSection/ListSection'
 import { SubpageTitle } from '@/components/ui/SubpageTitle/SubpageTitle'
 import { SubpageLayout } from '@/components/views/MainPage/SubpageLayout/SubpageLayout'
-import { jobDetails } from '@/lib/constants/MainPage/jobDetails'
+import { JOB_DETAILS } from '../../../lib/constants/job-details'
 
 export default function Career() {
   return (
@@ -17,17 +17,17 @@ export default function Career() {
         <section className="grid gap-6">
           <ListSection
             title="Job Responsibilities:"
-            items={jobDetails.responsibilities}
+            items={JOB_DETAILS.responsibilities}
           />
           <ListSection
             title="Our expectations of the candidate:"
-            items={jobDetails.expectations}
+            items={JOB_DETAILS.expectations}
           />
           <ListSection
             title="What you can gain by working with us:"
-            items={jobDetails.benefits}
+            items={JOB_DETAILS.benefits}
           />
-          <ListSection title="What we offer:" items={jobDetails.offer} />
+          <ListSection title="What we offer:" items={JOB_DETAILS.offer} />
         </section>
 
         <section>
