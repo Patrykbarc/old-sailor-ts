@@ -5,7 +5,7 @@ import { Wrapper } from '@/components/ui/Wrapper/Wrapper'
 export function Hero() {
   return (
     <header className="overflow-hidden">
-      <div className="bg-hero-store-pattern w-screen h-screen max-w-full bg-cover bg-no-repeat relative">
+      <div className="bg-hero-store-pattern w-screen min-h-[50dvh] max-w-full bg-cover bg-no-repeat relative">
         <HeroShadow />
         <div className="mx-auto max-w-4xl h-full flex flex-col justify-center py-32 sm:py-48 lg:py-56 text-center relative">
           <Wrapper>

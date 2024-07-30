@@ -19,8 +19,16 @@ export default async function Products({ searchParams }: ProductsProps) {
       categoryId
     )
 
+  const mapCategories: { [key: string]: string } = {
+    all: 'all products',
+    cosmetics: 'cosmetics',
+    alcohols: 'alcohols',
+  }
+
+  const title = mapCategories[searchParams.category] || ''
+
   return (
-    <ProductListLayout>
+    <ProductListLayout title={title}>
       <ProductsList products={data.collection.products.edges} />
       {totalPages > 1 && (
         <Pagination
