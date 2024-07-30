@@ -13,7 +13,6 @@ export function DesktopNav() {
       <NavLinks className="hidden lg:flex" />
       <NavLogo />
       <div className="flex justify-end gap-8 items-center">
-        {/* <SelectCurrency /> */}
         {!isCartPage && <Cart />}
       </div>
     </>

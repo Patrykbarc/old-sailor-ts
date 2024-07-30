@@ -20,6 +20,7 @@ const config = {
     extend: {
       backgroundImage: {
         'hero-pattern': "url('/hero-image.jpg')",
+        'hero-store-pattern': "url('/store-hero-image.jpg')",
         'shadow-gradient':
           'linear-gradient(0deg, rgba(14,14,14,1) 0%, rgba(255,255,255,0) 100%)',
       },
