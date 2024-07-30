@@ -50,7 +50,7 @@ export async function addToCart(
         updateCartContent(prevState, newEdges, variantId, href)
       )
 
-      toast.success('Product Added to Your Cart')
+      toast.success('Added to Cart')
     } else {
       console.error('Unexpected API response structure:', data)
     }
