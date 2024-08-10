@@ -4,7 +4,7 @@ import { SubpageLayout } from '@/components/views/MainPage/SubpageLayout/Subpage
 export default function Contact() {
   return (
     <SubpageLayout>
-      <article className="grid md:grid-cols-2 gap-8">
+      <article className="grid md:grid-cols-2 items-center gap-8">
         <header className="z-20">
           <h1 className="mb-6 text-5xl font-black leading-tight text-primary">
             Do you have questions?

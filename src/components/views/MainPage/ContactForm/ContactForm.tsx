@@ -1,20 +1,20 @@
 'use client'
 
 import { Button } from '@/components/ui/Button/Button'
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormMessage,
-} from '@/components/ui/Form/Form'
-import { Input } from '@/components/ui/Input/Input'
-import { Textarea } from '@/components/ui/Textarea/Textarea'
+import { Form } from '@/components/ui/Form/Form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
+import { Control, useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { formSchema } from './formSchema'
+import { InputField } from './InputField/InputField'
 import { MessageSentNotification } from './MessageSentNotification/MessageSentNotification'
+import { TextareaField } from './TextAreaField/TextAreaField'
+
+export type ContactFormFieldProps = {
+  control: Control<z.infer<typeof formSchema>>
+  name: keyof z.infer<typeof formSchema>
+  placeholder: string
+}
 
 export function ContactForm() {
   const form = useForm<z.infer<typeof formSchema>>({
@@ -38,55 +38,26 @@ export function ContactForm() {
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
             <div className="grid md:grid-cols-2 gap-4">
-              <FormField
+              <InputField
                 control={form.control}
                 name="name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormControl>
-                      <Input placeholder="Your name" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
+                placeholder="Your name"
               />
-              <FormField
+              <InputField
                 control={form.control}
                 name="surname"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormControl>
-                      <Input placeholder="Your surname" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
+                placeholder="Your surname"
               />
             </div>
-
-            <FormField
+            <InputField
               control={form.control}
               name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <Input placeholder="Your email" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
+              placeholder="Your email"
             />
-            <FormField
+            <TextareaField
               control={form.control}
               name="message"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <Textarea placeholder="Your message" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
+              placeholder="Your message"
             />
             <Button type="submit">Submit</Button>
           </form>
