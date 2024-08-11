@@ -29,7 +29,7 @@ export function TextAreaField({
           <div className="grid grid-cols-3 w-full">
             <FormMessage className="col-span-2" />
             <WordCounter
-              count={field.value.length}
+              count={field.value?.length ?? 0}
               className="text-neutral-300 w-full block text-end col-start-3"
             />
           </div>
