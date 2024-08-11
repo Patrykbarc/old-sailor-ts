@@ -1,5 +1,7 @@
 import { z } from 'zod'
 
+export type FormSchemaValues = z.infer<typeof formSchema>
+
 export const formSchema = z.object({
   name: z.string().min(2, {
     message: 'Must be at least 2 characters.',
@@ -18,4 +20,5 @@ export const formSchema = z.object({
     .max(1000, {
       message: 'Message can contain up to 1000 characters.',
     }),
+  formError: z.string().optional(),
 })

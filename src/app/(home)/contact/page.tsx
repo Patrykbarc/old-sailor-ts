@@ -1,7 +1,16 @@
+'use client'
+
 import { ContactForm } from '@/components/views/MainPage/ContactForm/ContactForm'
 import { SubpageLayout } from '@/components/views/MainPage/SubpageLayout/SubpageLayout'
+import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3'
+
+const reCaptchaKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY
 
 export default function Contact() {
+  if (!reCaptchaKey) {
+    throw new Error('Missing required recaptchaKey')
+  }
+
   return (
     <SubpageLayout>
       <article className="grid md:grid-cols-2 items-center gap-8">
@@ -12,7 +21,9 @@ export default function Contact() {
             We&apos;ll be happy to help
           </h1>
         </header>
-        <ContactForm />
+        <GoogleReCaptchaProvider reCaptchaKey={reCaptchaKey}>
+          <ContactForm />
+        </GoogleReCaptchaProvider>
       </article>
     </SubpageLayout>
   )

@@ -11,7 +11,7 @@ type SubpageLayout = {
 export function SubpageLayout({ children }: SubpageLayout) {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between bg-neutral-900 relative overflow-hidden">
-      <AOSWrapper>
+      <AOSWrapper className="flex justify-center w-full">
         <Wrapper className="flex-col min-h-dvh py-36 relative z-10">
           {children}
         </Wrapper>
