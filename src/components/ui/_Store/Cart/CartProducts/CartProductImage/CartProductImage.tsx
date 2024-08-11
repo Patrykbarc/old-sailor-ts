@@ -2,21 +2,18 @@ import { useCartPathname } from '@/lib/customHooks/useCartPathname'
 import { ImageNode } from '@/lib/types/cart/Cart'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ReactNode } from 'react'
 import PLACEHOLDER from '/public/placeholder.jpg'
 
 type CartProductImageProps = {
   href: string
   quantity: number
   images?: ImageNode
-  children?: ReactNode
 }
 
 export function CartProductImage({
   href,
   quantity,
   images,
-  children,
 }: CartProductImageProps) {
   const [isCartPage] = useCartPathname()
   const url = images?.src

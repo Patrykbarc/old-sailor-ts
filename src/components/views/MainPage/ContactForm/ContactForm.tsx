@@ -8,7 +8,7 @@ import { z } from 'zod'
 import { formSchema } from './formSchema'
 import { InputField } from './InputField/InputField'
 import { MessageSentNotification } from './MessageSentNotification/MessageSentNotification'
-import { TextareaField } from './TextAreaField/TextAreaField'
+import { TextAreaField } from './TextAreaField/TextAreaField'
 
 export type ContactFormFieldProps = {
   control: Control<z.infer<typeof formSchema>>
@@ -54,7 +54,7 @@ export function ContactForm() {
               name="email"
               placeholder="Your email"
             />
-            <TextareaField
+            <TextAreaField
               control={form.control}
               name="message"
               placeholder="Your message"

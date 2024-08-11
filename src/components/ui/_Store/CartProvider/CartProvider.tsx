@@ -6,7 +6,7 @@ import {
   CartId,
 } from '@/lib/contexts/CartContext'
 import { addToCart } from '@/lib/functions/cart/addToCart/addToCart'
-import { createCart } from '@/lib/functions/cart/createCart'
+import { validateCart } from '@/lib/functions/cart/createCart/validateCart'
 import { removeFromCart } from '@/lib/functions/cart/removeFromCart/removeFromCart'
 import { updateQuantity } from '@/lib/functions/cart/updateQuantity/updateQuantity'
 import { Cart } from '@/lib/types/cart/Cart'
@@ -25,23 +25,7 @@ export function CartProvider({ children }: CartProviderProps) {
   const [cartId, setCartId] = useState<CartId>(null)
 
   useEffect(() => {
-    function checkCartExist() {
-      const cart = localStorage.getItem('cart')
-      if (cart) {
-        try {
-          const parsedCart = JSON.parse(cart)
-          setCartContent(parsedCart)
-          setCartId(parsedCart.id)
-        } catch (error) {
-          console.error('Invalid cart data in localStorage:', error)
-          createCart(setCartId, setCartContent)
-        }
-      } else {
-        createCart(setCartId, setCartContent)
-      }
-    }
-
-    checkCartExist()
+    validateCart({ setCartId, setCartContent })
   }, [])
 
   useEffect(() => {
