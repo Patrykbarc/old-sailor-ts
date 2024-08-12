@@ -1,8 +1,8 @@
 import { z } from 'zod'
 
-export type FormSchemaValues = z.infer<typeof formSchema>
+export type ContactFormSchemaValues = z.infer<typeof contactFormSchema>
 
-export const formSchema = z.object({
+export const contactFormSchema = z.object({
   name: z.string().min(2, {
     message: 'Must be at least 2 characters.',
   }),

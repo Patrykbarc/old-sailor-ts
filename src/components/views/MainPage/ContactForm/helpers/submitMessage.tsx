@@ -3,13 +3,13 @@ import { RecaptchaSubmitStatus } from '@/lib/types/contactForm/RecaptchaSubmitSt
 import { Dispatch, SetStateAction } from 'react'
 import { IGoogleReCaptchaConsumerProps } from 'react-google-recaptcha-v3'
 import { UseFormClearErrors, UseFormSetError } from 'react-hook-form'
-import { FormSchemaValues } from './formSchema'
+import { ContactFormSchemaValues } from './contactFormSchema'
 
 type SubmitMessageProps = {
   executeRecaptcha: IGoogleReCaptchaConsumerProps['executeRecaptcha']
   setRecaptchaSubmitStatus: Dispatch<SetStateAction<RecaptchaSubmitStatus>>
-  setError: UseFormSetError<FormSchemaValues>
-  clearErrors: UseFormClearErrors<FormSchemaValues>
+  setError: UseFormSetError<ContactFormSchemaValues>
+  clearErrors: UseFormClearErrors<ContactFormSchemaValues>
 }
 
 export async function submitMessage({

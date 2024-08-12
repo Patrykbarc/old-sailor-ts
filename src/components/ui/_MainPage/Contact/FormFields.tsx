@@ -1,8 +1,8 @@
-import { ContactFormFieldProps } from '@/lib/types/contactForm/ContactFormFieldProps'
-import { InputField } from './InputField/InputField'
-import { TextAreaField } from './TextAreaField/TextAreaField'
+import { FormFieldProps } from '@/lib/types/contactForm/FormFieldProps'
+import { InputField } from '../../FormFields/InputField/InputField'
+import { TextAreaField } from '../../FormFields/TextAreaField/TextAreaField'
 
-type FormFieldsProps = Pick<ContactFormFieldProps, 'control'>
+type FormFieldsProps = Pick<FormFieldProps, 'control'>
 
 export function FormFields({ control }: FormFieldsProps) {
   return (
@@ -15,7 +15,12 @@ export function FormFields({ control }: FormFieldsProps) {
           placeholder="Your surname"
         />
       </div>
-      <InputField control={control} name="email" placeholder="Your email" />
+      <InputField
+        control={control}
+        name="email"
+        type="email"
+        placeholder="Your email"
+      />
       <TextAreaField
         control={control}
         name="message"

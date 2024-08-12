@@ -5,13 +5,15 @@ import {
   FormMessage,
 } from '@/components/ui/Form/Form'
 import { Input } from '@/components/ui/Input/Input'
-import { ContactFormFieldProps } from '@/lib/types/contactForm/ContactFormFieldProps'
+import { FormFieldProps } from '@/lib/types/contactForm/FormFieldProps'
+import { FieldValues } from 'react-hook-form'
 
-export function InputField({
+export function InputField<T extends FieldValues>({
   control,
   name,
   placeholder,
-}: ContactFormFieldProps) {
+  type = 'text',
+}: FormFieldProps<T>) {
   return (
     <FormField
       control={control}
@@ -19,7 +21,7 @@ export function InputField({
       render={({ field }) => (
         <FormItem>
           <FormControl>
-            <Input placeholder={placeholder} {...field} />
+            <Input placeholder={placeholder} type={type} {...field} />
           </FormControl>
           <FormMessage />
         </FormItem>

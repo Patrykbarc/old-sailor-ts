@@ -5,14 +5,15 @@ import {
   FormMessage,
 } from '@/components/ui/Form/Form'
 import { Textarea } from '@/components/ui/Textarea/Textarea'
-import { ContactFormFieldProps } from '@/lib/types/contactForm/ContactFormFieldProps'
-import { WordCounter } from '../../WordCounter/WordCounter'
+import { contactFormSchema } from '@/components/views/MainPage/ContactForm/helpers/contactFormSchema'
+import { FormFieldProps } from '@/lib/types/contactForm/FormFieldProps'
+import { WordCounter } from '../../_MainPage/Contact/WordCounter/WordCounter'
 
 export function TextAreaField({
   control,
   name,
   placeholder,
-}: ContactFormFieldProps) {
+}: FormFieldProps<typeof contactFormSchema>) {
   return (
     <FormField
       control={control}

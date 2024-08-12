@@ -4,9 +4,9 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useState } from 'react'
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3'
 import { useForm } from 'react-hook-form'
-import { FormFields } from '../../../ui/_MainPage/Contact/FormFields/FormFields'
+import { FormFields } from '../../../ui/_MainPage/Contact/FormFields'
 import { SubmitForm } from '../../../ui/_MainPage/Contact/SubmitForm/SubmitForm'
-import { formSchema, FormSchemaValues } from './helpers/formSchema'
+import { contactFormSchema, ContactFormSchemaValues } from './helpers/contactFormSchema'
 import { submitMessage } from './helpers/submitMessage'
 
 export function ContactForm() {
@@ -14,8 +14,8 @@ export function ContactForm() {
   const [recaptchaSubmitStatus, setRecaptchaSubmitStatus] =
     useState<RecaptchaSubmitStatus>(null)
 
-  const form = useForm<FormSchemaValues>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<ContactFormSchemaValues>({
+    resolver: zodResolver(contactFormSchema),
     defaultValues: {
       name: '',
       surname: '',
