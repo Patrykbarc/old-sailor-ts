@@ -1,8 +1,8 @@
+import { RecaptchaSubmitStatus } from '@/lib/types/contactForm/RecaptchaSubmitStatus'
 import axios from 'axios'
 import { Dispatch, SetStateAction } from 'react'
 import { IGoogleReCaptchaConsumerProps } from 'react-google-recaptcha-v3'
 import { UseFormClearErrors, UseFormSetError } from 'react-hook-form'
-import { RecaptchaSubmitStatus } from '../ContactForm'
 import { FormSchemaValues } from './formSchema'
 
 type SubmitMessageProps = {

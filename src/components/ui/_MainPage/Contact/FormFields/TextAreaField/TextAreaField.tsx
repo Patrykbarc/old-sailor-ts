@@ -5,8 +5,8 @@ import {
   FormMessage,
 } from '@/components/ui/Form/Form'
 import { Textarea } from '@/components/ui/Textarea/Textarea'
-import { ContactFormFieldProps } from '../ContactForm'
-import { WordCounter } from '../WordCounter/WordCounter'
+import { ContactFormFieldProps } from '@/lib/types/contactForm/ContactFormFieldProps'
+import { WordCounter } from '../../WordCounter/WordCounter'
 
 export function TextAreaField({
   control,

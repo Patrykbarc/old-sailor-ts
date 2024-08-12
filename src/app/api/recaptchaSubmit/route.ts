@@ -42,7 +42,7 @@ export async function POST(req: Request) {
     )
 
     if (response.data.success && response.data.score > 0.5) {
-      console.log('ReCaptcha score:', response.data.score)
+      // console.log('ReCaptcha score:', response.data.score)
       return NextResponse.json(
         {
           success: true,

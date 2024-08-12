@@ -5,7 +5,7 @@ import {
   FormMessage,
 } from '@/components/ui/Form/Form'
 import { Input } from '@/components/ui/Input/Input'
-import { ContactFormFieldProps } from '../ContactForm'
+import { ContactFormFieldProps } from '@/lib/types/contactForm/ContactFormFieldProps'
 
 export function InputField({
   control,
