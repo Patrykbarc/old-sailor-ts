@@ -1,6 +1,6 @@
 import { AOSWrapper } from '@/components/ui/AOS/AOSWrapper/AOSWrapper'
 import { About } from '@/components/views/MainPage/About/About'
-import { ContactCTA } from '@/components/views/MainPage/ContactCTA/ContactCTA'
+import { ContactCTA } from '@/components/ui/_MainPage/Contact/ContactCTA/ContactCTA'
 import { Hero } from '@/components/views/MainPage/Hero/Hero'
 
 export default function Home() {

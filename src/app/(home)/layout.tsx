@@ -1,5 +1,5 @@
 import { AOSProvider } from '@/components/ui/AOS/AOSProvider/AOSProvider'
-import { Footer } from '@/components/views/MainPage/Footer/Footer'
+import { Footer } from '@/components/ui/Footer/Footer'
 import { Navigation } from '@/components/views/MainPage/Navigation/Navigation'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'

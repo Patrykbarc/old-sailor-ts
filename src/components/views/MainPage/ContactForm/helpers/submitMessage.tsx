@@ -1,5 +1,5 @@
+import { axiosAPI } from '@/lib/axios/axiosAPI'
 import { RecaptchaSubmitStatus } from '@/lib/types/contactForm/RecaptchaSubmitStatus'
-import axios from 'axios'
 import { Dispatch, SetStateAction } from 'react'
 import { IGoogleReCaptchaConsumerProps } from 'react-google-recaptcha-v3'
 import { UseFormClearErrors, UseFormSetError } from 'react-hook-form'
@@ -30,18 +30,9 @@ export async function submitMessage({
   const gRecaptchaToken = await executeRecaptcha('registerSubmit')
 
   try {
-    const response = await axios.post(
-      '/api/recaptchaSubmit',
-      {
-        gRecaptchaToken,
-      },
-      {
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-      }
-    )
+    const response = await axiosAPI.post('/api/recaptchaSubmit', {
+      gRecaptchaToken,
+    })
 
     if (response.data.success) {
       setRecaptchaSubmitStatus('success')
