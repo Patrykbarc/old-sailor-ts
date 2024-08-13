@@ -1,7 +1,8 @@
 'use client'
 
 const CareerForm = dynamic(
-  () => import('@/components/ui/_MainPage/Career/CareerForm/CareerForm')
+  () => import('@/components/ui/_MainPage/Career/CareerForm/CareerForm'),
+  { ssr: false }
 )
 import { CareerHeader } from '@/components/ui/_MainPage/Career/CareerHeader/CareerHeader'
 import { CareerListSection } from '@/components/ui/_MainPage/Career/CareerListSection/CareerListSection'

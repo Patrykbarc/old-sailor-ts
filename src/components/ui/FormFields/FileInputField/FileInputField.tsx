@@ -1,7 +1,7 @@
 import { FormControl, FormField, FormItem } from '@/components/ui/Form/Form'
 import { Input } from '@/components/ui/Input/Input'
 import { FormFieldProps } from '@/lib/types/contactForm/FormFieldProps'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { FieldValues, useController } from 'react-hook-form'
 import { FieldNotifications } from './FieldNotifications/FieldNotifications'
 
@@ -15,7 +15,6 @@ export default function FileInputField<T extends FieldValues>({
   placeholder,
   label,
 }: FileInputFieldProps<T>) {
-  
   const {
     field: { onChange, onBlur, ref },
     fieldState: { error },
@@ -23,11 +22,18 @@ export default function FileInputField<T extends FieldValues>({
     name,
     control,
   })
-  
-  if (typeof window === 'undefined') return
+
+  const [isClient, setIsClient] = useState(false)
+
+  useEffect(() => {
+    setIsClient(typeof window !== 'undefined')
+  }, [])
+
   function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const file = e.target.files?.[0] || null
-    onChange(file)
+    if (isClient) {
+      const file = e.target.files?.[0] || null
+      onChange(file)
+    }
   }
 
   return (
