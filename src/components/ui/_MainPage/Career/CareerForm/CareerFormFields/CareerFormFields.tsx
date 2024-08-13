@@ -10,8 +10,8 @@ type CareerFormFieldsProps = Pick<
 
 export function CareerFormFields({ control }: CareerFormFieldsProps) {
   return (
-    <div className="space-y-6 w-full max-w-md">
-      <div className="grid md:grid-cols-2 gap-4">
+    <div className="space-y-6 w-full max-w-lg">
+      <div className="grid md:grid-cols-2 space-y-6 md:space-y-0 md:gap-4">
         <InputField control={control} name="name" placeholder="Your name" />
         <InputField
           control={control}

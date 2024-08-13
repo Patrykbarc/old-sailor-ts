@@ -44,6 +44,10 @@ export function ContactForm() {
             formError={formError}
             isSubmitting={isSubmitting}
             recaptchaSubmitStatus={recaptchaSubmitStatus}
+            message={[
+              'Message has been sent.',
+              "We'll answer you as soon as possible.",
+            ]}
           />
         </form>
       </Form>

@@ -8,12 +8,14 @@ type SubmitFormProps = {
   formError: FieldError | undefined
   recaptchaSubmitStatus: RecaptchaSubmitStatus
   isSubmitting: boolean
+  message: string[]
 }
 
 export function SubmitForm({
   formError,
   recaptchaSubmitStatus,
   isSubmitting,
+  message
 }: SubmitFormProps) {
   return (
     <div className="space-y-4">
@@ -30,7 +32,7 @@ export function SubmitForm({
           <Button type="submit">Submit</Button>
         )
       ) : (
-        <MessageSentNotification />
+        <MessageSentNotification message={message} />
       )}
     </div>
   )

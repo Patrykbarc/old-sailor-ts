@@ -16,7 +16,7 @@ export function FileInputField<T extends FieldValues>({
   label,
 }: FileInputFieldProps<T>) {
   const {
-    field: { onChange, onBlur, ref, value },
+    field: { onChange, onBlur, ref },
     fieldState: { error },
   } = useController({
     name,

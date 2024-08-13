@@ -1,11 +1,13 @@
-export function MessageSentNotification() {
+type MessageSentNotificationProps = { message: string[] }
+
+export function MessageSentNotification({
+  message,
+}: MessageSentNotificationProps) {
   return (
     <div className="text-neutral-300 mt-5">
-      <p>
-        Message has been sent.
-        <br />
-        We&apos;ll answer you as soon as possible.
-      </p>
+      {message.map((m) => (
+        <p key={m}>{m}</p>
+      ))}
     </div>
   )
 }
