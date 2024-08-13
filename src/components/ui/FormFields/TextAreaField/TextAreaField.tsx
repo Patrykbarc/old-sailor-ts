@@ -5,7 +5,7 @@ import {
   FormMessage,
 } from '@/components/ui/Form/Form'
 import { Textarea } from '@/components/ui/Textarea/Textarea'
-import { ContactFormSchemaValues } from '@/components/views/MainPage/ContactForm/helpers/contact-form-schema'
+import { ContactFormSchemaValues } from '@/components/ui/_MainPage/Contact/ContactForm/helpers/contact-form-schema'
 import { FormFieldProps } from '@/lib/types/contactForm/FormFieldProps'
 import { WordCounter } from '../../_MainPage/Contact/WordCounter/WordCounter'
 

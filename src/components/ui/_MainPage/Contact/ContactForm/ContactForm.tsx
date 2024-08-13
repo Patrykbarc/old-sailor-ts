@@ -1,9 +1,10 @@
 import { Form } from '@/components/ui/Form/Form'
 import { useRecaptcha } from '@/lib/customHooks/useRecaptcha'
+import { getHookFormFields } from '@/lib/functions/helpers/getHookFormFields'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { FieldError, useForm } from 'react-hook-form'
-import { FormFields } from '../../../ui/_MainPage/Contact/FormFields'
-import { SubmitForm } from '../../../ui/_MainPage/Contact/SubmitForm/SubmitForm'
+import { useForm } from 'react-hook-form'
+import { ContactFormFields } from '../ContactFormFields/ContactFormFields'
+import { SubmitForm } from '../SubmitForm/SubmitForm'
 import {
   CONTACT_FORM_SCHEMA,
   ContactFormSchemaValues,
@@ -25,10 +26,8 @@ export function ContactForm() {
     form,
   })
 
-  const isSubmitSuccessful = form.formState.isSubmitSuccessful
-  const isSubmitting = form.formState.isSubmitting
-  const formControl = form.control
-  const formError = form.formState.errors.root as FieldError | undefined
+  const { isSubmitSuccessful, isSubmitting, formControl, formError } =
+    getHookFormFields(form)
 
   return (
     <fieldset
@@ -40,7 +39,7 @@ export function ContactForm() {
           onSubmit={form.handleSubmit(submitWithRecaptcha)}
           className="disabled:cursor-not-allowed space-y-4"
         >
-          <FormFields control={formControl} />
+          <ContactFormFields control={formControl} />
           <SubmitForm
             formError={formError}
             isSubmitting={isSubmitting}

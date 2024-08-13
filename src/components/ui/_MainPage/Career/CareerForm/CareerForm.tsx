@@ -2,22 +2,22 @@
 
 import { Button } from '@/components/ui/Button/Button'
 import { Form } from '@/components/ui/Form/Form'
-import { FileInputField } from '@/components/ui/FormFields/FileInputField/FileInputField'
 import { useRecaptcha } from '@/lib/customHooks/useRecaptcha'
+import { getHookFormFields } from '@/lib/functions/helpers/getHookFormFields'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { FieldError, useForm } from 'react-hook-form'
-import { InputField } from '../../../FormFields/InputField/InputField'
+import { useForm } from 'react-hook-form'
 import {
   CAREER_FORM_SCHEMA,
   CareerFormSchemaValues,
 } from './career-form-schema'
+import { CareerFormFields } from './CareerFormFields/CareerFormFields'
 
 export function CareerForm() {
   const form = useForm<CareerFormSchemaValues>({
     resolver: zodResolver(CAREER_FORM_SCHEMA),
     defaultValues: {
-      name: 'Test',
-      surname: 'Test',
+      name: '',
+      surname: '',
       file: undefined,
     },
     mode: 'onTouched',
@@ -27,13 +27,14 @@ export function CareerForm() {
     form,
   })
 
-  const formControl = form.control
-  const formError = form.formState.errors.root as FieldError | undefined
+  const { isSubmitSuccessful, isSubmitting, formControl, formError } =
+    getHookFormFields(form)
+
   console.log(recaptchaSubmitStatus)
 
   return (
     <section>
-      <fieldset>
+      <fieldset disabled={isSubmitSuccessful || isSubmitting}>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(submitWithRecaptcha)}>
             <legend>
@@ -41,23 +42,34 @@ export function CareerForm() {
               portfolio.
             </legend>
 
-            <div className="grid w-full max-w-sm items-center gap-1.5">
+            <CareerFormFields control={formControl} />
+            {/* <div className="space-y-6 w-full max-w-md">
+              <div className="grid md:grid-cols-2 gap-4">
+                <InputField
+                  control={formControl}
+                  name="name"
+                  placeholder="Your name"
+                />
+                <InputField
+                  control={formControl}
+                  name="surname"
+                  placeholder="Your surname"
+                />
+              </div>
               <InputField
                 control={formControl}
-                name="name"
-                placeholder="Your name"
+                name="email"
+                type="email"
+                placeholder="Your email"
               />
-              <InputField
-                control={formControl}
-                name="surname"
-                placeholder="Your surname"
-              />
+
               <FileInputField
                 control={formControl}
                 name="file"
                 placeholder="Your CV"
-              />
-            </div>
+                label="PNG, JPG, JPEG, or PDF"
+              ></FileInputField>
+            </div> */}
 
             {formError && (
               <div className="text-red-600">{formError.message}</div>

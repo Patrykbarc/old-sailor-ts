@@ -1,6 +1,6 @@
 'use client'
 
-import { ContactForm } from '@/components/views/MainPage/ContactForm/ContactForm'
+import { ContactForm } from '@/components/ui/_MainPage/Contact/ContactForm/ContactForm'
 import { SubpageLayout } from '@/components/views/MainPage/SubpageLayout/SubpageLayout'
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3'
 

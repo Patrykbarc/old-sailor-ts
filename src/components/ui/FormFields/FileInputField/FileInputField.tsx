@@ -1,19 +1,20 @@
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormMessage,
-} from '@/components/ui/Form/Form'
+import { FormControl, FormField, FormItem } from '@/components/ui/Form/Form'
 import { Input } from '@/components/ui/Input/Input'
 import { FormFieldProps } from '@/lib/types/contactForm/FormFieldProps'
 import React from 'react'
 import { FieldValues, useController } from 'react-hook-form'
+import { FieldNotifications } from './FieldNotifications/FieldNotifications'
+
+type FileInputFieldProps<T extends FieldValues> = FormFieldProps<T> & {
+  label?: string
+}
 
 export function FileInputField<T extends FieldValues>({
   control,
   name,
   placeholder,
-}: FormFieldProps<T>) {
+  label,
+}: FileInputFieldProps<T>) {
   const {
     field: { onChange, onBlur, ref, value },
     fieldState: { error },
@@ -42,7 +43,7 @@ export function FileInputField<T extends FieldValues>({
               ref={ref}
             />
           </FormControl>
-          {error && <FormMessage>{error.message}</FormMessage>}
+          <FieldNotifications error={error} label={label} />
         </FormItem>
       )}
     />
