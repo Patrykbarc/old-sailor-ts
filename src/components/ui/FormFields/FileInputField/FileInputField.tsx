@@ -9,12 +9,13 @@ type FileInputFieldProps<T extends FieldValues> = FormFieldProps<T> & {
   label?: string
 }
 
-export function FileInputField<T extends FieldValues>({
+export default function FileInputField<T extends FieldValues>({
   control,
   name,
   placeholder,
   label,
 }: FileInputFieldProps<T>) {
+  
   const {
     field: { onChange, onBlur, ref },
     fieldState: { error },
@@ -22,8 +23,9 @@ export function FileInputField<T extends FieldValues>({
     name,
     control,
   })
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  
+  if (typeof window === 'undefined') return
+  function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0] || null
     onChange(file)
   }

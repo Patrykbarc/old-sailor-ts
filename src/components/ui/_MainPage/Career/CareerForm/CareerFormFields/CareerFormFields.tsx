@@ -1,4 +1,4 @@
-import { FileInputField } from '@/components/ui/FormFields/FileInputField/FileInputField'
+import FileInputField from '@/components/ui/FormFields/FileInputField/FileInputField'
 import { InputField } from '@/components/ui/FormFields/InputField/InputField'
 import { FormFieldProps } from '@/lib/types/contactForm/FormFieldProps'
 import { CareerFormSchemaValues } from '../career-form-schema'
@@ -30,7 +30,7 @@ export function CareerFormFields({ control }: CareerFormFieldsProps) {
         name="file"
         placeholder="Your CV"
         label="PNG, JPG, JPEG, or PDF"
-      ></FileInputField>
+      />
     </div>
   )
 }
