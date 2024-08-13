@@ -18,8 +18,6 @@ export default function Career() {
     throw new Error('Missing required recaptchaKey')
   }
 
-  if (window === undefined) return
-
   return (
     <SubpageLayout>
       <article className="grid gap-12">

@@ -1,6 +1,12 @@
-import FileInputField from '@/components/ui/FormFields/FileInputField/FileInputField'
+'use client'
+
+const FileInputField = dynamic<any>(
+  () => import('@/components/ui/FormFields/FileInputField/FileInputField'),
+  { ssr: false }
+)
 import { InputField } from '@/components/ui/FormFields/InputField/InputField'
 import { FormFieldProps } from '@/lib/types/contactForm/FormFieldProps'
+import dynamic from 'next/dynamic'
 import { CareerFormSchemaValues } from '../career-form-schema'
 
 type CareerFormFieldsProps = Pick<
