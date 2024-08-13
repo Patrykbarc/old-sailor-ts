@@ -12,7 +12,7 @@ import {
 } from './career-form-schema'
 import { CareerFormFields } from './CareerFormFields/CareerFormFields'
 
-export function CareerForm() {
+export default function CareerForm() {
   const form = useForm<CareerFormSchemaValues>({
     resolver: zodResolver(CAREER_FORM_SCHEMA),
     defaultValues: {
