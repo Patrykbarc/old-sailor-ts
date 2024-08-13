@@ -1,8 +1,9 @@
+import { ContactFormSchemaValues } from '@/components/views/MainPage/ContactForm/helpers/contact-form-schema'
 import { FormFieldProps } from '@/lib/types/contactForm/FormFieldProps'
 import { InputField } from '../../FormFields/InputField/InputField'
 import { TextAreaField } from '../../FormFields/TextAreaField/TextAreaField'
 
-type FormFieldsProps = Pick<FormFieldProps, 'control'>
+type FormFieldsProps = Pick<FormFieldProps<ContactFormSchemaValues>, 'control'>
 
 export function FormFields({ control }: FormFieldsProps) {
   return (

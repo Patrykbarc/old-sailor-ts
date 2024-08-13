@@ -1,8 +1,8 @@
 import { Button } from '@/components/ui/Button/Button'
+import { RecaptchaSubmitStatus } from '@/lib/customHooks/useRecaptcha'
 import { FieldError } from 'react-hook-form'
 import PulseLoader from 'react-spinners/PulseLoader'
 import { MessageSentNotification } from '../MessageSentNotification/MessageSentNotification'
-import { RecaptchaSubmitStatus } from '@/lib/types/contactForm/RecaptchaSubmitStatus'
 
 type SubmitFormProps = {
   formError: FieldError | undefined

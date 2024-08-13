@@ -1,53 +1,41 @@
 'use client'
 
+import { Button } from '@/components/ui/Button/Button'
 import { Form } from '@/components/ui/Form/Form'
 import { FileInputField } from '@/components/ui/FormFields/FileInputField/FileInputField'
+import { useRecaptcha } from '@/lib/customHooks/useRecaptcha'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
-import { z } from 'zod'
+import { FieldError, useForm } from 'react-hook-form'
 import { InputField } from '../../../FormFields/InputField/InputField'
-
-export type CareerFormSchemaValues = z.infer<typeof careerFormSchema>
-
-export const careerFormSchema = z.object({
-  name: z.string().min(2, {
-    message: 'Must be at least 2 characters.',
-  }),
-  surname: z.string().min(2, {
-    message: 'Must be at least 2 characters.',
-  }),
-  file: z
-    .instanceof(File)
-    .refine((file) => file.size > 0, {
-      message: 'The file must not be empty',
-    })
-    .refine(
-      (file) => ['image/png', 'image/jpeg', 'image/jpg'].includes(file.type),
-      {
-        message: 'Only PNG, JPG or JPEG files are allowed.',
-      }
-    )
-    .nullable(),
-})
+import {
+  CAREER_FORM_SCHEMA,
+  CareerFormSchemaValues,
+} from './career-form-schema'
 
 export function CareerForm() {
-  const form = useForm<z.infer<typeof careerFormSchema>>({
-    resolver: zodResolver(careerFormSchema),
+  const form = useForm<CareerFormSchemaValues>({
+    resolver: zodResolver(CAREER_FORM_SCHEMA),
     defaultValues: {
-      name: '',
-      surname: '',
+      name: 'Test',
+      surname: 'Test',
       file: undefined,
     },
     mode: 'onTouched',
   })
 
+  const { recaptchaSubmitStatus, submitWithRecaptcha } = useRecaptcha({
+    form,
+  })
+
   const formControl = form.control
+  const formError = form.formState.errors.root as FieldError | undefined
+  console.log(recaptchaSubmitStatus)
 
   return (
     <section>
       <fieldset>
         <Form {...form}>
-          <form action="">
+          <form onSubmit={form.handleSubmit(submitWithRecaptcha)}>
             <legend>
               If you are interested in this job offer, please send your CV and
               portfolio.
@@ -70,6 +58,12 @@ export function CareerForm() {
                 placeholder="Your CV"
               />
             </div>
+
+            {formError && (
+              <div className="text-red-600">{formError.message}</div>
+            )}
+
+            <Button type="submit">Submit</Button>
           </form>
         </Form>
       </fieldset>

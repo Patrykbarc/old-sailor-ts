@@ -5,7 +5,7 @@ import {
   FormMessage,
 } from '@/components/ui/Form/Form'
 import { Textarea } from '@/components/ui/Textarea/Textarea'
-import { contactFormSchema } from '@/components/views/MainPage/ContactForm/helpers/contactFormSchema'
+import { ContactFormSchemaValues } from '@/components/views/MainPage/ContactForm/helpers/contact-form-schema'
 import { FormFieldProps } from '@/lib/types/contactForm/FormFieldProps'
 import { WordCounter } from '../../_MainPage/Contact/WordCounter/WordCounter'
 
@@ -13,7 +13,7 @@ export function TextAreaField({
   control,
   name,
   placeholder,
-}: FormFieldProps<typeof contactFormSchema>) {
+}: FormFieldProps<ContactFormSchemaValues>) {
   return (
     <FormField
       control={control}

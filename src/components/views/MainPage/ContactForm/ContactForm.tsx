@@ -1,21 +1,17 @@
 import { Form } from '@/components/ui/Form/Form'
-import { RecaptchaSubmitStatus } from '@/lib/types/contactForm/RecaptchaSubmitStatus'
+import { useRecaptcha } from '@/lib/customHooks/useRecaptcha'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useState } from 'react'
-import { useGoogleReCaptcha } from 'react-google-recaptcha-v3'
-import { useForm } from 'react-hook-form'
+import { FieldError, useForm } from 'react-hook-form'
 import { FormFields } from '../../../ui/_MainPage/Contact/FormFields'
 import { SubmitForm } from '../../../ui/_MainPage/Contact/SubmitForm/SubmitForm'
-import { contactFormSchema, ContactFormSchemaValues } from './helpers/contactFormSchema'
-import { submitMessage } from './helpers/submitMessage'
+import {
+  CONTACT_FORM_SCHEMA,
+  ContactFormSchemaValues,
+} from './helpers/contact-form-schema'
 
 export function ContactForm() {
-  const { executeRecaptcha } = useGoogleReCaptcha()
-  const [recaptchaSubmitStatus, setRecaptchaSubmitStatus] =
-    useState<RecaptchaSubmitStatus>(null)
-
   const form = useForm<ContactFormSchemaValues>({
-    resolver: zodResolver(contactFormSchema),
+    resolver: zodResolver(CONTACT_FORM_SCHEMA),
     defaultValues: {
       name: '',
       surname: '',
@@ -25,28 +21,23 @@ export function ContactForm() {
     mode: 'onTouched',
   })
 
-  const onSubmit = async () => {
-    await submitMessage({
-      executeRecaptcha,
-      setRecaptchaSubmitStatus,
-      setError: form.setError,
-      clearErrors: form.clearErrors,
-    })
-  }
+  const { recaptchaSubmitStatus, submitWithRecaptcha } = useRecaptcha({
+    form,
+  })
 
   const isSubmitSuccessful = form.formState.isSubmitSuccessful
   const isSubmitting = form.formState.isSubmitting
   const formControl = form.control
-  const formError = form.formState.errors.formError
+  const formError = form.formState.errors.root as FieldError | undefined
 
   return (
     <fieldset
       disabled={isSubmitSuccessful || isSubmitting}
-      className="relative border-2 w-full h-fit p-8 rounded-lg bg-neutral-900 text-neutral-900 shadow-xl"
+      className="relative border-2 w-full h-fit p-8 rounded-lg bg-neutral-900 shadow-xl"
     >
       <Form {...form}>
         <form
-          onSubmit={form.handleSubmit(onSubmit)}
+          onSubmit={form.handleSubmit(submitWithRecaptcha)}
           className="disabled:cursor-not-allowed space-y-4"
         >
           <FormFields control={formControl} />

@@ -1,1 +1,0 @@
-export type RecaptchaSubmitStatus = 'success' | 'failed' | null

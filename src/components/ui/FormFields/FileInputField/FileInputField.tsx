@@ -15,7 +15,7 @@ export function FileInputField<T extends FieldValues>({
   placeholder,
 }: FormFieldProps<T>) {
   const {
-    field: { ref, onChange, onBlur, value, ...inputProps },
+    field: { onChange, onBlur, ref, value },
     fieldState: { error },
   } = useController({
     name,
@@ -23,7 +23,7 @@ export function FileInputField<T extends FieldValues>({
   })
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
+    const file = e.target.files?.[0] || null
     onChange(file)
   }
 
@@ -31,12 +31,18 @@ export function FileInputField<T extends FieldValues>({
     <FormField
       control={control}
       name={name}
-      render={({ field }) => (
+      render={() => (
         <FormItem>
           <FormControl>
-            <Input placeholder={placeholder} type="file" {...field} />
+            <Input
+              placeholder={placeholder}
+              type="file"
+              onChange={handleFileChange}
+              onBlur={onBlur}
+              ref={ref}
+            />
           </FormControl>
-          <FormMessage />
+          {error && <FormMessage>{error.message}</FormMessage>}
         </FormItem>
       )}
     />
