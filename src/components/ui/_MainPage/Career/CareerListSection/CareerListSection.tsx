@@ -1,5 +1,5 @@
-import { JOB_DETAILS } from '@/app/(home)/career/job-details'
 import { ListSection } from '@/components/ui/ListSection/ListSection'
+import { JOB_DETAILS } from './job-details'
 
 export function CareerListSection() {
   return (
