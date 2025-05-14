@@ -11,6 +11,9 @@ Welcome to the Old Sailor Barber project! This is a web application for a barber
 - [Contributing](#contributing)
 - [License](#license)
 
+## Deployment
+[Old Sailor Barber](https://old-sailor-barber.netlify.app/)
+
 ## Features
 
 - **About Us Section**: Learn about the history and services of Old Sailor Barber.
